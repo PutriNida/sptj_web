@@ -58,3 +58,10 @@ Route::post('/master_status_perkawinan/save', \App\Http\Controllers\StatusPerkaw
 Route::get('/master_status_perkawinan/edit/{kd_status_perkawinan}', \App\Http\Controllers\StatusPerkawinanController::class . '@edit')->name('status_perkawinan.edit');
 Route::put('/master_status_perkawinan/update', \App\Http\Controllers\StatusPerkawinanController::class .'@update')->name('status_perkawinan.update');
 Route::delete('/master_status_perkawinan/destroy/{kd_status_perkawinan}', \App\Http\Controllers\StatusPerkawinanController::class .'@destroy')->name('status_perkawinan.destroy');
+//Master Lokasi Kerja
+Route::get('/master_lokasi_kerja', \App\Http\Controllers\MasterLokasiKerjaController::class .'@index')->name('lokasi_kerja.index');
+Route::get('/master_lokasi_kerja/create', \App\Http\Controllers\MasterLokasiKerjaController::class . '@create')->name('lokasi_kerja.create');
+Route::post('/master_lokasi_kerja/save', \App\Http\Controllers\MasterLokasiKerjaController::class .'@store')->name('lokasi_kerja.store');
+Route::get('/master_lokasi_kerja/edit/{kd_lokasi_kerja}', \App\Http\Controllers\MasterLokasiKerjaController::class . '@edit')->name('lokasi_kerja.edit');
+Route::put('/master_lokasi_kerja/update', \App\Http\Controllers\MasterLokasiKerjaController::class .'@update')->name('lokasi_kerja.update');
+Route::delete('/master_lokasi_kerja/destroy/{kd_lokasi_kerja}', \App\Http\Controllers\MasterLokasiKerjaController::class .'@destroy')->name('lokasi_kerja.destroy');

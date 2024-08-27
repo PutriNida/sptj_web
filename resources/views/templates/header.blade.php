@@ -4,32 +4,32 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Serikat Pekerja Transportasi Jakarta</title>
-      
+
       <!-- Favicon -->
       <link rel="shortcut icon" href="{{ URL::asset('images/favicon.ico');}}" />
-      
+
       <!-- Library / Plugin Css Build -->
       <link rel="stylesheet" href="{{ URL::asset('css/core/libs.min.css');}}" />
-      
+
       <!-- Aos Animation Css -->
       <link rel="stylesheet" href="{{ URL::asset('vendor/aos/dist/aos.css');}}" />
-      
+
       <!-- Hope Ui Design System Css -->
       <link rel="stylesheet" href="{{ URL::asset('css/hope-ui.min.css?v=2.0.0');}}" />
-      
+
       <!-- Custom Css -->
       <link rel="stylesheet" href="{{ URL::asset('css/custom.min.css?v=2.0.0');}}" />
-      
+
       <!-- Dark Css -->
       <link rel="stylesheet" href="{{ URL::asset('css/dark.min.css');}}"/>
-      
+
       <!-- Customizer Css -->
       <link rel="stylesheet" href="{{ URL::asset('css/customizer.min.css');}}" />
-      
+
       <!-- RTL Css -->
       <link rel="stylesheet" href="{{ URL::asset('css/rtl.min.css');}}"/>
-      
-      
+
+
   </head>
   <body class="  ">
     <!-- loader Start -->
@@ -38,13 +38,13 @@
           <div class="loader-body"></div>
       </div>    </div>
     <!-- loader END -->
-    
+
     <aside class="sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all ">
         <div class="sidebar-header d-flex align-items-center justify-content-start">
             <a href="../dashboard/index.html" class="navbar-brand">
                 <!--Logo start-->
                 <!--logo End-->
-                
+
                 <!--Logo start-->
                 <div class="logo-main">
                     <div class="logo-normal">
@@ -65,10 +65,10 @@
                     </div>
                 </div>
                 <!--logo End-->
-                
-                
-                
-                
+
+
+
+
                 <h4 class="logo-title">Hope UI</h4>
             </a>
             <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
@@ -158,6 +158,16 @@
                             <span class="item-name">Master Status Perkawinan</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('master_lokasi_kerja') ? 'active' : ''}}"  href="{{ url('/master_lokasi_kerja') }}">
+                            <i class="icon">
+                                <svg class="icon-20" width="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path opacity="0.4" fill-rule="evenodd" clip-rule="evenodd" d="M8.9 2H15.07C17.78 2 19.97 3.07 20 5.79V20.97C20 21.14 19.96 21.31 19.88 21.46C19.75 21.7 19.53 21.88 19.26 21.96C19 22.04 18.71 22 18.47 21.86L11.99 18.62L5.5 21.86C5.351 21.939 5.18 21.99 5.01 21.99C4.45 21.99 4 21.53 4 20.97V5.79C4 3.07 6.2 2 8.9 2ZM8.22 9.62H15.75C16.18 9.62 16.53 9.269 16.53 8.83C16.53 8.39 16.18 8.04 15.75 8.04H8.22C7.79 8.04 7.44 8.39 7.44 8.83C7.44 9.269 7.79 9.62 8.22 9.62Z" fill="currentColor"></path>
+                                </svg>
+                            </i>
+                            <span class="item-name">Master Lokasi Kerja</span>
+                        </a>
+                    </li>
                     <li><hr class="hr-horizontal"></li>
                     <li class="nav-item static-item">
                         <a class="nav-link static-item disabled" href="#" tabindex="-1">
@@ -168,9 +178,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="https://templates.iqonic.design/hope-ui/html/dist/#accordion">
                             <i class="icon">
-                                 <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                
+                                 <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                <path opacity="0.4" d="M2 11.0786C2.05 13.4166 2.19 17.4156 2.21 17.8566C2.281 18.7996 2.642 19.7526 3.204 20.4246C3.986 21.3676 4.949 21.7886 6.292 21.7886C8.148 21.7986 10.194 21.7986 12.181 21.7986C14.176 21.7986 16.112 21.7986 17.747 21.7886C19.071 21.7886 20.064 21.3566 20.836 20.4246C21.398 19.7526 21.759 18.7896 21.81 17.8566C21.83 17.4856 21.93 13.1446 21.99 11.0786H2Z" fill="currentColor"></path>                                <path d="M11.2451 15.3843V16.6783C11.2451 17.0923 11.5811 17.4283 11.9951 17.4283C12.4091 17.4283 12.7451 17.0923 12.7451 16.6783V15.3843C12.7451 14.9703 12.4091 14.6343 11.9951 14.6343C11.5811 14.6343 11.2451 14.9703 11.2451 15.3843Z" fill="currentColor"></path>                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.211 14.5565C10.111 14.9195 9.762 15.1515 9.384 15.1015C6.833 14.7455 4.395 13.8405 2.337 12.4815C2.126 12.3435 2 12.1075 2 11.8555V8.38949C2 6.28949 3.712 4.58149 5.817 4.58149H7.784C7.972 3.12949 9.202 2.00049 10.704 2.00049H13.286C14.787 2.00049 16.018 3.12949 16.206 4.58149H18.183C20.282 4.58149 21.99 6.28949 21.99 8.38949V11.8555C21.99 12.1075 21.863 12.3425 21.654 12.4815C19.592 13.8465 17.144 14.7555 14.576 15.1105C14.541 15.1155 14.507 15.1175 14.473 15.1175C14.134 15.1175 13.831 14.8885 13.746 14.5525C13.544 13.7565 12.821 13.1995 11.99 13.1995C11.148 13.1995 10.433 13.7445 10.211 14.5565ZM13.286 3.50049H10.704C10.031 3.50049 9.469 3.96049 9.301 4.58149H14.688C14.52 3.96049 13.958 3.50049 13.286 3.50049Z" fill="currentColor">
-                               </path></svg> 
+                               </path></svg>
                             </i>
                             <span class="item-name">Components</span>
                         </a>
@@ -434,13 +444,13 @@
                         </ul>
                     </li>
                 </ul>
-                <!-- Sidebar Menu End -->        
+                <!-- Sidebar Menu End -->
                 </div>
         </div>
         <div class="sidebar-footer">
 
         </div>
-    </aside>    
+    </aside>
     <main class="main-content">
       <div class="position-relative iq-banner">
         <!--Nav Start-->
@@ -449,7 +459,7 @@
             <a href="../dashboard/index.html" class="navbar-brand">
                 <!--Logo start-->
                 <!--logo End-->
-                
+
                 <!--Logo start-->
                 <div class="logo-main">
                     <div class="logo-normal">
@@ -470,10 +480,10 @@
                     </div>
                 </div>
                 <!--logo End-->
-                
-                
-                
-                
+
+
+
+
                 <h4 class="logo-title">Hope UI</h4>
             </a>
             <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
@@ -688,7 +698,7 @@
               </ul>
             </div>
           </div>
-        </nav>          
+        </nav>
         <!-- Nav Header Component Start -->
           <div class="iq-navbar-header" style="height: 215px;">
               <div class="container-fluid iq-container">
