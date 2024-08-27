@@ -33,14 +33,25 @@ class JenisKelaminController extends Controller
 
     public function store(Request $request)
     {
-        DB::table('master_jenis_kelamin')->insert([
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'status_enabled' => isset($request->status_enabled) ? 1 : 0
-        ]);
+        $status = '';
+        $message = '';
+
+        try{
+            DB::table('master_jenis_kelamin')->insert([
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'status_enabled' => isset($request->status_enabled) ? 1 : 0
+            ]);
+            $status = 'success';
+            $message = 'Data Berhasil Disimpan!';
+        }catch(Exception $error){
+            $status = 'error';
+            $message = 'Data Gagal Disimpan!';
+        }
+        
 
         //redirect to index
         return redirect()->route('jenis_kelamin.index')
-        ->with(['success' => 'Data Berhasil Disimpan!']);
+        ->with([ $status => $message]);
     }
 
     public function edit($kd_jenis_kelamin)

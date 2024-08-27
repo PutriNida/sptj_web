@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Agama;
+use App\Models\Pendidikan;
 
 use Illuminate\View\View;
 
@@ -10,23 +10,23 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
-class AgamaController extends Controller
+class PendidikanController extends Controller
 {
 
     public function index()
     {
         //get posts
-        $agama = DB::table('master_agama')
-        ->orderBy('kd_agama', 'asc')
+        $pendidikan = DB::table('master_pendidikan')
+        ->orderBy('kd_pendidikan', 'asc')
         ->get();
 
         //render view with posts
-        return view('pages.master_agama.index', compact('agama'));
+        return view('pages.master_pendidikan.index', compact('pendidikan'));
     }
 
     public function create()
     {
-        return view('pages.master_agama.create');
+        return view('pages.master_pendidikan.create');
     }
 
     public function store(Request $request)
@@ -35,8 +35,8 @@ class AgamaController extends Controller
         $message = '';
 
         try{
-            DB::table('master_agama')->insert([
-                'agama' => $request->agama,
+            DB::table('master_pendidikan')->insert([
+                'pendidikan' => $request->pendidikan,
                 'status_enabled' => isset($request->status_enabled) ? 1 : 0
             ]);
             $status = 'success';
@@ -48,45 +48,45 @@ class AgamaController extends Controller
         
 
         //redirect to index
-        return redirect()->route('agama.index')
+        return redirect()->route('pendidikan.index')
         ->with([ $status => $message]);
     }
 
-    public function edit($kd_agama)
+    public function edit($kd_pendidikan)
     {
         //get post by ID
-        $agama = DB::table('master_agama')
-        ->where('kd_agama', $kd_agama)
+        $pendidikan = DB::table('master_pendidikan')
+        ->where('kd_pendidikan', $kd_pendidikan)
         ->first();
 
         //render view with post
-        return view('pages.master_agama.edit', compact('agama'));
+        return view('pages.master_pendidikan.edit', compact('pendidikan'));
     }
 
     public function update(Request $request)
     {
-        DB::table('master_agama')
-        ->where('kd_agama', $request->kd_agama)
+        DB::table('master_pendidikan')
+        ->where('kd_pendidikan', $request->kd_pendidikan)
         ->limit(1) 
         ->update([
-            'agama' => $request->agama,
+            'pendidikan' => $request->pendidikan,
             'status_enabled' => isset($request->status_enabled) ? 1 : 0
         ]);
 
         //redirect to index
-        return redirect()->route('agama.index')
+        return redirect()->route('pendidikan.index')
         ->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
-    public function destroy($kd_agama)
+    public function destroy($kd_pendidikan)
     {
         //get delete by ID
-        DB::table('master_agama')
-        ->where('kd_agama', $kd_agama)
+        DB::table('master_pendidikan')
+        ->where('kd_pendidikan', $kd_pendidikan)
         ->delete();
 
         //render view with post
-         return redirect()->route('agama.index')
+         return redirect()->route('pendidikan.index')
         ->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }
