@@ -38,7 +38,8 @@
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1">Dashboard</span>
+            <span class="nav-link-text ms-1">Dashboard
+            </span>
           </a>
         </li>
         <li class="nav-item mt-3">
@@ -163,18 +164,42 @@
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Dashboard</li>
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">
+              @if (request()->is('master_agama') or request()->is('master_agama/create') or request()->is('master_agama/edit')) Master Data Personal
+              @elseif (request()->is('master_jenis_kelamin') or request()->is('master_jenis_kelamin/create') or request()->is('master_jenis_kelamin/edit')) Master Data Personal
+              @elseif (request()->is('master_golongan_darah') or request()->is('master_golongan_darah/create') or request()->is('master_golongan_darah/edit')) Master Data Personal
+              @elseif (request()->is('master_pendidikan') or request()->is('master_pendidikan/create') or request()->is('master_pendidikan/edit')) Master Data Personal
+              @elseif (request()->is('master_status_perkawinan') or request()->is('master_status_perkawinan/create') or request()->is('master_status_perkawinan/edit')) Master Data Personal
+              @elseif (request()->is('master_status_karyawan') or request()->is('master_status_karyawan/create') or request()->is('master_status_karyawan/edit')) Master Data Karir
+              @elseif (request()->is('master_lokasi_kerja') or request()->is('master_lokasi_kerja/create') or request()->is('master_lokasi_kerja/edit')) Master Data Karir
+              @elseif (request()->is('master_direktorat') or request()->is('master_direktorat/create') or request()->is('master_direktorat/edit')) Master Data Karir
+              @elseif (request()->is('master_divisi') or request()->is('master_divisi/create') or request()->is('master_divisi/edit')) Master Data Karir
+              @elseif (request()->is('master_departemen') or request()->is('master_departemen/create') or request()->is('master_departemen/edit')) Master Data Karir
+              @elseif (request()->is('master_jabatan') or request()->is('master_jabatan/create') or request()->is('master_jabatan/edit')) Master Data Karir
+              @elseif (request()->is('master_tipe_kontak') or request()->is('master_tipe_kontak/create') or request()->is('master_tipe_kontak/edit')) Master Data Lainnya
+              @else Home
+              @endif
+            </a></li>
+            <li class="breadcrumb-item text-sm text-white active" aria-current="page">
+              @if (request()->is('master_agama') or request()->is('master_agama/create') or request()->is('master_agama/edit')) Agama
+              @elseif (request()->is('master_jenis_kelamin') or request()->is('master_jenis_kelamin/create') or request()->is('master_jenis_kelamin/edit')) Jenis Kelamin
+              @elseif (request()->is('master_golongan_darah') or request()->is('master_golongan_darah/create') or request()->is('master_golongan_darah/edit')) Golongan Darah
+              @elseif (request()->is('master_pendidikan') or request()->is('master_pendidikan/create') or request()->is('master_pendidikan/edit')) Pendidikan
+              @elseif (request()->is('master_status_perkawinan') or request()->is('master_status_perkawinan/create') or request()->is('master_status_perkawinan/edit')) Status Perkawinan
+              @elseif (request()->is('master_status_karyawan') or request()->is('master_status_karyawan/create') or request()->is('master_status_karyawan/edit')) Status Karyawan
+              @elseif (request()->is('master_lokasi_kerja') or request()->is('master_lokasi_kerja/create') or request()->is('master_lokasi_kerja/edit')) Lokasi Kerja
+              @elseif (request()->is('master_direktorat') or request()->is('master_direktorat/create') or request()->is('master_direktorat/edit')) Direktorat
+              @elseif (request()->is('master_divisi') or request()->is('master_divisi/create') or request()->is('master_divisi/edit')) Divisi
+              @elseif (request()->is('master_departemen') or request()->is('master_departemen/create') or request()->is('master_departemen/edit')) Departemen
+              @elseif (request()->is('master_jabatan') or request()->is('master_jabatan/create') or request()->is('master_jabatan/edit')) Jabatan
+              @elseif (request()->is('master_tipe_kontak') or request()->is('master_tipe_kontak/create') or request()->is('master_tipe_kontak/edit')) Tipe Kontak
+              @else Home
+              @endif
+            </li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-            <div class="input-group">
-              <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" placeholder="Type here...">
-            </div>
-          </div>
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center"></div>
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">

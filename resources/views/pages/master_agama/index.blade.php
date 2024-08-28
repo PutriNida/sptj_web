@@ -73,7 +73,7 @@
                             </tr>
                         @empty
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <span class="alert-text"><strong>Maaf!</strong> Data Agama Tidak Ditemukan!</span>
+                            <span class="alert-text"><strong>Maaf!</strong> Data Agama Belum Tersedia!</span>
                             <a href="{{ Session::forget('error'); }}" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </a>
