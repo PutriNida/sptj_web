@@ -155,6 +155,22 @@
             <span class="nav-link-text ms-1">Tipe Kontak</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->is('master_kartu_identitas') ? 'active' : ''}}"  href="{{ url('/master_kartu_identitas') }}">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Kartu Identitas</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->is('master_kategori_berita') ? 'active' : ''}}"  href="{{ url('/master_kategori_berita') }}">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Kategori Berita</span>
+          </a>
+        </li>
       </ul>
     </div>
   </aside>

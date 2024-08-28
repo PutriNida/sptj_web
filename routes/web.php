@@ -113,3 +113,17 @@ Route::post('/master_hub_keluarga/save', \App\Http\Controllers\MasterControllers
 Route::get('/master_hub_keluarga/edit/{kd_hub_keluarga}', \App\Http\Controllers\MasterControllers\HubunganKeluargaController::class . '@edit')->name('hub_keluarga.edit');
 Route::put('/master_hub_keluarga/update', \App\Http\Controllers\MasterControllers\HubunganKeluargaController::class .'@update')->name('hub_keluarga.update');
 Route::delete('/master_hub_keluarga/destroy/{kd_hub_keluarga}', \App\Http\Controllers\MasterControllers\HubunganKeluargaController::class .'@destroy')->name('hub_keluarga.destroy');
+//master Kartu Identitas
+Route::get('/master_kartu_identitas', \App\Http\Controllers\MasterControllers\KartuIdentitasController::class .'@index')->name('kartu_identitas.index');
+Route::get('/master_kartu_identitas/create', \App\Http\Controllers\MasterControllers\KartuIdentitasController::class . '@create')->name('kartu_identitas.create');
+Route::post('/master_kartu_identitas/save', \App\Http\Controllers\MasterControllers\KartuIdentitasController::class .'@store')->name('kartu_identitas.store');
+Route::get('/master_kartu_identitas/edit/{kd_kartu_identitas}', \App\Http\Controllers\MasterControllers\KartuIdentitasController::class . '@edit')->name('kartu_identitas.edit');
+Route::put('/master_kartu_identitas/update', \App\Http\Controllers\MasterControllers\KartuIdentitasController::class .'@update')->name('kartu_identitas.update');
+Route::delete('/master_kartu_identitas/destroy/{kd_kartu_identitas}', \App\Http\Controllers\MasterControllers\KartuIdentitasController::class .'@destroy')->name('kartu_identitas.destroy');
+//master Kategori berita
+Route::get('/master_kategori_berita', \App\Http\Controllers\MasterControllers\KategoriBeritaController::class .'@index')->name('kategori_berita.index');
+Route::get('/master_kategori_berita/create', \App\Http\Controllers\MasterControllers\KategoriBeritaController::class . '@create')->name('kategori_berita.create');
+Route::post('/master_kategori_berita/save', \App\Http\Controllers\MasterControllers\KategoriBeritaController::class .'@store')->name('kategori_berita.store');
+Route::get('/master_kategori_berita/edit/{kd_kategori_berita}', \App\Http\Controllers\MasterControllers\KategoriBeritaController::class . '@edit')->name('kategori_berita.edit');
+Route::put('/master_kategori_berita/update', \App\Http\Controllers\MasterControllers\KategoriBeritaController::class .'@update')->name('kategori_berita.update');
+Route::delete('/master_kategori_berita/destroy/{kd_kategori_berita}', \App\Http\Controllers\MasterControllers\KategoriBeritaController::class .'@destroy')->name('kategori_berita.destroy');
