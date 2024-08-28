@@ -1,13 +1,12 @@
 @extends('templates/layout') 
 @section('content')
-<div class="conatiner-fluid content-inner mt-n5 py-0">
-    <div>
+<div class="container-fluid py-4">
         <div class="row">
             <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between">
-                        <div class="header-title">
-                            <h4 class="card-title">Tambah Golongan Darah</h4>
+                <div class="card mb-4">
+                    <div class="card-header pb-0">              
+                        <div class="d-flex align-items-center">
+                            <h6 class="mb-0">Tambah Golongan Darah</h6>
                         </div>
                     </div>
                     <div class="card-body">
@@ -38,5 +37,4 @@
             </div>
         </div>
     </div>
-</div>
 @stop
