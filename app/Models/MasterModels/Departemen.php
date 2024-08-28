@@ -13,6 +13,7 @@ class Departemen extends Model
     protected $primaryKey = 'kd_departemen';
     protected $fillable = [
         'departemen',
+        'kd_divisi',
         'status_enabled'
     ];
 }

@@ -19,6 +19,7 @@ class DepartemenController extends Controller
     {
         //get posts
         $departemen = DB::table('master_departemen')
+        ->join('master_divisi', 'master_divisi.kd_divisi', '=', 'master_departemen.kd_divisi')
         ->orderBy('kd_departemen', 'asc')
         ->get();
 
@@ -28,7 +29,11 @@ class DepartemenController extends Controller
 
     public function create()
     {
-        return view('pages.master_departemen.create');
+        $divisi = DB::table('master_divisi')
+         ->orderBy('kd_divisi', 'asc')
+        ->get();
+
+        return view('pages.master_departemen.create', compact('divisi'));
     }
 
     public function store(Request $request)
@@ -39,6 +44,7 @@ class DepartemenController extends Controller
         try{
             DB::table('master_departemen')->insert([
                 'departemen' => $request->departemen,
+                'kd_divisi' => $request->kd_divisi,
                 'status_enabled' => isset($request->status_enabled) ? 1 : 0
             ]);
             $status = 'success';
@@ -56,13 +62,16 @@ class DepartemenController extends Controller
 
     public function edit($kd_departemen)
     {
-        //get post by ID
+        $divisi = DB::table('master_divisi')
+         ->orderBy('kd_divisi', 'asc')
+        ->get();
         $departemen = DB::table('master_departemen')
+        ->join('master_divisi', 'master_divisi.kd_divisi', '=', 'master_departemen.kd_divisi')
         ->where('kd_departemen', $kd_departemen)
         ->first();
 
         //render view with post
-        return view('pages.master_departemen.edit', compact('departemen'));
+        return view('pages.master_departemen.edit', compact('divisi','departemen'));
     }
 
     public function update(Request $request)
@@ -72,6 +81,7 @@ class DepartemenController extends Controller
         ->limit(1)
         ->update([
             'departemen' => $request->departemen,
+            'kd_divisi' => $request->kd_divisi,
             'status_enabled' => isset($request->status_enabled) ? 1 : 0
         ]);
 

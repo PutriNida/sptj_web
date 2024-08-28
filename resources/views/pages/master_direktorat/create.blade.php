@@ -14,7 +14,7 @@
                             <form action="{{ route('direktorat.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                                 {{ csrf_field() }}
                                 <div class="form-group row">
-                                    <label class="control-label col-sm-3 align-self-center mb-0" for="direktorat">Lokasi Kerja:</label>
+                                    <label class="control-label col-sm-3 align-self-center mb-0" for="direktorat">Direktorat:</label>
                                     <div class="col-sm-9">
                                     <input type="text" class="form-control" id="direktorat" name="direktorat"  autocomplete="off" required>
                                     </div>

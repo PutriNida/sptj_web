@@ -86,7 +86,7 @@
                                 <use xlink:href="#exclamation-triangle-fill" />
                             </svg>
                             <div>
-                                Data Status Lokasi Belum Tersedia!
+                                Data Lokasi Kerja Belum Tersedia!
                             </div>
                             <a type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" href="{{ Session::forget('error'); }}"></a>
                         </div>

@@ -28,10 +28,10 @@
          <div class="card">
             <div class="card-header d-flex justify-content-between flex-wrap">
                <div class="header-title">
-                  <h4 class="card-title">direktorat</h4>
+                  <h4 class="card-title">Jabatan</h4>
                 </div>
                 <div class="">
-                    <a href="{{ url('/master_direktorat/create') }}" class=" text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
+                    <a href="{{ url('/master_jabatan/create') }}" class=" text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
                         <i class="btn-inner">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -47,25 +47,27 @@
                      <thead>
                         <tr class="ligth">
                            <th>No</th>
-                           <th>Direktorat</th>
+                           <th>Departemen</th>
+                           <th>Jabatan</th>
                            <th>Status</th>
                            <th style="min-width: 100px">Aksi</th>
                         </tr>
                      </thead>
                      <tbody>
-                        @forelse ($direktorat as $dir)
+                        @forelse ($jabatan as $jab)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $dir->direktorat }}</td>
-                                @if($dir->status_enabled == '1') <td>Aktif</td>
+                                <td>{{ $jab->departemen }}</td>
+                                <td>{{ $jab->jabatan }}</td>
+                                @if($jab->status_enabled == '1') <td>Aktif</td>
                                 @else <td>Tidak Aktif</td>
                                 @endif
                                 <td>
                                     <div class="flex align-items-center list-user-action">
-                                        <form action="{{ route('direktorat.destroy', $dir->kd_direktorat) }}" method="post">
+                                        <form action="{{ route('jabatan.destroy', $jab->kd_jabatan) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <a class="btn btn-sm btn-icon btn-warning" data-bs-toggle="tooltip" href="{{ route('direktorat.edit', $dir->kd_direktorat) }}">
+                                            <a class="btn btn-sm btn-icon btn-warning" data-bs-toggle="tooltip" href="{{ route('jabatan.edit', $jab->kd_jabatan) }}">
                                                 <span class="btn-inner">
                                                 <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M11.4925 2.78906H7.75349C4.67849 2.78906 2.75049 4.96606 2.75049 8.04806V16.3621C2.75049 19.4441 4.66949 21.6211 7.75349 21.6211H16.5775C19.6625 21.6211 21.5815 19.4441 21.5815 16.3621V12.3341" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -74,7 +76,7 @@
                                                 </svg>
                                                 </span>
                                             </a>
-                                            <input type="hidden" name="kd_direktorat" value="{{ $dir->kd_direktorat }}"/>
+                                            <input type="hidden" name="kd_jabatan" value="{{ $jab->kd_jabatan }}"/>
                                             <input class="btn btn-sm btn-icon btn-danger" type="submit" value="Hapus" />
                                         </form>
                                     </div>
@@ -86,7 +88,7 @@
                                 <use xlink:href="#exclamation-triangle-fill" />
                             </svg>
                             <div>
-                                Data Direktorat Belum Tersedia!
+                                Data Jabatan Belum Tersedia!
                             </div>
                             <a type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" href="{{ Session::forget('error'); }}"></a>
                         </div>

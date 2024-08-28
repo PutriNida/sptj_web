@@ -47,25 +47,27 @@
                      <thead>
                         <tr class="ligth">
                            <th>No</th>
+                           <th>Divisi</th>
                            <th>Departemen</th>
                            <th>Status</th>
                            <th style="min-width: 100px">Aksi</th>
                         </tr>
                      </thead>
                      <tbody>
-                        @forelse ($departemen as $stts)
+                        @forelse ($departemen as $dep)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $stts->departemen }}</td>
-                                @if($stts->status_enabled == '1') <td>Aktif</td>
+                                <td>{{ $dep->divisi }}</td>
+                                <td>{{ $dep->departemen }}</td>
+                                @if($dep->status_enabled == '1') <td>Aktif</td>
                                 @else <td>Tidak Aktif</td>
                                 @endif
                                 <td>
                                     <div class="flex align-items-center list-user-action">
-                                        <form action="{{ route('departemen.destroy', $stts->kd_departemen) }}" method="post">
+                                        <form action="{{ route('departemen.destroy', $dep->kd_departemen) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <a class="btn btn-sm btn-icon btn-warning" data-bs-toggle="tooltip" href="{{ route('departemen.edit', $stts->kd_departemen) }}">
+                                            <a class="btn btn-sm btn-icon btn-warning" data-bs-toggle="tooltip" href="{{ route('departemen.edit', $dep->kd_departemen) }}">
                                                 <span class="btn-inner">
                                                 <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M11.4925 2.78906H7.75349C4.67849 2.78906 2.75049 4.96606 2.75049 8.04806V16.3621C2.75049 19.4441 4.66949 21.6211 7.75349 21.6211H16.5775C19.6625 21.6211 21.5815 19.4441 21.5815 16.3621V12.3341" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -74,7 +76,7 @@
                                                 </svg>
                                                 </span>
                                             </a>
-                                            <input type="hidden" name="kd_departemen" value="{{ $stts->kd_departemen }}"/>
+                                            <input type="hidden" name="kd_departemen" value="{{ $dep->kd_departemen }}"/>
                                             <input class="btn btn-sm btn-icon btn-danger" type="submit" value="Hapus" />
                                         </form>
                                     </div>
@@ -86,7 +88,7 @@
                                 <use xlink:href="#exclamation-triangle-fill" />
                             </svg>
                             <div>
-                                Data Status Departemen Belum Tersedia!
+                                Data Departemen Belum Tersedia!
                             </div>
                             <a type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" href="{{ Session::forget('error'); }}"></a>
                         </div>

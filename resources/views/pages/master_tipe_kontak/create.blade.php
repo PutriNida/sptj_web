@@ -7,28 +7,16 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Tambah Departemen</h4>
+                            <h4 class="card-title">Tambah Tipe Kontak</h4>
                         </div>
                     </div>
                     <div class="card-body">
-                            <form action="{{ route('departemen.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                            <form action="{{ route('tipe_kontak.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                                 {{ csrf_field() }}
                                 <div class="form-group row">
-                                    <label class="control-label col-sm-3 align-self-center mb-0" for="exampleFormControlSelect1">Pilih Divisi:</label>
+                                    <label class="control-label col-sm-3 align-self-center mb-0" for="tipe_kontak">Tipe Kontak:</label>
                                     <div class="col-sm-9">
-                                        <select class="form-select" id="exampleFormControlSelect1" name="kd_divisi">
-                                            <option selected="" disabled="">--Pilih--</option>
-                                            @forelse ($divisi as $div)
-                                            <option value="{{ $div->kd_divisi }}">{{ $div->divisi }}</option>
-                                            @empty
-                                            @endforelse
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="control-label col-sm-3 align-self-center mb-0" for="departemen">Departemen:</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="departemen" name="departemen"  autocomplete="off" required>
+                                    <input type="text" class="form-control" id="tipe_kontak" name="tipe_kontak"  autocomplete="off" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -41,7 +29,7 @@
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Simpan</button>
-                                    <a href="{{ url('/master_departemen') }}" class="btn btn-danger">Batal</a>
+                                    <a href="{{ url('/master_tipe_kontak') }}" class="btn btn-danger">Batal</a>
                                 </div>
                             </form>
                         </div>
