@@ -1,54 +1,140 @@
-        
-      
-      <!-- Footer Section Start -->
-      <footer class="footer">
-          <div class="footer-body">
-              <ul class="left-panel list-inline mb-0 p-0">
-              </ul>
-              <div class="right-panel">
-                  ©<script>document.write(new Date().getFullYear())</script> Hope UI, Made with
-                  <span class="">
-                      <svg class="icon-15" width="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path fill-rule="evenodd" clip-rule="evenodd" d="M15.85 2.50065C16.481 2.50065 17.111 2.58965 17.71 2.79065C21.401 3.99065 22.731 8.04065 21.62 11.5806C20.99 13.3896 19.96 15.0406 18.611 16.3896C16.68 18.2596 14.561 19.9196 12.28 21.3496L12.03 21.5006L11.77 21.3396C9.48102 19.9196 7.35002 18.2596 5.40102 16.3796C4.06102 15.0306 3.03002 13.3896 2.39002 11.5806C1.26002 8.04065 2.59002 3.99065 6.32102 2.76965C6.61102 2.66965 6.91002 2.59965 7.21002 2.56065H7.33002C7.61102 2.51965 7.89002 2.50065 8.17002 2.50065H8.28002C8.91002 2.51965 9.52002 2.62965 10.111 2.83065H10.17C10.21 2.84965 10.24 2.87065 10.26 2.88965C10.481 2.96065 10.69 3.04065 10.89 3.15065L11.27 3.32065C11.3618 3.36962 11.4649 3.44445 11.554 3.50912C11.6104 3.55009 11.6612 3.58699 11.7 3.61065C11.7163 3.62028 11.7329 3.62996 11.7496 3.63972C11.8354 3.68977 11.9247 3.74191 12 3.79965C13.111 2.95065 14.46 2.49065 15.85 2.50065ZM18.51 9.70065C18.92 9.68965 19.27 9.36065 19.3 8.93965V8.82065C19.33 7.41965 18.481 6.15065 17.19 5.66065C16.78 5.51965 16.33 5.74065 16.18 6.16065C16.04 6.58065 16.26 7.04065 16.68 7.18965C17.321 7.42965 17.75 8.06065 17.75 8.75965V8.79065C17.731 9.01965 17.8 9.24065 17.94 9.41065C18.08 9.58065 18.29 9.67965 18.51 9.70065Z" fill="currentColor"></path>
-                      </svg>
-                  </span> by <a href="https://iqonic.design/">IQONIC Design</a>.
+<footer class="footer pt-3  ">
+        <div class="container-fluid">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6 mb-lg-0 mb-4">
+              <div class="copyright text-center text-sm text-muted text-lg-start">
+                © <script>
+                  document.write(new Date().getFullYear())
+                </script>,
+                made with <i class="fa fa-heart"></i> by
+                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
+                for a better web.
               </div>
+            </div>
+            <div class="col-lg-6">
+              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                <li class="nav-item">
+                  <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
+                </li>
+              </ul>
+            </div>
           </div>
+        </div>
       </footer>
-      <!-- Footer Section End -->   
-    </main>
-    <!-- Wrapper End-->
+    </div>
+  </main>
 
-    <!-- Library Bundle Script -->
-    <script src="{{ URL::asset('js/core/libs.min.js');}}"></script>
-    
-    <!-- External Library Bundle Script -->
-    <script src="{{ URL::asset('js/core/external.min.js');}}"></script>
-    
-    <!-- Widgetchart Script -->
-    <script src="{{ URL::asset('js/charts/widgetcharts.js');}}"></script>
-    
-    <!-- mapchart Script -->
-    <script src="{{ URL::asset('js/charts/vectore-chart.js');}}"></script>
-    <script src="{{ URL::asset('js/charts/dashboard.js');}}" ></script>
-    
-    <!-- fslightbox Script -->
-    <script src="{{ URL::asset('js/plugins/fslightbox.js');}}"></script>
-    
-    <!-- Settings Script -->
-    <script src="{{ URL::asset('js/plugins/setting.js');}}"></script>
-    
-    <!-- Slider-tab Script -->
-    <script src="{{ URL::asset('js/plugins/slider-tabs.js');}}"></script>
-    
-    <!-- Form Wizard Script -->
-    <script src="{{ URL::asset('js/plugins/form-wizard.js');}}"></script>
-    
-    <!-- AOS Animation Plugin-->
-    <script src="{{ URL::asset('vendor/aos/dist/aos.js');}}"></script>
-    
-    <!-- App Script -->
-    <script src="{{ URL::asset('js/hope-ui.js');}}" defer></script>
-    
-  </body>
+<!--   Core JS Files   -->
+  <script src="{{ URL::asset('js/core/popper.min.js');}}"></script>
+  <script src="{{ URL::asset('js/core/bootstrap.min.js');}}"></script>
+  <script src="{{ URL::asset('js/plugins/perfect-scrollbar.min.js');}}"></script>
+  <script src="{{ URL::asset('js/plugins/smooth-scrollbar.min.js');}}"></script>
+  <script src="{{ URL::asset('js/plugins/chartjs.min.js');}}"></script>
+  <script>
+    var ctx1 = document.getElementById("chart-line").getContext("2d");
+
+    var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
+    gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
+    gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
+    new Chart(ctx1, {
+      type: "line",
+      data: {
+        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        datasets: [{
+          label: "Mobile apps",
+          tension: 0.4,
+          borderWidth: 0,
+          pointRadius: 0,
+          borderColor: "#5e72e4",
+          backgroundColor: gradientStroke1,
+          borderWidth: 3,
+          fill: true,
+          data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+          maxBarThickness: 6
+
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              padding: 10,
+              color: '#fbfbfb',
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              color: '#ccc',
+              padding: 20,
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
+  </script>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js');}}"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="{{ URL::asset('js/argon-dashboard.min.js?v=2.0.4"></script>
+</body>
+
 </html>
