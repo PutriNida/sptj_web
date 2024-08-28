@@ -127,3 +127,24 @@ Route::post('/master_kategori_berita/save', \App\Http\Controllers\MasterControll
 Route::get('/master_kategori_berita/edit/{kd_kategori_berita}', \App\Http\Controllers\MasterControllers\KategoriBeritaController::class . '@edit')->name('kategori_berita.edit');
 Route::put('/master_kategori_berita/update', \App\Http\Controllers\MasterControllers\KategoriBeritaController::class .'@update')->name('kategori_berita.update');
 Route::delete('/master_kategori_berita/destroy/{kd_kategori_berita}', \App\Http\Controllers\MasterControllers\KategoriBeritaController::class .'@destroy')->name('kategori_berita.destroy');
+//master Kategori galeri
+Route::get('/master_kategori_galeri', \App\Http\Controllers\MasterControllers\KategoriGaleriController::class .'@index')->name('kategori_galeri.index');
+Route::get('/master_kategori_galeri/create', \App\Http\Controllers\MasterControllers\KategoriGaleriController::class . '@create')->name('kategori_galeri.create');
+Route::post('/master_kategori_galeri/save', \App\Http\Controllers\MasterControllers\KategoriGaleriController::class .'@store')->name('kategori_galeri.store');
+Route::get('/master_kategori_galeri/edit/{kd_kategori_galeri}', \App\Http\Controllers\MasterControllers\KategoriGaleriController::class . '@edit')->name('kategori_galeri.edit');
+Route::put('/master_kategori_galeri/update', \App\Http\Controllers\MasterControllers\KategoriGaleriController::class .'@update')->name('kategori_galeri.update');
+Route::delete('/master_kategori_galeri/destroy/{kd_kategori_galeri}', \App\Http\Controllers\MasterControllers\KategoriGaleriController::class .'@destroy')->name('kategori_galeri.destroy');
+//master Kategori Informasi
+Route::get('/master_kategori_informasi', \App\Http\Controllers\MasterControllers\KategoriInformasiController::class .'@index')->name('kategori_informasi.index');
+Route::get('/master_kategori_informasi/create', \App\Http\Controllers\MasterControllers\KategoriInformasiController::class . '@create')->name('kategori_informasi.create');
+Route::post('/master_kategori_informasi/save', \App\Http\Controllers\MasterControllers\KategoriInformasiController::class .'@store')->name('kategori_informasi.store');
+Route::get('/master_kategori_informasi/edit/{kd_kategori_informasi}', \App\Http\Controllers\MasterControllers\KategoriInformasiController::class . '@edit')->name('kategori_informasi.edit');
+Route::put('/master_kategori_informasi/update', \App\Http\Controllers\MasterControllers\KategoriInformasiController::class .'@update')->name('kategori_informasi.update');
+Route::delete('/master_kategori_informasi/destroy/{kd_kategori_informasi}', \App\Http\Controllers\MasterControllers\KategoriInformasiController::class .'@destroy')->name('kategori_informasi.destroy');
+//master Media sossial
+Route::get('/master_media_sosial', \App\Http\Controllers\MasterControllers\MediaSosialController::class .'@index')->name('media_sosial.index');
+Route::get('/master_media_sosial/create', \App\Http\Controllers\MasterControllers\MediaSosialController::class . '@create')->name('media_sosial.create');
+Route::post('/master_media_sosial/save', \App\Http\Controllers\MasterControllers\MediaSosialController::class .'@store')->name('media_sosial.store');
+Route::get('/master_media_sosial/edit/{kd_media_sosial}', \App\Http\Controllers\MasterControllers\MediaSosialController::class . '@edit')->name('media_sosial.edit');
+Route::put('/master_media_sosial/update', \App\Http\Controllers\MasterControllers\MediaSosialController::class .'@update')->name('media_sosial.update');
+Route::delete('/master_media_sosial/destroy/{kd_media_sosial}', \App\Http\Controllers\MasterControllers\MediaSosialController::class .'@destroy')->name('media_sosial.destroy');
