@@ -106,3 +106,10 @@ Route::post('/master_jabatan/save', \App\Http\Controllers\MasterControllers\Jaba
 Route::get('/master_jabatan/edit/{kd_jabatan}', \App\Http\Controllers\MasterControllers\JabatanController::class . '@edit')->name('jabatan.edit');
 Route::put('/master_jabatan/update', \App\Http\Controllers\MasterControllers\JabatanController::class .'@update')->name('jabatan.update');
 Route::delete('/master_jabatan/destroy/{kd_jabatan}', \App\Http\Controllers\MasterControllers\JabatanController::class .'@destroy')->name('jabatan.destroy');
+//master hubungan keluarga
+Route::get('/master_hub_keluarga', \App\Http\Controllers\MasterControllers\HubunganKeluargaController::class .'@index')->name('hub_keluarga.index');
+Route::get('/master_hub_keluarga/create', \App\Http\Controllers\MasterControllers\HubunganKeluargaController::class . '@create')->name('hub_keluarga.create');
+Route::post('/master_hub_keluarga/save', \App\Http\Controllers\MasterControllers\HubunganKeluargaController::class .'@store')->name('hub_keluarga.store');
+Route::get('/master_hub_keluarga/edit/{kd_hub_keluarga}', \App\Http\Controllers\MasterControllers\HubunganKeluargaController::class . '@edit')->name('hub_keluarga.edit');
+Route::put('/master_hub_keluarga/update', \App\Http\Controllers\MasterControllers\HubunganKeluargaController::class .'@update')->name('hub_keluarga.update');
+Route::delete('/master_hub_keluarga/destroy/{kd_hub_keluarga}', \App\Http\Controllers\MasterControllers\HubunganKeluargaController::class .'@destroy')->name('hub_keluarga.destroy');
