@@ -65,3 +65,17 @@ Route::post('/master_lokasi_kerja/save', \App\Http\Controllers\MasterLokasiKerja
 Route::get('/master_lokasi_kerja/edit/{kd_lokasi_kerja}', \App\Http\Controllers\MasterLokasiKerjaController::class . '@edit')->name('lokasi_kerja.edit');
 Route::put('/master_lokasi_kerja/update', \App\Http\Controllers\MasterLokasiKerjaController::class .'@update')->name('lokasi_kerja.update');
 Route::delete('/master_lokasi_kerja/destroy/{kd_lokasi_kerja}', \App\Http\Controllers\MasterLokasiKerjaController::class .'@destroy')->name('lokasi_kerja.destroy');
+//master departemen
+Route::get('/master_departemen', \App\Http\Controllers\MasterDepartemenController::class .'@index')->name('departemen.index');
+Route::get('/master_departemen/create', \App\Http\Controllers\MasterDepartemenController::class . '@create')->name('departemen.create');
+Route::post('/master_departemen/save', \App\Http\Controllers\MasterDepartemenController::class .'@store')->name('departemen.store');
+Route::get('/master_departemen/edit/{kd_departemen}', \App\Http\Controllers\MasterDepartemenController::class . '@edit')->name('departemen.edit');
+Route::put('/master_departemen/update', \App\Http\Controllers\MasterDepartemenController::class .'@update')->name('departemen.update');
+Route::delete('/master_departemen/destroy/{kd_departemen}', \App\Http\Controllers\MasterDepartemenController::class .'@destroy')->name('departemen.destroy');
+//master direktorat
+Route::get('/master_direktorat', \App\Http\Controllers\MasterDirektoratController::class .'@index')->name('direktorat.index');
+Route::get('/master_direktorat/create', \App\Http\Controllers\MasterDirektoratController::class . '@create')->name('direktorat.create');
+Route::post('/master_direktorat/save', \App\Http\Controllers\MasterDirektoratController::class .'@store')->name('direktorat.store');
+Route::get('/master_direktorat/edit/{kd_direktorat}', \App\Http\Controllers\MasterDirektoratController::class . '@edit')->name('direktorat.edit');
+Route::put('/master_direktorat/update', \App\Http\Controllers\MasterDirektoratController::class .'@update')->name('direktorat.update');
+Route::delete('/master_direktorat/destroy/{kd_direktorat}', \App\Http\Controllers\MasterDirektoratController::class .'@destroy')->name('direktorat.destroy');
