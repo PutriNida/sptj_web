@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Agama;
+use App\Models\MasterModels\JenisKelamin;
 
 use Illuminate\View\View;
 
@@ -10,23 +10,23 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
-class MasterLokasiKerjaController extends Controller
+class JenisKelaminController extends Controller
 {
 
     public function index()
     {
         //get posts
-        $lokasi_kerja = DB::table('master_lokasi_kerja')
-        ->orderBy('kd_lokasi_kerja', 'asc')
+        $jeniskelamin = DB::table('master_jenis_kelamin')
+        ->orderBy('kd_jenis_kelamin', 'asc')
         ->get();
 
         //render view with posts
-        return view('pages.master_lokasi_kerja.index', compact('lokasi_kerja'));
+        return view('pages.master_jenis_kelamin.index', compact('jeniskelamin'));
     }
 
     public function create()
     {
-        return view('pages.master_lokasi_kerja.create');
+        return view('pages.master_jenis_kelamin.create');
     }
 
     public function store(Request $request)
@@ -35,8 +35,8 @@ class MasterLokasiKerjaController extends Controller
         $message = '';
 
         try{
-            DB::table('master_lokasi_kerja')->insert([
-                'lokasi_kerja' => $request->lokasi_kerja,
+            DB::table('master_jenis_kelamin')->insert([
+                'jenis_kelamin' => $request->jenis_kelamin,
                 'status_enabled' => isset($request->status_enabled) ? 1 : 0
             ]);
             $status = 'success';
@@ -45,48 +45,48 @@ class MasterLokasiKerjaController extends Controller
             $status = 'error';
             $message = 'Data Gagal Disimpan!';
         }
-
+        
 
         //redirect to index
-        return redirect()->route('lokasi_kerja.index')
+        return redirect()->route('jenis_kelamin.index')
         ->with([ $status => $message]);
     }
 
-    public function edit($kd_lokasi_kerja)
+    public function edit($kd_jenis_kelamin)
     {
         //get post by ID
-        $lokasi_kerja = DB::table('master_lokasi_kerja')
-        ->where('kd_lokasi_kerja', $kd_lokasi_kerja)
+        $jeniskelamin = DB::table('master_jenis_kelamin')
+        ->where('kd_jenis_kelamin', $kd_jenis_kelamin)
         ->first();
 
         //render view with post
-        return view('pages.master_lokasi_kerja.edit', compact('lokasi_kerja'));
+        return view('pages.master_jenis_kelamin.edit', compact('jeniskelamin'));
     }
 
     public function update(Request $request)
     {
-        DB::table('master_lokasi_kerja')
-        ->where('kd_lokasi_kerja', $request->kd_lokasi_kerja)
-        ->limit(1)
+        DB::table('master_jenis_kelamin')
+        ->where('kd_jenis_kelamin', $request->kd_jenis_kelamin)
+        ->limit(1) 
         ->update([
-            'lokasi_kerja' => $request->lokasi_kerja,
+            'jenis_kelamin' => $request->jenis_kelamin,
             'status_enabled' => isset($request->status_enabled) ? 1 : 0
         ]);
 
         //redirect to index
-        return redirect()->route('lokasi_kerja.index')
+        return redirect()->route('jenis_kelamin.index')
         ->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
-    public function destroy($kd_lokasi_kerja)
+    public function destroy($kd_jenis_kelamin)
     {
         //get delete by ID
-        DB::table('master_lokasi_kerja')
-        ->where('kd_lokasi_kerja', $kd_lokasi_kerja)
+        DB::table('master_jenis_kelamin')
+        ->where('kd_jenis_kelamin', $kd_jenis_kelamin)
         ->delete();
 
         //render view with post
-         return redirect()->route('lokasi_kerja.index')
+         return redirect()->route('jenis_kelamin.index')
         ->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Agama;
+use App\Models\MasterModels\Agama;
 
 use Illuminate\View\View;
 
@@ -10,23 +10,23 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
-class MasterdirektoratController extends Controller
+class AgamaController extends Controller
 {
 
     public function index()
     {
         //get posts
-        $direktorat = DB::table('master_direktorat')
-        ->orderBy('kd_direktorat', 'asc')
+        $agama = DB::table('master_agama')
+        ->orderBy('kd_agama', 'asc')
         ->get();
 
         //render view with posts
-        return view('pages.master_direktorat.index', compact('direktorat'));
+        return view('pages.master_agama.index', compact('agama'));
     }
 
     public function create()
     {
-        return view('pages.master_direktorat.create');
+        return view('pages.master_agama.create');
     }
 
     public function store(Request $request)
@@ -35,8 +35,8 @@ class MasterdirektoratController extends Controller
         $message = '';
 
         try{
-            DB::table('master_direktorat')->insert([
-                'direktorat' => $request->direktorat,
+            DB::table('master_agama')->insert([
+                'agama' => $request->agama,
                 'status_enabled' => isset($request->status_enabled) ? 1 : 0
             ]);
             $status = 'success';
@@ -45,48 +45,48 @@ class MasterdirektoratController extends Controller
             $status = 'error';
             $message = 'Data Gagal Disimpan!';
         }
-
+        
 
         //redirect to index
-        return redirect()->route('direktorat.index')
+        return redirect()->route('agama.index')
         ->with([ $status => $message]);
     }
 
-    public function edit($kd_direktorat)
+    public function edit($kd_agama)
     {
         //get post by ID
-        $direktorat = DB::table('master_direktorat')
-        ->where('kd_direktorat', $kd_direktorat)
+        $agama = DB::table('master_agama')
+        ->where('kd_agama', $kd_agama)
         ->first();
 
         //render view with post
-        return view('pages.master_direktorat.edit', compact('direktorat'));
+        return view('pages.master_agama.edit', compact('agama'));
     }
 
     public function update(Request $request)
     {
-        DB::table('master_direktorat')
-        ->where('kd_direktorat', $request->kd_direktorat)
-        ->limit(1)
+        DB::table('master_agama')
+        ->where('kd_agama', $request->kd_agama)
+        ->limit(1) 
         ->update([
-            'direktorat' => $request->direktorat,
+            'agama' => $request->agama,
             'status_enabled' => isset($request->status_enabled) ? 1 : 0
         ]);
 
         //redirect to index
-        return redirect()->route('direktorat.index')
+        return redirect()->route('agama.index')
         ->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
-    public function destroy($kd_direktorat)
+    public function destroy($kd_agama)
     {
         //get delete by ID
-        DB::table('master_direktorat')
-        ->where('kd_direktorat', $kd_direktorat)
+        DB::table('master_agama')
+        ->where('kd_agama', $kd_agama)
         ->delete();
 
         //render view with post
-         return redirect()->route('direktorat.index')
+         return redirect()->route('agama.index')
         ->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

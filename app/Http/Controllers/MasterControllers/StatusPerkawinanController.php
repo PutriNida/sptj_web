@@ -2,33 +2,31 @@
 
 namespace App\Http\Controllers;
 
-//import Model "JenisKelamin"
-use App\Models\JenisKelamin;
+use App\Models\MasterModels\StatusPerkawinan;
 
-//return type View
 use Illuminate\View\View;
 
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
-class JenisKelaminController extends Controller
+class StatusPerkawinanController extends Controller
 {
 
     public function index()
     {
         //get posts
-        $jeniskelamin = DB::table('master_jenis_kelamin')
-        ->orderBy('kd_jenis_kelamin', 'asc')
+        $status_perkawinan = DB::table('master_status_perkawinan')
+        ->orderBy('kd_status_perkawinan', 'asc')
         ->get();
 
         //render view with posts
-        return view('pages.master_jenis_kelamin.index', compact('jeniskelamin'));
+        return view('pages.master_status_perkawinan.index', compact('status_perkawinan'));
     }
 
     public function create()
     {
-        return view('pages.master_jenis_kelamin.create');
+        return view('pages.master_status_perkawinan.create');
     }
 
     public function store(Request $request)
@@ -37,8 +35,8 @@ class JenisKelaminController extends Controller
         $message = '';
 
         try{
-            DB::table('master_jenis_kelamin')->insert([
-                'jenis_kelamin' => $request->jenis_kelamin,
+            DB::table('master_status_perkawinan')->insert([
+                'status_perkawinan' => $request->status_perkawinan,
                 'status_enabled' => isset($request->status_enabled) ? 1 : 0
             ]);
             $status = 'success';
@@ -50,45 +48,45 @@ class JenisKelaminController extends Controller
         
 
         //redirect to index
-        return redirect()->route('jenis_kelamin.index')
+        return redirect()->route('status_perkawinan.index')
         ->with([ $status => $message]);
     }
 
-    public function edit($kd_jenis_kelamin)
+    public function edit($kd_status_perkawinan)
     {
         //get post by ID
-        $jeniskelamin = DB::table('master_jenis_kelamin')
-        ->where('kd_jenis_kelamin', $kd_jenis_kelamin)
+        $status_perkawinan = DB::table('master_status_perkawinan')
+        ->where('kd_status_perkawinan', $kd_status_perkawinan)
         ->first();
 
         //render view with post
-        return view('pages.master_jenis_kelamin.edit', compact('jeniskelamin'));
+        return view('pages.master_status_perkawinan.edit', compact('status_perkawinan'));
     }
 
     public function update(Request $request)
     {
-        DB::table('master_jenis_kelamin')
-        ->where('kd_jenis_kelamin', $request->kd_jenis_kelamin)
+        DB::table('master_status_perkawinan')
+        ->where('kd_status_perkawinan', $request->kd_status_perkawinan)
         ->limit(1) 
         ->update([
-            'jenis_kelamin' => $request->jenis_kelamin,
+            'status_perkawinan' => $request->status_perkawinan,
             'status_enabled' => isset($request->status_enabled) ? 1 : 0
         ]);
 
         //redirect to index
-        return redirect()->route('jenis_kelamin.index')
+        return redirect()->route('status_perkawinan.index')
         ->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
-    public function destroy($kd_jenis_kelamin)
+    public function destroy($kd_status_perkawinan)
     {
         //get delete by ID
-        DB::table('master_jenis_kelamin')
-        ->where('kd_jenis_kelamin', $kd_jenis_kelamin)
+        DB::table('master_status_perkawinan')
+        ->where('kd_status_perkawinan', $kd_status_perkawinan)
         ->delete();
 
         //render view with post
-         return redirect()->route('jenis_kelamin.index')
+         return redirect()->route('status_perkawinan.index')
         ->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

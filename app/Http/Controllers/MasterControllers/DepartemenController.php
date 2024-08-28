@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Agama;
+use App\Models\MasterModels\Departemen;
 
 use Illuminate\View\View;
 
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
-class MasterDepartemenController extends Controller
+class DepartemenController extends Controller
 {
 
     public function index()

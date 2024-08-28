@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\GolonganDarah;
+use App\Models\MasterModels\LokasiKerja;
 
 use Illuminate\View\View;
 
@@ -10,23 +10,23 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
-class GolonganDarahController extends Controller
+class LokasiKerjaController extends Controller
 {
 
     public function index()
     {
         //get posts
-        $goldarah = DB::table('master_gol_darah')
-        ->orderBy('kd_gol_darah', 'asc')
+        $lokasi_kerja = DB::table('master_lokasi_kerja')
+        ->orderBy('kd_lokasi_kerja', 'asc')
         ->get();
 
         //render view with posts
-        return view('pages.master_golongan_darah.index', compact('goldarah'));
+        return view('pages.master_lokasi_kerja.index', compact('lokasi_kerja'));
     }
 
     public function create()
     {
-        return view('pages.master_golongan_darah.create');
+        return view('pages.master_lokasi_kerja.create');
     }
 
     public function store(Request $request)
@@ -35,8 +35,8 @@ class GolonganDarahController extends Controller
         $message = '';
 
         try{
-            DB::table('master_gol_darah')->insert([
-                'gol_darah' => $request->gol_darah,
+            DB::table('master_lokasi_kerja')->insert([
+                'lokasi_kerja' => $request->lokasi_kerja,
                 'status_enabled' => isset($request->status_enabled) ? 1 : 0
             ]);
             $status = 'success';
@@ -45,48 +45,48 @@ class GolonganDarahController extends Controller
             $status = 'error';
             $message = 'Data Gagal Disimpan!';
         }
-        
+
 
         //redirect to index
-        return redirect()->route('gol_darah.index')
+        return redirect()->route('lokasi_kerja.index')
         ->with([ $status => $message]);
     }
 
-    public function edit($kd_gol_darah)
+    public function edit($kd_lokasi_kerja)
     {
         //get post by ID
-        $goldarah = DB::table('master_gol_darah')
-        ->where('kd_gol_darah', $kd_gol_darah)
+        $lokasi_kerja = DB::table('master_lokasi_kerja')
+        ->where('kd_lokasi_kerja', $kd_lokasi_kerja)
         ->first();
 
         //render view with post
-        return view('pages.master_golongan_darah.edit', compact('goldarah'));
+        return view('pages.master_lokasi_kerja.edit', compact('lokasi_kerja'));
     }
 
     public function update(Request $request)
     {
-        DB::table('master_gol_darah')
-        ->where('kd_gol_darah', $request->kd_gol_darah)
-        ->limit(1) 
+        DB::table('master_lokasi_kerja')
+        ->where('kd_lokasi_kerja', $request->kd_lokasi_kerja)
+        ->limit(1)
         ->update([
-            'gol_darah' => $request->gol_darah,
+            'lokasi_kerja' => $request->lokasi_kerja,
             'status_enabled' => isset($request->status_enabled) ? 1 : 0
         ]);
 
         //redirect to index
-        return redirect()->route('gol_darah.index')
+        return redirect()->route('lokasi_kerja.index')
         ->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
-    public function destroy($kd_gol_darah)
+    public function destroy($kd_lokasi_kerja)
     {
         //get delete by ID
-        DB::table('master_gol_darah')
-        ->where('kd_gol_darah', $kd_gol_darah)
+        DB::table('master_lokasi_kerja')
+        ->where('kd_lokasi_kerja', $kd_lokasi_kerja)
         ->delete();
 
         //render view with post
-         return redirect()->route('gol_darah.index')
+         return redirect()->route('lokasi_kerja.index')
         ->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

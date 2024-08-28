@@ -69,7 +69,7 @@
 
 
 
-                <h4 class="logo-title">Hope UI</h4>
+                <h6 class="logo-title">SPTJ</h6>
             </a>
             <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
                 <i class="icon">

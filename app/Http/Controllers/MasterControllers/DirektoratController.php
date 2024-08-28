@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pendidikan;
+use App\Models\MasterModels\Direktorat;
 
 use Illuminate\View\View;
 
@@ -10,23 +10,23 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
-class PendidikanController extends Controller
+class DirektoratController extends Controller
 {
 
     public function index()
     {
         //get posts
-        $pendidikan = DB::table('master_pendidikan')
-        ->orderBy('kd_pendidikan', 'asc')
+        $direktorat = DB::table('master_direktorat')
+        ->orderBy('kd_direktorat', 'asc')
         ->get();
 
         //render view with posts
-        return view('pages.master_pendidikan.index', compact('pendidikan'));
+        return view('pages.master_direktorat.index', compact('direktorat'));
     }
 
     public function create()
     {
-        return view('pages.master_pendidikan.create');
+        return view('pages.master_direktorat.create');
     }
 
     public function store(Request $request)
@@ -35,8 +35,8 @@ class PendidikanController extends Controller
         $message = '';
 
         try{
-            DB::table('master_pendidikan')->insert([
-                'pendidikan' => $request->pendidikan,
+            DB::table('master_direktorat')->insert([
+                'direktorat' => $request->direktorat,
                 'status_enabled' => isset($request->status_enabled) ? 1 : 0
             ]);
             $status = 'success';
@@ -45,48 +45,48 @@ class PendidikanController extends Controller
             $status = 'error';
             $message = 'Data Gagal Disimpan!';
         }
-        
+
 
         //redirect to index
-        return redirect()->route('pendidikan.index')
+        return redirect()->route('direktorat.index')
         ->with([ $status => $message]);
     }
 
-    public function edit($kd_pendidikan)
+    public function edit($kd_direktorat)
     {
         //get post by ID
-        $pendidikan = DB::table('master_pendidikan')
-        ->where('kd_pendidikan', $kd_pendidikan)
+        $direktorat = DB::table('master_direktorat')
+        ->where('kd_direktorat', $kd_direktorat)
         ->first();
 
         //render view with post
-        return view('pages.master_pendidikan.edit', compact('pendidikan'));
+        return view('pages.master_direktorat.edit', compact('direktorat'));
     }
 
     public function update(Request $request)
     {
-        DB::table('master_pendidikan')
-        ->where('kd_pendidikan', $request->kd_pendidikan)
-        ->limit(1) 
+        DB::table('master_direktorat')
+        ->where('kd_direktorat', $request->kd_direktorat)
+        ->limit(1)
         ->update([
-            'pendidikan' => $request->pendidikan,
+            'direktorat' => $request->direktorat,
             'status_enabled' => isset($request->status_enabled) ? 1 : 0
         ]);
 
         //redirect to index
-        return redirect()->route('pendidikan.index')
+        return redirect()->route('direktorat.index')
         ->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
-    public function destroy($kd_pendidikan)
+    public function destroy($kd_direktorat)
     {
         //get delete by ID
-        DB::table('master_pendidikan')
-        ->where('kd_pendidikan', $kd_pendidikan)
+        DB::table('master_direktorat')
+        ->where('kd_direktorat', $kd_direktorat)
         ->delete();
 
         //render view with post
-         return redirect()->route('pendidikan.index')
+         return redirect()->route('direktorat.index')
         ->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }
