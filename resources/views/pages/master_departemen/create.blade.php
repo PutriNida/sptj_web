@@ -1,14 +1,12 @@
 @extends('templates/layout') 
 @section('content')
 <div class="container-fluid py-4">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card mb-4">
-                    <div class="card-header pb-0">              
-                        <div class="d-flex align-items-center">
-                            <h6 class="mb-0">Tambah Departemen</h6>
-                        </div>
-                    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Tambah Departemen</h6>
+                </div>
                     <div class="card-body">
                             <form action="{{ route('departemen.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                                 {{ csrf_field() }}

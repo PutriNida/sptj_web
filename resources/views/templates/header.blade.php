@@ -2,340 +2,420 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="{{ URL::asset('img/apple-icon.png'); }}">
-  <link rel="icon" type="image/png" href="{{ URL::asset('img/favicon.png'); }}">
-  <title>
-    SPTJ
-  </title>
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-  <!-- Nucleo Icons -->
-  <link href="{{ URL::asset('css/nucleo-icons.css'); }}" rel="stylesheet" />
-  <link href="{{ URL::asset('css/nucleo-svg.css'); }}" rel="stylesheet" />
-  <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <link href="{{ URL::asset('css/nucleo-svg.css'); }}" rel="stylesheet" />
-  <!-- CSS Files -->
-  <link id="pagestyle" href="{{ URL::asset('css/argon-dashboard.css?v=2.0.4'); }}" rel="stylesheet" />
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="{{ URL::asset('vendor/fontawesome-free/css/all.min.css'); }}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{{ URL::asset('css/sb-admin-2.min.css'); }}" rel="stylesheet">
+
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
-  <div class="min-height-300 bg-primary position-absolute w-100"></div>
-  <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
-    <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html " target="_blank">
-        <span class="font-weight-bold">Serikat Pekerja <br>Transportasi Jakarta</span>
-      </a>
-    </div>
-    <hr class="horizontal dark mt-0">
-    <div id="sidenav-collapse-main">
-      <ul class="navbar-nav">
-        <li class="nav-item ">
-          <a class="nav-link active" href="../pages/dashboard.html">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Dashboard
-            </span>
-          </a>
-        </li>
-        <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Master Data Personal</h6>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('master_agama') ? 'active' : ''}}"  href="{{ url('/master_agama') }}">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Agama</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('master_jenis_kelamin') ? 'active' : ''}}"  href="{{ url('/master_jenis_kelamin') }}">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Jenis Kelamin</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('master_golongan_darah') ? 'active' : ''}}"  href="{{ url('/master_golongan_darah') }}">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Golongan Darah</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('master_pendidikan') ? 'active' : ''}}"  href="{{ url('/master_pendidikan') }}">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Pendidikan</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('master_status_perkawinan') ? 'active' : ''}}"  href="{{ url('/master_status_perkawinan') }}">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Status Perkawinan</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('master_hub_keluarga') ? 'active' : ''}}"  href="{{ url('/master_hub_keluarga') }}">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Hubungan Keluarga</span>
-          </a>
-        </li>
-        <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Master Data Karir</h6>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('master_status_karyawan') ? 'active' : ''}}"  href="{{ url('/master_status_karyawan') }}">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Status Karyawan</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('master_lokasi_kerja') ? 'active' : ''}}"  href="{{ url('/master_lokasi_kerja') }}">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Lokasi Kerja</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('master_direktorat') ? 'active' : ''}}"  href="{{ url('/master_direktorat') }}">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Direktorat</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('master_divisi') ? 'active' : ''}}"  href="{{ url('/master_divisi/1/10') }}">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Divisi</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('master_departemen') ? 'active' : ''}}"  href="{{ url('/master_departemen') }}">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Departemen</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('master_jabatan') ? 'active' : ''}}"  href="{{ url('/master_jabatan') }}">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Jabatan</span>
-          </a>
-        </li>
-        <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Master Data Lainnya</h6>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('master_tipe_kontak') ? 'active' : ''}}"  href="{{ url('/master_tipe_kontak') }}">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Tipe Kontak</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('master_kartu_identitas') ? 'active' : ''}}"  href="{{ url('/master_kartu_identitas') }}">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Kartu Identitas</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('master_kategori_berita') ? 'active' : ''}}"  href="{{ url('/master_kategori_berita') }}">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Kategori Berita</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('master_kategori_galeri') ? 'active' : ''}}"  href="{{ url('/master_kategori_galeri') }}">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Kategori Galeri</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('master_kategori_informasi') ? 'active' : ''}}"  href="{{ url('/master_kategori_informasi') }}">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Kategori infromasi</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('master_media_sosial') ? 'active' : ''}}"  href="{{ url('/master_media_sosial') }}">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Media Sosial</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </aside>
-  <main class="main-content position-relative border-radius-lg ">
-    <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
-      <div class="container-fluid py-1 px-3">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">
-              @if (request()->is('master_agama') or request()->is('master_agama/create') or request()->is('master_agama/edit')) Master Data Personal
-              @elseif (request()->is('master_jenis_kelamin') or request()->is('master_jenis_kelamin/create') or request()->is('master_jenis_kelamin/edit')) Master Data Personal
-              @elseif (request()->is('master_golongan_darah') or request()->is('master_golongan_darah/create') or request()->is('master_golongan_darah/edit')) Master Data Personal
-              @elseif (request()->is('master_pendidikan') or request()->is('master_pendidikan/create') or request()->is('master_pendidikan/edit')) Master Data Personal
-              @elseif (request()->is('master_status_perkawinan') or request()->is('master_status_perkawinan/create') or request()->is('master_status_perkawinan/edit')) Master Data Personal
-              @elseif (request()->is('master_status_karyawan') or request()->is('master_status_karyawan/create') or request()->is('master_status_karyawan/edit')) Master Data Karir
-              @elseif (request()->is('master_lokasi_kerja') or request()->is('master_lokasi_kerja/create') or request()->is('master_lokasi_kerja/edit')) Master Data Karir
-              @elseif (request()->is('master_direktorat') or request()->is('master_direktorat/create') or request()->is('master_direktorat/edit')) Master Data Karir
-              @elseif (request()->is('master_divisi') or request()->is('master_divisi/create') or request()->is('master_divisi/edit')) Master Data Karir
-              @elseif (request()->is('master_departemen') or request()->is('master_departemen/create') or request()->is('master_departemen/edit')) Master Data Karir
-              @elseif (request()->is('master_jabatan') or request()->is('master_jabatan/create') or request()->is('master_jabatan/edit')) Master Data Karir
-              @elseif (request()->is('master_tipe_kontak') or request()->is('master_tipe_kontak/create') or request()->is('master_tipe_kontak/edit')) Master Data Lainnya
-              @else Home
-              @endif
-            </a></li>
-            <li class="breadcrumb-item text-sm text-white active" aria-current="page">
-              @if (request()->is('master_agama') or request()->is('master_agama/create') or request()->is('master_agama/edit')) Agama
-              @elseif (request()->is('master_jenis_kelamin') or request()->is('master_jenis_kelamin/create') or request()->is('master_jenis_kelamin/edit')) Jenis Kelamin
-              @elseif (request()->is('master_golongan_darah') or request()->is('master_golongan_darah/create') or request()->is('master_golongan_darah/edit')) Golongan Darah
-              @elseif (request()->is('master_pendidikan') or request()->is('master_pendidikan/create') or request()->is('master_pendidikan/edit')) Pendidikan
-              @elseif (request()->is('master_status_perkawinan') or request()->is('master_status_perkawinan/create') or request()->is('master_status_perkawinan/edit')) Status Perkawinan
-              @elseif (request()->is('master_status_karyawan') or request()->is('master_status_karyawan/create') or request()->is('master_status_karyawan/edit')) Status Karyawan
-              @elseif (request()->is('master_lokasi_kerja') or request()->is('master_lokasi_kerja/create') or request()->is('master_lokasi_kerja/edit')) Lokasi Kerja
-              @elseif (request()->is('master_direktorat') or request()->is('master_direktorat/create') or request()->is('master_direktorat/edit')) Direktorat
-              @elseif (request()->is('master_divisi') or request()->is('master_divisi/create') or request()->is('master_divisi/edit')) Divisi
-              @elseif (request()->is('master_departemen') or request()->is('master_departemen/create') or request()->is('master_departemen/edit')) Departemen
-              @elseif (request()->is('master_jabatan') or request()->is('master_jabatan/create') or request()->is('master_jabatan/edit')) Jabatan
-              @elseif (request()->is('master_tipe_kontak') or request()->is('master_tipe_kontak/create') or request()->is('master_tipe_kontak/edit')) Tipe Kontak
-              @else Home
-              @endif
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <!-- <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div> -->
+                <div class="sidebar-brand-text mx-1">Serikat Pekerja Transportasi Jakarta</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
             </li>
-          </ol>
-        </nav>
-        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-          <div class="ms-md-auto pe-md-3 d-flex align-items-center"></div>
-          <ul class="navbar-nav  justify-content-end">
-            <li class="nav-item d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
-                <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Sign In</span>
-              </a>
-            </li>
-            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
-                <div class="sidenav-toggler-inner">
-                  <i class="sidenav-toggler-line bg-white"></i>
-                  <i class="sidenav-toggler-line bg-white"></i>
-                  <i class="sidenav-toggler-line bg-white"></i>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Master Data
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePersonal"
+                    aria-expanded="true" aria-controls="collapsePersonal">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Master Data Personal</span>
+                </a>
+                <div id="collapsePersonal" class="collapse             
+                {{ request()->is('master_jenis_kelamin') ? 'show' : '' }}
+                {{ request()->is('master_agama')?'show':'' }}
+                {{ request()->is('master_golongan_darah')? 'show':'' }}
+                {{ request()->is('master_status_perkawinan')? 'show':'' }}
+                {{ request()->is('master_hub_keluarga')? 'show':'' }}
+                {{ request()->is('master_pendidikan')? 'show':'' }}
+                {{ request()->is('master_tipe_kontak')? 'show':'' }}
+                {{ request()->is('master_kartu_identitas')? 'show':''}}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                      <a class="collapse-item {{ request()->is('master_jenis_kelamin') ? 'active' : ''}}"  href="{{ url('/master_jenis_kelamin') }}">
+                        Jenis Kelamin
+                      </a>
+                      <a class="collapse-item {{ request()->is('master_agama') ? 'active' : ''}}"  href="{{ url('/master_agama') }}">
+                        Agama
+                      </a>
+                      <a class="collapse-item {{ request()->is('master_golongan_darah') ? 'active' : ''}}"  href="{{ url('/master_golongan_darah') }}">
+                        Golongan Darah
+                      </a>
+                      <a class="collapse-item {{ request()->is('master_status_perkawinan') ? 'active' : ''}}"  href="{{ url('master_status_perkawinan') }}">
+                        Status Perkawinan
+                      </a>
+                      <a class="collapse-item {{ request()->is('master_hub_keluarga') ? 'active' : ''}}"  href="{{ url('/master_hub_keluarga') }}">
+                        Hubungan Keluarga
+                      </a>
+                      <a class="collapse-item {{ request()->is('master_pendidikan') ? 'active' : ''}}"  href="{{ url('/master_pendidikan') }}">
+                        Pendidikan
+                      </a>
+                      <a class="collapse-item {{ request()->is('master_tipe_kontak') ? 'active' : ''}}"  href="{{ url('/master_tipe_kontak') }}">
+                        Tipe Kontak
+                      </a>
+                      <a class="collapse-item {{ request()->is('master_kartu_identitas') ? 'active' : ''}}"  href="{{ url('/master_kartu_identitas') }}">
+                        Kartu Identitas
+                      </a>
+                    </div>
                 </div>
-              </a>
             </li>
-            <li class="nav-item px-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0">
-                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
-              </a>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseKarir"
+                    aria-expanded="true" aria-controls="collapseKarir">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Master Data Karir</span>
+                </a>
+                <div id="collapseKarir" class="collapse            
+                {{ request()->is('master_status_karyawan') ? 'show' : '' }}
+                {{ request()->is('master_lokasi_kerja')?'show':'' }}
+                {{ request()->is('master_direktorat')? 'show':'' }}
+                {{ request()->is('master_divisi')? 'show':'' }}
+                {{ request()->is('master_departemen')? 'show':'' }}
+                {{ request()->is('master_jabatan')? 'show':'' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item {{ request()->is('master_status_karyawan') ? 'active' : ''}}"  href="{{ url('/master_status_karyawan') }}">
+                          Status Karyawan
+                        </a>
+                        <a class="collapse-item {{ request()->is('master_lokasi_kerja') ? 'active' : ''}}"  href="{{ url('/master_lokasi_kerja') }}">
+                          Lokasi Kerja
+                        </a>
+                        <a class="collapse-item {{ request()->is('master_direktorat') ? 'active' : ''}}"  href="{{ url('/master_direktorat') }}">
+                          Direktorat
+                        </a>
+                        <a class="collapse-item {{ request()->is('master_divisi') ? 'active' : ''}}"  href="{{ url('/master_divisi') }}">
+                          Divisi
+                        </a>
+                        <a class="collapse-item {{ request()->is('master_departemen') ? 'active' : ''}}"  href="{{ url('/master_departemen') }}">
+                          Departemen
+                        </a>
+                        <a class="collapse-item {{ request()->is('master_jabatan') ? 'active' : ''}}"  href="{{ url('/master_jabatan') }}">
+                          Jabatan
+                        </a>
+                    </div>
+                </div>
             </li>
-            <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-bell cursor-pointer"></i>
-              </a>
-              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-                <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="javascript:;">
-                    <div class="d-flex py-1">
-                      <div class="my-auto">
-                        <img src="{{ URL::asset('img/team-2.jpg'); }}" class="avatar avatar-sm  me-3 ">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New message</span> from Laur
-                        </h6>
-                        <p class="text-xs text-secondary mb-0">
-                          <i class="fa fa-clock me-1"></i>
-                          13 minutes ago
-                        </p>
-                      </div>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Master Data Lainnya</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="buttons.html">Buttons</a>
+                        <a class="collapse-item" href="cards.html">Cards</a>
                     </div>
-                  </a>
-                </li>
-                <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="javascript:;">
-                    <div class="d-flex py-1">
-                      <div class="my-auto">
-                        <img src="{{ URL::asset('img/small-logos/logo-spotify.svg'); }}" class="avatar avatar-sm bg-gradient-dark  me-3 ">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New album</span> by Travis Scott
-                        </h6>
-                        <p class="text-xs text-secondary mb-0">
-                          <i class="fa fa-clock me-1"></i>
-                          1 day
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item border-radius-md" href="javascript:;">
-                    <div class="d-flex py-1">
-                      <div class="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
-                        <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                          <title>credit-card</title>
-                          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                              <g transform="translate(1716.000000, 291.000000)">
-                                <g transform="translate(453.000000, 454.000000)">
-                                  <path class="color-background" d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z" opacity="0.593633743"></path>
-                                  <path class="color-background" d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z"></path>
-                                </g>
-                              </g>
-                            </g>
-                          </g>
-                        </svg>
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          Payment successfully completed
-                        </h6>
-                        <p class="text-xs text-secondary mb-0">
-                          <i class="fa fa-clock me-1"></i>
-                          2 days
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
+                </div>
             </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!-- End Navbar -->
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Addons
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Pages</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Login Screens:</h6>
+                        <a class="collapse-item" href="login.html">Login</a>
+                        <a class="collapse-item" href="register.html">Register</a>
+                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Other Pages:</h6>
+                        <a class="collapse-item" href="404.html">404 Page</a>
+                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Charts</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="tables.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Tables</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+            <!-- Sidebar Message -->
+            <div class="sidebar-card d-none d-lg-flex">
+                <img class="sidebar-card-illustration mb-2" src="{{ URL::asset('img/undraw_rocket.svg'); }}" alt="...">
+                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
+                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Alerts -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw"></i>
+                                <!-- Counter - Alerts -->
+                                <span class="badge badge-danger badge-counter">3+</span>
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Alerts Center
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 12, 2019</div>
+                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-donate text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 7, 2019</div>
+                                        $290.29 has been deposited into your account!
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-warning">
+                                            <i class="fas fa-exclamation-triangle text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 2, 2019</div>
+                                        Spending Alert: We've noticed unusually high spending for your account.
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Messages -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-envelope fa-fw"></i>
+                                <!-- Counter - Messages -->
+                                <span class="badge badge-danger badge-counter">7</span>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="messagesDropdown">
+                                <h6 class="dropdown-header">
+                                    Message Center
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="{{ URL::asset('img/undraw_profile_1.svg'); }}"
+                                            alt="...">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <div class="font-weight-bold">
+                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
+                                            problem I've been having.</div>
+                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="{{ URL::asset('img/undraw_profile_2.svg'); }}"
+                                            alt="...">
+                                        <div class="status-indicator"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">I have the photos that you ordered last month, how
+                                            would you like them sent to you?</div>
+                                        <div class="small text-gray-500">Jae Chun · 1d</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="{{ URL::asset('img/undraw_profile_3.svg'); }}"
+                                            alt="...">
+                                        <div class="status-indicator bg-warning"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">Last month's report looks great, I am very happy with
+                                            the progress so far, keep up the good work!</div>
+                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                            alt="...">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
+                                            told me that people say this to all dogs, even if they aren't good...</div>
+                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                            </div>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <img class="img-profile rounded-circle"
+                                    src="{{ URL::asset('img/undraw_profile.svg'); }}">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
