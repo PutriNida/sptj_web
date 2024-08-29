@@ -113,7 +113,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ request()->is('master_divisi') ? 'active' : ''}}"  href="{{ url('/master_divisi') }}">
+          <a class="nav-link {{ request()->is('master_divisi') ? 'active' : ''}}"  href="{{ url('/master_divisi/1/10') }}">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-tag text-primary text-sm opacity-10"></i>
             </div>

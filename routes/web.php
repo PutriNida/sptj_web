@@ -86,7 +86,7 @@ Route::get('/master_direktorat/edit/{kd_direktorat}', \App\Http\Controllers\Mast
 Route::put('/master_direktorat/update', \App\Http\Controllers\MasterControllers\DirektoratController::class .'@update')->name('direktorat.update');
 Route::delete('/master_direktorat/destroy/{kd_direktorat}', \App\Http\Controllers\MasterControllers\DirektoratController::class .'@destroy')->name('direktorat.destroy');
 // master divisi
-Route::get('/master_divisi', \App\Http\Controllers\MasterControllers\DivisiController::class .'@index')->name('divisi.index');
+Route::get('/master_divisi/{page}/{rows}', \App\Http\Controllers\MasterControllers\DivisiController::class .'@index')->name('divisi.index');
 Route::get('/master_divisi/create', \App\Http\Controllers\MasterControllers\DivisiController::class . '@create')->name('divisi.create');
 Route::post('/master_divisi/save', \App\Http\Controllers\MasterControllers\DivisiController::class .'@store')->name('divisi.store');
 Route::get('/master_divisi/edit/{kd_divisi}', \App\Http\Controllers\MasterControllers\DivisiController::class . '@edit')->name('divisi.edit');

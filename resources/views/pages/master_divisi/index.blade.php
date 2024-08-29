@@ -39,24 +39,24 @@
                     </tr>
                   </thead>
                   <tbody>
-                        @forelse ($divisi as $div)
+                        @for ($i = $first_row; $i <= $last_row; $i++) 
                             <tr>
                                 <td>
                                     <div class="d-flex px-3 py-1">
-                                        {{ $loop->iteration }}
+                                        {{ $i + 1 }}
                                     </div>
                                 </td>
                                  <td>
                                     <div class="d-flex px-2 py-1">
-                                        <h6 class="mb-0 text-sm">{{ $div->direktorat }}</h6>
+                                        <h6 class="mb-0 text-sm">{{ $divisi[$i]->direktorat }}</h6>
                                     </div>
                                 </td>
                                  <td>
                                     <div class="d-flex px-2 py-1">
-                                        <h6 class="mb-0 text-sm">{{ $div->divisi }}</h6>
+                                        <h6 class="mb-0 text-sm">{{ $divisi[$i]->divisi }}</h6>
                                     </div>
                                 </td>
-                                @if($div->status_enabled == '1')
+                                @if($divisi[$i]->status_enabled == '1')
                                     <td class="align-middle text-center text-sm">
                                         <span class="badge badge-sm bg-gradient-success">Aktif</span>
                                     </td>
@@ -66,29 +66,33 @@
                                     </td>
                                 @endif
                                 <td class="align-middle text-center text-sm">   
-                                    <form action="{{ route('divisi.destroy', $div->kd_divisi) }}" method="post">
+                                    <form action="{{ route('divisi.destroy', $divisi[$i]->kd_divisi) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <a class="btn btn-warning btn-sm" href="{{ route('divisi.edit', $div->kd_divisi) }}">
+                                        <a class="btn btn-warning btn-sm" href="{{ route('divisi.edit', $divisi[$i]->kd_divisi) }}">
                                             Edit
                                         </a>
-                                        <input type="hidden" name="kd_divisi" value="{{ $div->kd_divisi }}"/>
+                                        <input type="hidden" name="kd_divisi" value="{{ $divisi[$i]->kd_divisi }}"/>
                                         <input type="button" class="btn btn-danger btn-sm" type="submit" value="Hapus" />
                                     </form>
                                 </td>
                             </tr>
-                        @empty
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <span class="alert-text"><strong>Maaf!</strong> Data Divisi Tidak Ditemukan!</span>
-                            <a href="{{ Session::forget('error'); }}" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </a>
-                        </div>
-                        @endforelse
+                        @endfor
                      </tbody>
                   </table>
                </div>
             </div>
+            <nav>
+                <ul class="pagination justify-content-center">
+                    @for($j = 1; $j <= $total_pages; $j++) 
+                        @if($j == $page)
+                            <li><a class="btn btn-primary btn-sm" href="{{ url('/master_divisi/'.$j.'/'.$rows) }}">{{ $j }}</a></li>
+                        @else
+                            <li><a class="btn btn-outline-primary btn-sm" href="{{ url('/master_divisi/'.$j.'/'.$rows) }}">{{ $j }}</a></li>
+                        @endif
+                    @endfor
+                </ul>
+                </nav>
          </div>
       </div>
    </div>
