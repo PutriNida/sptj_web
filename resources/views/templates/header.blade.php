@@ -85,6 +85,14 @@
             <span class="nav-link-text ms-1">Status Perkawinan</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->is('master_hub_keluarga') ? 'active' : ''}}"  href="{{ url('/master_hub_keluarga') }}">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Hubungan Keluarga</span>
+          </a>
+        </li>
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Master Data Karir</h6>
         </li>
@@ -145,6 +153,46 @@
               <i class="ni ni-tag text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Tipe Kontak</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->is('master_kartu_identitas') ? 'active' : ''}}"  href="{{ url('/master_kartu_identitas') }}">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Kartu Identitas</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->is('master_kategori_berita') ? 'active' : ''}}"  href="{{ url('/master_kategori_berita') }}">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Kategori Berita</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->is('master_kategori_galeri') ? 'active' : ''}}"  href="{{ url('/master_kategori_galeri') }}">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Kategori Galeri</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->is('master_kategori_informasi') ? 'active' : ''}}"  href="{{ url('/master_kategori_informasi') }}">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Kategori infromasi</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->is('master_media_sosial') ? 'active' : ''}}"  href="{{ url('/master_media_sosial') }}">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-tag text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Media Sosial</span>
           </a>
         </li>
       </ul>
@@ -291,4 +339,3 @@
       </div>
     </nav>
     <!-- End Navbar -->
-    
