@@ -9,22 +9,21 @@
             </a>
         </div>
     @elseif(session('error'))
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <span class="alert-text"><strong>Kesalahan!</strong> {{session('error')}}</span>
             <a href="{{ Session::forget('error'); }}" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </a>
         </div>
     @endif
-<div class="row">
+    <div class="row">
         <div class="col-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Departemen</h6>
-                <a href="{{ url('/master_departemen/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
-              </div>
-            </div>
-            <div class="card-body">
+                    <a href="{{ url('/master_departemen/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
+                </div>
+                <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
@@ -40,13 +39,13 @@
                         @forelse ($departemen as $dep)
                             <tr>
                                 <td>
-                                    {{ $loop->iteration }}
+                                        {{ $loop->iteration }}
                                 </td>
-                                 <td>
-                                    {{ $dep->divisi }}
+                                <td>
+                                        {{ $dep->divisi }}
                                 </td>
-                                 <td>
-                                    {{ $dep->departemen }}
+                                <td>
+                                        {{ $dep->departemen }}
                                 </td>
                                 @if($dep->status_enabled == '1') 
                                     <td>
@@ -70,12 +69,11 @@
                                 </td>
                             </tr>
                         @empty
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <span class="alert-text"><strong>Maaf!</strong> Data Departemen Tidak Ditemukan!</span>
-                            <a href="{{ Session::forget('error'); }}" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </a>
-                        </div>
+                            <tr>
+                                <td colspan='5' class="alert alert-warning">
+                                    <strong>Maaf!</strong>    Data Departemen Belum Tersedia!
+                                </td>
+                            </tr>
                         @endforelse
                      </tbody>
                   </table>

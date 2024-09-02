@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 class DivisiController extends Controller
 {
 
-    public function index($page, $rows)
+    public function index()
     {
         //get posts
         $divisi = DB::table('master_divisi')
@@ -23,28 +23,8 @@ class DivisiController extends Controller
         ->orderBy('kd_divisi', 'asc')
         ->get();
 
-        $total_pages = ceil(count($divisi)/$rows);
-        $total_rows = count($divisi);
-        $first_row = 0;
-        $last_row = 0;
-        if($total_pages > 1){
-            if($page == 1){
-                $first_row = 0;
-                $last_row = $rows - 1;
-            }else if($page > 1 && $page < $total_pages){
-                $first_row = ($page - 1) * $rows;
-                $last_row = ($page * $rows) - 1;
-            }else if($page == $total_pages){
-                $first_row = ($page - 1) * $rows;
-                $last_row = $total_rows - 1;
-            }
-            // $divisi = array_slice($divisi, $first_row, $last_row);
-        }
-
-        // $page = $page + 1;
-
         //render view with posts
-        return view('pages.master_divisi.index', compact('divisi', 'page', 'rows', 'total_pages', 'total_rows', 'first_row', 'last_row'));
+        return view('pages.master_divisi.index', compact('divisi'));
     }
 
     public function create()

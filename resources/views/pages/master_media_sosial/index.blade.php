@@ -1,56 +1,38 @@
-@extends('templates/layout')
+@extends('templates/layout') 
 @section('content')
-<div class="container-fluid content-inner mt-n5 py-0">
+<div class="container-fluid py-4">
     @if(session('success'))
-        <div class="alert alert-success alert-dismissible d-flex align-items-center" role="alert">
-            <svg class="bi flex-shrink-0 me-2" width="24" height="24">
-                <use xlink:href="#check-circle-fill" />
-            </svg>
-            <div>
-                {{session('success')}}
-            </div>
-            <a type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></a>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <span class="alert-text"><strong>Sukses!</strong> {{session('success')}}</span>
+            <a href="{{ Session::forget('success'); }}" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </a>
         </div>
     @elseif(session('error'))
-        <div class="alert alert-danger alert-dismissible d-flex align-items-center" role="alert">
-            <svg class="bi flex-shrink-0 me-2" width="24" height="24">
-                <use xlink:href="#exclamation-triangle-fill" />
-            </svg>
-            <div>
-                {{session('error')}}
-            </div>
-            <a type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></a>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <span class="alert-text"><strong>Kesalahan!</strong> {{session('error')}}</span>
+            <a href="{{ Session::forget('error'); }}" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </a>
         </div>
     @endif
-
     <div class="row">
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between flex-wrap">
-                    <div class="header-title">
-                        <h4 class="card-title">Media Sosial</h4>
-                    </div>
-                    <div>
-                        <a href="{{ url('/master_media_sosial/create') }}" class="text-center btn btn-primary btn-icon mt-lg-0 mt-md-0 mt-3">
-                            <i class="btn-inner">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
-                            </i>
-                            <span>Tambah</span>
-                        </a>
-                    </div>
+        <div class="col-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Media Sosial</h6>
+                    <a href="{{ url('/master_media_sosial/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
                 </div>
-                <div class="card-body px-0">
+                <div class="card-body">
                     <div class="table-responsive">
-                        <table id="datatable" class="table table-striped" data-toggle="data-table">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                                <tr class="light">
+                                <tr>              
                                     <th>No</th>
                                     <th>Media Sosial</th>
-                                    <th>Ikon Media Sosial</th>
+                                    <th>Icon Media Sosial</th>
                                     <th>Status</th>
-                                    <th style="min-width: 100px">Aksi</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,7 +49,7 @@
                                         </td>
                                         <td>{{ $kg->status_enabled ? 'Aktif' : 'Tidak Aktif' }}</td>
                                         <td>
-                                            <div class="flex align-items-center list-user-action">
+                                            <div>
                                                 <form action="{{ route('media_sosial.destroy', $kg->kd_media_sosial) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
@@ -88,16 +70,8 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5">
-                                            <div class="alert alert-danger alert-dismissible d-flex align-items-center" role="alert">
-                                                <svg class="bi flex-shrink-0 me-2" width="24" height="24">
-                                                    <use xlink:href="#exclamation-triangle-fill" />
-                                                </svg>
-                                                <div>
-                                                    Data Media Sosial Belum Tersedia!
-                                                </div>
-                                                <a type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></a>
-                                            </div>
+                                        <td colspan='5' class="alert alert-warning">
+                                            <strong>Maaf!</strong>    Data Media Sosial Belum Tersedia!
                                         </td>
                                     </tr>
                                 @endforelse

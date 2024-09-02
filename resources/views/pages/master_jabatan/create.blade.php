@@ -5,47 +5,45 @@
         <div class="col-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Tambah Divisi</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Tambah Jabatan</h6>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('jabatan.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                        {{ csrf_field() }}
+                        <div class="form-group row">
+                            <label class="control-label col-sm-3 align-self-center mb-0" for="exampleFormControlSelect1">Pilih Departemen:</label>
+                            <div class="col-sm-9">
+                                <select class="form-select" id="exampleFormControlSelect1" name="kd_departemen">
+                                    <option selected="" disabled="">--Pilih--</option>
+                                    @forelse ($departemen as $dep)
+                                    <option value="{{ $dep->kd_departemen }}">{{ $dep->departemen }}</option>
+                                    @empty
+                                    @endforelse
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-body">
-                            <form action="{{ route('jabatan.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
-                                {{ csrf_field() }}
-                                <div class="form-group row">
-                                    <label class="control-label col-sm-3 align-self-center mb-0" for="exampleFormControlSelect1">Pilih Departemen:</label>
-                                    <div class="col-sm-9">
-                                        <select class="form-select" id="exampleFormControlSelect1" name="kd_departemen">
-                                            <option selected="" disabled="">--Pilih--</option>
-                                            @forelse ($departemen as $dep)
-                                            <option value="{{ $dep->kd_departemen }}">{{ $dep->departemen }}</option>
-                                            @empty
-                                            @endforelse
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="control-label col-sm-3 align-self-center mb-0" for="jabatan">Jabatan:</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="jabatan" name="jabatan"  autocomplete="off" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="status_enabled" id="status_enabled" value="1">
-                                        <label class="form-check-label" for="status_enabled">
-                                            Aktif
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                    <a href="{{ url('/master_jabatan') }}" class="btn btn-danger">Batal</a>
-                                </div>
-                            </form>
+                        <div class="form-group row">
+                            <label class="control-label col-sm-3 align-self-center mb-0" for="jabatan">Jabatan:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="jabatan" name="jabatan"  autocomplete="off" required>
+                            </div>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="status_enabled" id="status_enabled" value="1">
+                                <label class="form-check-label" for="status_enabled">
+                                    Aktif
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <a href="{{ url('/master_jabatan') }}" class="btn btn-danger">Batal</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @stop

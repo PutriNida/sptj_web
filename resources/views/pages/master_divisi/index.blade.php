@@ -9,90 +9,76 @@
             </a>
         </div>
     @elseif(session('error'))
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <span class="alert-text"><strong>Kesalahan!</strong> {{session('error')}}</span>
             <a href="{{ Session::forget('error'); }}" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </a>
         </div>
     @endif
-<div class="row">
+    <div class="row">
         <div class="col-12">
-          <div class="card mb-4">
-            <div class="card-header pb-0">              
-              <div class="d-flex align-items-center">
-                <h6 class="mb-0">Divisi</h6>
-                <a href="{{ url('/master_Divisi/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
-              </div>
-            </div>
-            <div class="card-body px-0 pt-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>                     
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Direktorat</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Divisi</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
-                      <th class="text-secondary opacity-7"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                        @for ($i = $first_row; $i <= $last_row; $i++) 
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Divisi</h6>
+                    <a href="{{ url('/master_divisi/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>              
+                                    <th>No</th>
+                                    <th>Direktorat</th>
+                                    <th>Divisi</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                        @forelse ($divisi as $div)
                             <tr>
                                 <td>
-                                    <div class="d-flex px-3 py-1">
-                                        {{ $i + 1 }}
-                                    </div>
+                                        {{ $loop->iteration }}
                                 </td>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                        <h6 class="mb-0 text-sm">{{ $divisi[$i]->direktorat }}</h6>
-                                    </div>
+                                <td>
+                                        {{ $div->direktorat }}
                                 </td>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                        <h6 class="mb-0 text-sm">{{ $divisi[$i]->divisi }}</h6>
-                                    </div>
+                                <td>
+                                        {{ $div->divisi }}
                                 </td>
-                                @if($divisi[$i]->status_enabled == '1')
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="badge badge-sm bg-gradient-success">Aktif</span>
+                                @if($div->status_enabled == '1') 
+                                    <td>
+                                        <span class="btn btn-success btn-sm">Aktif</span>
                                     </td>
                                 @else 
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="badge badge-sm bg-gradient-secondary">Tidak Aktif</span>
+                                    <td>
+                                        <span class="btn btn-secondary btn-sm">Tidak Aktif</span>
                                     </td>
                                 @endif
-                                <td class="align-middle text-center text-sm">   
-                                    <form action="{{ route('divisi.destroy', $divisi[$i]->kd_divisi) }}" method="post">
+                                <td>   
+                                    <form action="{{ route('divisi.destroy', $div->kd_divisi) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <a class="btn btn-warning btn-sm" href="{{ route('divisi.edit', $divisi[$i]->kd_divisi) }}">
-                                            Edit
+                                        <a class="btn btn-warning btn-circle" href="{{ route('divisi.edit', $div->kd_divisi) }}">
+                                            <i class="fas fa-edit"></i>
                                         </a>
-                                        <input type="hidden" name="kd_divisi" value="{{ $divisi[$i]->kd_divisi }}"/>
-                                        <input type="button" class="btn btn-danger btn-sm" type="submit" value="Hapus" />
+                                        <input type="hidden" name="kd_divisi" value="{{ $div->kd_divisi }}"/>
+                                        <button type="submit" class="btn btn-danger btn-circle" type="submit"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
-                        @endfor
+                        @empty
+                            <tr>
+                                <td colspan='5' class="alert alert-warning">
+                                    <strong>Maaf!</strong>    Data Divisi Belum Tersedia!
+                                </td>
+                            </tr>
+                        @endforelse
                      </tbody>
                   </table>
                </div>
             </div>
-            <nav>
-                <ul class="pagination justify-content-center">
-                    @for($j = 1; $j <= $total_pages; $j++) 
-                        @if($j == $page)
-                            <li><a class="btn btn-primary btn-sm" href="{{ url('/master_divisi/'.$j.'/'.$rows) }}">{{ $j }}</a></li>
-                        @else
-                            <li><a class="btn btn-outline-primary btn-sm" href="{{ url('/master_divisi/'.$j.'/'.$rows) }}">{{ $j }}</a></li>
-                        @endif
-                    @endfor
-                </ul>
-                </nav>
          </div>
       </div>
    </div>

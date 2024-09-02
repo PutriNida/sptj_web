@@ -16,68 +16,60 @@
             </a>
         </div>
     @endif
-<div class="row">
+    <div class="row">
         <div class="col-12">
-          <div class="card mb-4">
-            <div class="card-header pb-0">              
-              <div class="d-flex align-items-center">
-                <h6 class="mb-0">Status Karyawan</h6>
-                <a href="{{ url('/master_status_karyawan/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
-              </div>
-            </div>
-            <div class="card-body px-0 pt-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>                     
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status Karyawan</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
-                      <th class="text-secondary opacity-7"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Status Karyawan</h6>
+                    <a href="{{ url('/master_status_karyawan/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>              
+                                    <th>No</th>
+                                    <th>Status Karyawan</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                         @forelse ($status_karyawan as $stts)
                             <tr>
                                 <td>
-                                    <div class="d-flex px-3 py-1">
                                         {{ $loop->iteration }}
-                                    </div>
                                 </td>
                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                        <h6 class="mb-0 text-sm">{{ $stts->status_karyawan }}</h6>
-                                    </div>
+                                        {{ $stts->status_karyawan }}
                                 </td>
                                 @if($stts->status_enabled == '1') 
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="badge badge-sm bg-gradient-success">Aktif</span>
+                                    <td>
+                                        <span class="btn btn-success btn-sm">Aktif</span>
                                     </td>
                                 @else 
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="badge badge-sm bg-gradient-secondary">Tidak Aktif</span>
+                                    <td>
+                                        <span class="btn btn-secondary btn-sm">Tidak Aktif</span>
                                     </td>
                                 @endif
-                                <td class="align-middle text-center text-sm">   
+                                <td>   
                                     <form action="{{ route('status_karyawan.destroy', $stts->kd_status_karyawan) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <a class="btn btn-warning btn-sm" href="{{ route('status_karyawan.edit', $stts->kd_status_karyawan) }}">
-                                            Edit
+                                        <a class="btn btn-warning btn-circle" href="{{ route('status_karyawan.edit', $stts->kd_status_karyawan) }}">
+                                            <i class="fas fa-edit"></i>
                                         </a>
                                         <input type="hidden" name="kd_status_karyawan" value="{{ $stts->kd_status_karyawan }}"/>
-                                        <input type="button" class="btn btn-danger btn-sm" type="submit" value="Hapus" />
+                                        <button type="submit" class="btn btn-danger btn-circle" type="submit"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
                         @empty
-                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <span class="alert-text"><strong>Maaf!</strong> Data Status Karyawan Belum Tersedia!!</span>
-                            <a href="{{ Session::forget('error'); }}" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </a>
-                        </div>
+                            <tr>
+                                <td colspan='4' class="alert alert-warning">
+                                    <strong>Maaf!</strong>    Data Status Karyawan Belum Tersedia!
+                                </td>
+                            </tr>
                         @endforelse
                      </tbody>
                   </table>

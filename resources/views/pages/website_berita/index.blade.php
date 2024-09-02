@@ -20,54 +20,60 @@
         <div class="col-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Direktorat</h6>
-                    <a href="{{ url('/master_direktorat/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
+                    <h6 class="m-0 font-weight-bold text-primary">Berita</h6>
+                    <a href="{{ url('/master_tipe_kontak/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
                 </div>
                 <div class="card-body">
+                    <form class="form-horizontal">
+                        <div class="form-group row">
+                            <label class="control-label col-sm-3 align-self-center mb-0" for="exampleFormControlSelect1">Kategori Berita:</label>
+                            <div class="col-sm-9">
+                                <select class="form-select" id="exampleFormControlSelect1" name="kd_kategori_berita">
+                                    <option selected="" value="0">--Pilih--</option>
+                                    @forelse ($kategoriberita as $kb)
+                                    <option value="{{ $kb->kd_kategori_berita }}">{{ $kb->kategori_berita }}</option>
+                                    @empty
+                                    @endforelse
+                                </select>
+                            </div>
+                        </div>
+                    </form>
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>              
                                     <th>No</th>
-                                    <th>Direktorat</th>
+                                    <th>Berita</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                        @forelse ($direktorat as $stts)
+                        @forelse ($berita as $brt)
                             <tr>
                                 <td>
                                         {{ $loop->iteration }}
                                 </td>
                                 <td>
-                                        {{ $stts->direktorat }}
+                                        {{ $brt->judul_berita }}
                                 </td>
-                                @if($stts->status_enabled == '1') 
-                                    <td>
-                                        <span class="btn btn-success btn-sm">Aktif</span>
-                                    </td>
-                                @else 
-                                    <td>
-                                        <span class="btn btn-secondary btn-sm">Tidak Aktif</span>
-                                    </td>
-                                @endif
+                                
                                 <td>   
-                                    <form action="{{ route('direktorat.destroy', $stts->kd_direktorat) }}" method="post">
+                                    <!-- <form action="{{ route('tipe_kontak.destroy', $brt->no_berita) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <a class="btn btn-warning btn-circle" href="{{ route('direktorat.edit', $stts->kd_direktorat) }}">
+                                        <a class="btn btn-warning btn-circle" href="{{ route('tipe_kontak.edit', $brt->no_berita) }}">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <input type="hidden" name="kd_direktorat" value="{{ $stts->kd_direktorat }}"/>
+                                        <input type="hidden" name="no_berita" value="{{ $brt->no_berita }}"/>
                                         <button type="submit" class="btn btn-danger btn-circle" type="submit"><i class="fas fa-trash"></i></button>
-                                    </form>
+                                    </form> -->
                                 </td>
                             </tr>
                         @empty
                             <tr>
                                 <td colspan='4' class="alert alert-warning">
-                                    <strong>Maaf!</strong>    Data Direktorat Belum Tersedia!
+                                    <strong>Maaf!</strong>    Data Berita Belum Tersedia!
                                 </td>
                             </tr>
                         @endforelse

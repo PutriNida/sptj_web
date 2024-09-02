@@ -20,8 +20,8 @@
         <div class="col-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Kartu Identitas</h6>
-                    <a href="{{ url('/master_kartu_identitas/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
+                    <h6 class="m-0 font-weight-bold text-primary">Kategori Berita</h6>
+                    <a href="{{ url('/master_kategori_berita/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -29,21 +29,21 @@
                             <thead>
                                 <tr>              
                                     <th>No</th>
-                                    <th>Kartu Identitas</th>
+                                    <th>Kategori Berita</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                        @forelse ($kartuidentitas as $kartu)
+                        @forelse ($kategoriberita as $kb)
                             <tr>
                                 <td>
                                         {{ $loop->iteration }}
                                 </td>
                                 <td>
-                                        {{ $kartu->kartu_identitas }}
+                                        {{ $kb->kategori_berita }}
                                 </td>
-                                @if($kartu->status_enabled == '1') 
+                                @if($kb->status_enabled == '1') 
                                     <td>
                                         <span class="btn btn-success btn-sm">Aktif</span>
                                     </td>
@@ -53,13 +53,13 @@
                                     </td>
                                 @endif
                                 <td>   
-                                    <form action="{{ route('kartu_identitas.destroy', $kartu->kd_kartu_identitas) }}" method="post">
+                                    <form action="{{ route('kategori_berita.destroy', $kb->kd_kategori_berita) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <a class="btn btn-warning btn-circle" href="{{ route('kartu_identitas.edit', $kartu->kd_kartu_identitas) }}">
+                                        <a class="btn btn-warning btn-circle" href="{{ route('kategori_berita.edit', $kb->kd_kategori_berita) }}">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <input type="hidden" name="kd_kartu_identitas" value="{{ $kartu->kd_kartu_identitas }}"/>
+                                        <input type="hidden" name="kd_kategori_berita" value="{{ $kb->kd_kategori_berita }}"/>
                                         <button type="submit" class="btn btn-danger btn-circle" type="submit"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>
@@ -67,7 +67,7 @@
                         @empty
                             <tr>
                                 <td colspan='4' class="alert alert-warning">
-                                    <strong>Maaf!</strong>    Data Kartu Identitas Belum Tersedia!
+                                    <strong>Maaf!</strong>    Data Kategori Berita Belum Tersedia!
                                 </td>
                             </tr>
                         @endforelse
