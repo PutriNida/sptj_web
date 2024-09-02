@@ -32,23 +32,22 @@ class BeritaController extends Controller
             $berita = DB::table('berita')
             ->join('master_kategori_berita', 'master_kategori_berita.kd_kategori_berita', '=', 'berita.kd_kategori_berita')
             ->join('anggota', 'anggota.no_anggota', '=', 'berita.no_anggota')
-            ->where()
-            ->orderBy('kd_kategori_berita', $kd_kategori_berita)
+            ->where('berita.kd_kategori_berita', $kd_kategori_berita)
+            ->orderBy('berita.kd_kategori_berita', 'asc')
             ->get();
         }
         
-        //render view with posts
         return view('pages.website_berita.index', compact('kategoriberita', 'berita'));
     }
 
-    // public function create()
-    // {
-    //     $kategoriberita = DB::table('master_kategori_berita')
-    //      ->orderBy('kd_kategori_berita', 'asc')
-    //     ->get();
+    public function create()
+    {
+        $kategoriberita = DB::table('master_kategori_berita')
+        ->orderBy('kd_kategori_berita', 'asc')
+        ->get();
 
-    //     return view('pages.berita.create', compact('kategoriberita'));
-    // }
+        return view('pages.website_berita.create', compact('kategoriberita'));
+    }
 
     // public function store(Request $request)
     // {

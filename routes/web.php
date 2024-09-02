@@ -163,10 +163,10 @@ Route::delete('/master_media_sosial/destroy/{kd_media_sosial}', \App\Http\Contro
 
 // website berita
 Route::get('/berita/{kd_kategori_berita}', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@index')->name('berita.index');
-// Route::get('/master_media_sosial/create', \App\Http\Controllers\MasterControllers\MediaSosialController::class . '@create')->name('media_sosial.create');
-// Route::post('/master_media_sosial/save', \App\Http\Controllers\MasterControllers\MediaSosialController::class .'@store')->name('media_sosial.store');
-// Route::get('/master_media_sosial/edit/{kd_media_sosial}', \App\Http\Controllers\MasterControllers\MediaSosialController::class . '@edit')->name('media_sosial.edit');
-// Route::put('/master_media_sosial/update', \App\Http\Controllers\MasterControllers\MediaSosialController::class .'@update')->name('media_sosial.update');
-// Route::delete('/master_media_sosial/destroy/{kd_media_sosial}', \App\Http\Controllers\MasterControllers\MediaSosialController::class .'@destroy')->name('media_sosial.destroy');
+Route::get('/berita/create', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@create')->name('berita.create');
+// Route::post('/berita/save', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@store')->name('berita.store');
+// Route::get('/berita/edit/{no_berita}', \App\Http\Controllers\WebsiteControllers\BeritaController::class . '@edit')->name('berita.edit');
+// Route::put('/berita/update', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@update')->name('berita.update');
+// Route::delete('/berita/destroy/{no_berita}', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@destroy')->name('berita.destroy');
 
 // ====================================== website start =========================================================
