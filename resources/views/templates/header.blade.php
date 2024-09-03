@@ -74,7 +74,7 @@
                 Website
             </div>
 
-            <li class="nav-item {{ request()->is('berita/{kd_kategori_berita}') ? 'active' : ''}}">
+            <li class="nav-item {{ request()->is('website_berita/{kd_kategori_berita}') ? 'active' : ''}}">
                 <a class="nav-link" href="{{ url('/berita/0') }}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Berita</span>
