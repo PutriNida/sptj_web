@@ -1,4 +1,4 @@
-@extends('templates/layout') 
+@extends('templates/layout')
 @section('content')
 <div class="container-fluid py-4">
     @if(session('success'))
@@ -21,7 +21,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Berita</h6>
-                    <a href="{{ url('./berita/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
+                    <a href="{{ url('./website_berita/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
                 </div>
                 <div class="card-body">
                     <form class="form-horizontal">
@@ -41,7 +41,7 @@
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                                <tr>              
+                                <tr>
                                     <th>No</th>
                                     <th>Berita</th>
                                     <th>Status</th>
@@ -57,8 +57,8 @@
                                 <td>
                                         {{ $brt->judul_berita }}
                                 </td>
-                                
-                                <td>   
+
+                                <td>
                                     <!-- <form action="{{ route('tipe_kontak.destroy', $brt->no_berita) }}" method="post">
                                         @csrf
                                         @method('DELETE')

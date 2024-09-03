@@ -163,7 +163,7 @@ Route::delete('/master_media_sosial/destroy/{kd_media_sosial}', \App\Http\Contro
 
 // website berita
 Route::get('/berita/{kd_kategori_berita}', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@index')->name('berita.index');
-Route::get('/berita/create', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@create')->name('berita.create');
+Route::get('/website_berita/create', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@create')->name('berita.create');
 // Route::post('/berita/save', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@store')->name('berita.store');
 // Route::get('/berita/edit/{no_berita}', \App\Http\Controllers\WebsiteControllers\BeritaController::class . '@edit')->name('berita.edit');
 // Route::put('/berita/update', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@update')->name('berita.update');
