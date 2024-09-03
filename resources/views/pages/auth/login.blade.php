@@ -1,159 +1,98 @@
-<!doctype html>
-<html lang="en" dir="ltr">
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
     <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Hope UI | Responsive Bootstrap 5 Admin Dashboard Template</title>
-      
-      <!-- Favicon -->
-      <link rel="shortcut icon" href="../assets/images/favicon.ico" />
-      
-      <!-- Library / Plugin Css Build -->
-      <link rel="stylesheet" href="../assets/css/core/libs.min.css" />
-      
-      
-      <!-- Hope Ui Design System Css -->
-      <link rel="stylesheet" href="../assets/css/hope-ui.min.css?v=2.0.0" />
-      
-      <!-- Custom Css -->
-      <link rel="stylesheet" href="../assets/css/custom.min.css?v=2.0.0" />
-      
-      <!-- Dark Css -->
-      <link rel="stylesheet" href="../assets/css/dark.min.css"/>
-      
-      <!-- Customizer Css -->
-      <link rel="stylesheet" href="../assets/css/customizer.min.css" />
-      
-      <!-- RTL Css -->
-      <link rel="stylesheet" href="../assets/css/rtl.min.css"/>
-      
-      
-  </head>
-  <body class=" " data-bs-spy="scroll" data-bs-target="#elements-section" data-bs-offset="0" tabindex="0">
-    <!-- loader Start -->
-    <div id="loading">
-      <div class="loader simple-loader">
-          <div class="loader-body"></div>
-      </div>    </div>
-    <!-- loader END -->
-    
-      <div class="wrapper">
-      <section class="login-content">
-         <div class="row m-0 align-items-center bg-white vh-100">            
-            <div class="col-md-6">
-               <div class="row justify-content-center">
-                  <div class="col-md-10">
-                     <div class="card card-transparent shadow-none d-flex justify-content-center mb-0 auth-card">
-                        <div class="card-body">
-                           <a href="../../dashboard/index.html" class="navbar-brand d-flex align-items-center mb-3">
-                              <!--Logo start-->
-                              <!--logo End-->
-                              
-                              <!--Logo start-->
-                              <div class="logo-main">
-                                  <div class="logo-normal">
-                                      <svg class="text-primary icon-30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                          <rect x="-0.757324" y="19.2427" width="28" height="4" rx="2" transform="rotate(-45 -0.757324 19.2427)" fill="currentColor"/>
-                                          <rect x="7.72803" y="27.728" width="28" height="4" rx="2" transform="rotate(-45 7.72803 27.728)" fill="currentColor"/>
-                                          <rect x="10.5366" y="16.3945" width="16" height="4" rx="2" transform="rotate(45 10.5366 16.3945)" fill="currentColor"/>
-                                          <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2" transform="rotate(45 10.5562 -0.556152)" fill="currentColor"/>
-                                      </svg>
-                                  </div>
-                                  <div class="logo-mini">
-                                      <svg class="text-primary icon-30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                          <rect x="-0.757324" y="19.2427" width="28" height="4" rx="2" transform="rotate(-45 -0.757324 19.2427)" fill="currentColor"/>
-                                          <rect x="7.72803" y="27.728" width="28" height="4" rx="2" transform="rotate(-45 7.72803 27.728)" fill="currentColor"/>
-                                          <rect x="10.5366" y="16.3945" width="16" height="4" rx="2" transform="rotate(45 10.5366 16.3945)" fill="currentColor"/>
-                                          <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2" transform="rotate(45 10.5562 -0.556152)" fill="currentColor"/>
-                                      </svg>
-                                  </div>
-                              </div>
-                              <!--logo End-->                           
-                                                           
-                              
-                              <h4 class="logo-title ms-3">Serikat Pekerja Transportasi Jakarta</h4>
-                           </a>
-                           <h2 class="mb-2 text-center">Sign In</h2>
-                           <form>
-                              <div class="row">
-                                 <div class="col-lg-12">
-                                    <div class="form-group">
-                                       <label for="email" class="form-label">Email</label>
-                                       <input type="email" class="form-control" id="email" aria-describedby="email" placeholder=" ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Login</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="{{ URL::asset('vendor/fontawesome-free/css/all.min.css'); }}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{{ URL::asset('css/sb-admin-2.min.css'); }}" rel="stylesheet">
+
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    @if(session('error'))
+                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                            <span class="alert-text"><strong>Kesalahan!</strong> {{session('error')}}</span>
+                                            <a href="{{ Session::forget('error'); }}" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </a>
+                                        </div>
+                                    @endif
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
                                     </div>
-                                 </div>
-                                 <div class="col-lg-12">
-                                    <div class="form-group">
-                                       <label for="password" class="form-label">Password</label>
-                                       <input type="password" class="form-control" id="password" aria-describedby="password" placeholder=" ">
+                                    <form class="user" method="POST" action="{{ route('auth.loginaction') }}">
+                                         {{ csrf_field() }}
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user"
+                                                id="username" name="username"
+                                                placeholder="Username" required autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user"
+                                            name="password" id="exampleInputPassword" placeholder="Password" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                            Login
+                                        </button>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="forgot-password.html">Lupa Password?</a>
                                     </div>
-                                 </div>
-                                 <div class="col-lg-12 d-flex justify-content-between">
-                                    <div class="form-check mb-3">
-                                       <input type="checkbox" class="form-check-input" id="customCheck1">
-                                       <label class="form-check-label" for="customCheck1">Remember Me</label>
+                                    <div class="text-center">
+                                        <a class="small" href="register.html">Daftar Anggota Baru!</a>
                                     </div>
-                                    <a href="{{ url('/recoverpw') }}">Forgot Password?</a>
-                                 </div>
-                              </div>
-                              <div class="d-flex justify-content-center">
-                                 <button type="submit" class="btn btn-primary">Sign In</button>
-                              </div>
-                              <p class="mt-3 text-center">
-                                 Don’t have an account? <a href="{{ url('/registration') }}" class="text-underline">Click here to sign up.</a>
-                              </p>
-                           </form>
+                                </div>
+                            </div>
                         </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="sign-bg">
-                  <svg width="280" height="230" viewBox="0 0 431 398" fill="none" xmlns="http://www.w3.org/2000/svg">
-                     <g opacity="0.05">
-                     <rect x="-157.085" y="193.773" width="543" height="77.5714" rx="38.7857" transform="rotate(-45 -157.085 193.773)" fill="#3B8AFF"/>
-                     <rect x="7.46875" y="358.327" width="543" height="77.5714" rx="38.7857" transform="rotate(-45 7.46875 358.327)" fill="#3B8AFF"/>
-                     <rect x="61.9355" y="138.545" width="310.286" height="77.5714" rx="38.7857" transform="rotate(45 61.9355 138.545)" fill="#3B8AFF"/>
-                     <rect x="62.3154" y="-190.173" width="543" height="77.5714" rx="38.7857" transform="rotate(45 62.3154 -190.173)" fill="#3B8AFF"/>
-                     </g>
-                  </svg>
-               </div>
+                    </div>
+                </div>
+
             </div>
-            <div class="col-md-6 d-md-block d-none bg-primary p-0 mt-n1 vh-100 overflow-hidden">
-               <img src="../assets/images/auth/01.png" class="img-fluid gradient-main animated-scaleX" alt="images">
-            </div>
-         </div>
-      </section>
-      </div>
-    
-    <!-- Library Bundle Script -->
-    <script src="../assets/js/core/libs.min.js"></script>
-    
-    <!-- External Library Bundle Script -->
-    <script src="../assets/js/core/external.min.js"></script>
-    
-    <!-- Widgetchart Script -->
-    <script src="../assets/js/charts/widgetcharts.js"></script>
-    
-    <!-- mapchart Script -->
-    <script src="../assets/js/charts/vectore-chart.js"></script>
-    <script src="../assets/js/charts/dashboard.js" ></script>
-    
-    <!-- fslightbox Script -->
-    <script src="../assets/js/plugins/fslightbox.js"></script>
-    
-    <!-- Settings Script -->
-    <script src="../assets/js/plugins/setting.js"></script>
-    
-    <!-- Slider-tab Script -->
-    <script src="../assets/js/plugins/slider-tabs.js"></script>
-    
-    <!-- Form Wizard Script -->
-    <script src="../assets/js/plugins/form-wizard.js"></script>
-    
-    <!-- AOS Animation Plugin-->
-    
-    <!-- App Script -->
-    <script src="../assets/js/hope-ui.js" defer></script>
-    
-  </body>
+
+        </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ URL::asset('vendor/jquery/jquery.min.js'); }}"></script>
+    <script src="{{ URL::asset('vendor/bootstrap/js/bootstrap.bundle.min.js'); }}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ URL::asset('vendor/jquery-easing/jquery.easing.min.js'); }}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{ URL::asset('js/sb-admin-2.min.js'); }}"></script>
+
+</body>
+
 </html>

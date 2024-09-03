@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Berita extends Model
+class Informasi extends Model
 {
     use HasFactory;
 
-    protected $table = 'berita';
-    protected $primaryKey = 'no_berita';
+    protected $table = 'informasi';
+    protected $primaryKey = 'no_informasi';
     protected $fillable = [
-        'kd_kategori_berita',
-        'judul_berita',
+        'kd_kategori_informasi',
+        'judul_informasi',
         'content',
         'gambar',
         'no_anggota',
@@ -22,8 +22,7 @@ class Berita extends Model
         'publish_at',
         'views',
         'likes',
-        'dislikes',
-        'comments'
+        'dislikes'
     ];
 }
 

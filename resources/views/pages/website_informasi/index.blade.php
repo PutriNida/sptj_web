@@ -20,18 +20,18 @@
         <div class="col-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Berita</h6>
-                    <a href="{{ url('./website_berita/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
+                    <h6 class="m-0 font-weight-bold text-primary">Informasi</h6>
+                    <a href="{{ url('./website_informasi/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
                 </div>
                 <div class="card-body">
                     <form class="form-horizontal">
                         <div class="form-group row">
-                            <label class="control-label col-sm-3 align-self-center mb-0" for="exampleFormControlSelect1">Kategori Berita:</label>
+                            <label class="control-label col-sm-3 align-self-center mb-0" for="exampleFormControlSelect1">Kategori Informasi:</label>
                             <div class="col-sm-9">
-                                <select class="form-select" id="exampleFormControlSelect1" name="kd_kategori_berita">
+                                <select class="form-select" id="exampleFormControlSelect1" name="kd_kategori_informasi">
                                     <option selected="" value="0">--Pilih--</option>
-                                    @forelse ($kategoriberita as $kb)
-                                    <option value="{{ $kb->kd_kategori_berita }}">{{ $kb->kategori_berita }}</option>
+                                    @forelse ($kategoriinformasi as $kb)
+                                    <option value="{{ $kb->kd_kategori_informasi }}">{{ $kb->kategori_informasi }}</option>
                                     @empty
                                     @endforelse
                                 </select>
@@ -43,8 +43,8 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Judul Berita</th>
-                                    <th>Kategori Berita</th>
+                                    <th>Judul Informasi</th>
+                                    <th>Kategori Informasi</th>
                                     <th>Tanggal Dibuat</th>
                                     <th>Tanggal Publikasi</th>
                                     <th>Dibuat Oleh</th>
@@ -53,16 +53,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                        @forelse ($berita as $brt)
+                        @forelse ($informasi as $brt)
                             <tr>
                                 <td>
                                         {{ $loop->iteration }}
                                 </td>
                                 <td>
-                                        {{ $brt->judul_berita }}
+                                        {{ $brt->judul_informasi }}
                                 </td>
                                 <td>
-                                        {{ $brt->kategori_berita }}
+                                        {{ $brt->kategori_informasi }}
                                 </td>
                                 <td>
                                         {{ $brt->create_at }}
@@ -71,13 +71,12 @@
                                         {{ $brt->publish_at }}
                                 </td>
                                 <td>
-                                        <!-- {{ $brt->judul_berita }} -->
+                                        <!-- {{ $brt->judul_informasi }} -->
                                 </td>
                                 <td>
                                         Dilihat: {{ $brt->views }} <br>
                                         Disukai: {{ $brt->likes }} <br>
-                                        Tidak Disukai: {{ $brt->dislikes }} <br>
-                                        Komentar: {{ $brt->comments }}
+                                        Tidak Disukai: {{ $brt->dislikes }}
                                 </td>
                                 <td>
                                     <div class="dropdown no-arrow">
@@ -88,11 +87,11 @@
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                             aria-labelledby="dropdownMenuLink">
                                             <a class="dropdown-item" href="#">Preview</a>
-                                            <a class="dropdown-item" href="{{ route('berita.edit', $brt->no_berita) }}">Edit</a>
-                                            <form action="{{ route('berita.destroy', $brt->no_berita) }}" method="post">
+                                            <a class="dropdown-item" href="{{ route('informasi.edit', $brt->no_informasi) }}">Edit</a>
+                                            <form action="{{ route('informasi.destroy', $brt->no_informasi) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <input type="hidden" name="no_berita" value="{{ $brt->no_berita }}"/>
+                                                <input type="hidden" name="no_informasi" value="{{ $brt->no_informasi }}"/>
                                                 <button type="submit" class="dropdown-item" type="submit">Hapus</button>
                                             </form>
                                         </div>
@@ -102,7 +101,7 @@
                         @empty
                             <tr>
                                 <td colspan='8' class="alert alert-warning">
-                                    <strong>Maaf!</strong>    Data Berita Belum Tersedia!
+                                    <strong>Maaf!</strong>    Data informasi Belum Tersedia!
                                 </td>
                             </tr>
                         @endforelse

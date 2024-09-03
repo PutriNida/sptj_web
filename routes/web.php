@@ -13,19 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function() {
-    return redirect('/home');
-});
+// Route::get('/', function() {
+//     return redirect('/home');
+// });
+// Route::get('/home', function () {
+//     return view('dashboard');
+// });
 
-Route::get('/home', function () {
-    return view('dashboard');
-});
-Route::get('/recoverpw', function () {
-    return view('pages/auth/recoverpw');
-});
-Route::get('/registration', function () {
-    return view('pages/auth/registration');
-});
+// ====================================== authentication start =========================================================
+Route::get('/', \App\Http\Controllers\AuthController::class .'@login')->name('auth.login');
+Route::post('/loginaction', \App\Http\Controllers\AuthController::class . '@loginaction')->name('auth.loginaction');
+// ====================================== authentication finish =========================================================
+
+// ====================================== home start =========================================================
+Route::get('/home', \App\Http\Controllers\HomeController::class .'@index')->name('home.index');
+// ====================================== home finish =========================================================
 
 // ====================================== master data start =========================================================
 
@@ -163,10 +165,17 @@ Route::delete('/master_media_sosial/destroy/{kd_media_sosial}', \App\Http\Contro
 
 // website berita
 Route::get('/berita/{kd_kategori_berita}', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@index')->name('berita.index');
-Route::get('/berita/create', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@create')->name('berita.create');
-// Route::post('/berita/save', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@store')->name('berita.store');
-// Route::get('/berita/edit/{no_berita}', \App\Http\Controllers\WebsiteControllers\BeritaController::class . '@edit')->name('berita.edit');
-// Route::put('/berita/update', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@update')->name('berita.update');
-// Route::delete('/berita/destroy/{no_berita}', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@destroy')->name('berita.destroy');
+Route::get('/website_berita/create', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@create')->name('berita.create');
+Route::post('/website_berita/save', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@store')->name('berita.store');
+Route::get('/website_berita/edit/{no_berita}', \App\Http\Controllers\WebsiteControllers\BeritaController::class . '@edit')->name('berita.edit');
+Route::put('/website_berita/update', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@update')->name('berita.update');
+Route::delete('/website_berita/destroy/{no_berita}', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@destroy')->name('berita.destroy');
+// website informasi
+Route::get('/informasi/{kd_kategori_informasi}', \App\Http\Controllers\WebsiteControllers\InformasiController::class .'@index')->name('informasi.index');
+Route::get('/website_informasi/create', \App\Http\Controllers\WebsiteControllers\InformasiController::class .'@create')->name('informasi.create');
+Route::post('/website_informasi/save', \App\Http\Controllers\WebsiteControllers\InformasiController::class .'@store')->name('informasi.store');
+Route::get('/website_informasi/edit/{no_informasi}', \App\Http\Controllers\WebsiteControllers\InformasiController::class . '@edit')->name('informasi.edit');
+Route::put('/website_informasi/update', \App\Http\Controllers\WebsiteControllers\InformasiController::class .'@update')->name('informasi.update');
+Route::delete('/website_informasi/destroy/{no_informasi}', \App\Http\Controllers\WebsiteControllers\InformasiController::class .'@destroy')->name('informasi.destroy');
 
 // ====================================== website start =========================================================

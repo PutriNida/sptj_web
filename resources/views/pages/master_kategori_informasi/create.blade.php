@@ -5,15 +5,15 @@
         <div class="col-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Tambah Kategori Berita</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Tambah Kategori Informasi</h6>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('kategori_berita.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                    <form action="{{ route('kategori_informasi.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                         {{ csrf_field() }}
                         <div class="form-group row">
-                            <label class="control-label col-sm-3 align-self-center mb-0" for="kategori_berita">Kategori Berita:</label>
+                            <label class="control-label col-sm-3 align-self-center mb-0" for="kategori_informasi">Kategori Informasi:</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="kategori_berita" name="kategori_berita"  autocomplete="off" required>
+                                <input type="text" class="form-control" id="kategori_informasi" name="kategori_informasi"  autocomplete="off" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -26,7 +26,7 @@
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Simpan</button>
-                            <a href="{{ url('/master_kategori_berita') }}" class="btn btn-danger">Batal</a>
+                            <a href="{{ url('/master_kategori_informasi') }}" class="btn btn-danger">Batal</a>
                         </div>
                     </form>
                 </div>

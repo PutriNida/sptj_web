@@ -22,6 +22,8 @@
 
     <!-- Custom styles for this page -->
     <link href="{{ URL::asset('vendor/datatables/dataTables.bootstrap4.min.css'); }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/richtext.min.css'); }}" rel="stylesheet">
+
 
 </head>
 
@@ -74,15 +76,19 @@
                 Website
             </div>
 
-            <li class="nav-item {{ request()->is('website_berita/{kd_kategori_berita}') ? 'active' : ''}}">
+            <li class="nav-item {{ request()->is('berita/0') ? 'active' : ''}}
+            {{ request()->is('website_berita/create') ? 'active' : ''}}
+            {{ request()->is('website_berita/edit') ? 'active' : ''}} ">
                 <a class="nav-link" href="{{ url('/berita/0') }}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Berita</span>
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="#">
+            <li class="nav-item {{ request()->is('informasi/0') ? 'active' : ''}}
+            {{ request()->is('website_informasi/create') ? 'active' : ''}}
+            {{ request()->is('website_informasi/edit') ? 'active' : ''}} ">
+                <a class="nav-link" href="{{ url('/informasi/0') }}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Informasi</span>
                 </a>
