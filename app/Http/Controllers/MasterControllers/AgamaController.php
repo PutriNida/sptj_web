@@ -23,12 +23,12 @@ class AgamaController extends Controller
         ->get();
 
         //render view with posts
-        return view('pages.master_agama.index', compact('agama'));
+        return view('admin_pages.master_agama.index', compact('agama'));
     }
 
     public function create()
     {
-        return view('pages.master_agama.create');
+        return view('admin_pages.master_agama.create');
     }
 
     public function store(Request $request)
@@ -62,7 +62,7 @@ class AgamaController extends Controller
         ->first();
 
         //render view with post
-        return view('pages.master_agama.edit', compact('agama'));
+        return view('admin_pages.master_agama.edit', compact('agama'));
     }
 
     public function update(Request $request)

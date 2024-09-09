@@ -24,7 +24,7 @@ class DivisiController extends Controller
         ->get();
 
         //render view with posts
-        return view('pages.master_divisi.index', compact('divisi'));
+        return view('admin_pages.master_divisi.index', compact('divisi'));
     }
 
     public function create()
@@ -33,7 +33,7 @@ class DivisiController extends Controller
          ->orderBy('kd_direktorat', 'asc')
         ->get();
 
-        return view('pages.master_divisi.create', compact('direktorat'));
+        return view('admin_pages.master_divisi.create', compact('direktorat'));
     }
 
     public function store(Request $request)
@@ -72,7 +72,7 @@ class DivisiController extends Controller
         ->first();
 
         //render view with post
-        return view('pages.master_divisi.edit', compact('direktorat', 'divisi'));
+        return view('admin_pages.master_divisi.edit', compact('direktorat', 'divisi'));
     }
 
     public function update(Request $request)

@@ -24,7 +24,7 @@ class DepartemenController extends Controller
         ->get();
 
         //render view with posts
-        return view('pages.master_departemen.index', compact('departemen'));
+        return view('admin_pages.master_departemen.index', compact('departemen'));
     }
 
     public function create()
@@ -33,7 +33,7 @@ class DepartemenController extends Controller
          ->orderBy('kd_divisi', 'asc')
         ->get();
 
-        return view('pages.master_departemen.create', compact('divisi'));
+        return view('admin_pages.master_departemen.create', compact('divisi'));
     }
 
     public function store(Request $request)
@@ -71,7 +71,7 @@ class DepartemenController extends Controller
         ->first();
 
         //render view with post
-        return view('pages.master_departemen.edit', compact('divisi','departemen'));
+        return view('admin_pages.master_departemen.edit', compact('divisi','departemen'));
     }
 
     public function update(Request $request)

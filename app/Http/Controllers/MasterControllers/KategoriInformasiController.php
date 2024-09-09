@@ -23,12 +23,12 @@ class KategoriInformasiController extends Controller
         ->get();
 
         //render view with posts
-        return view('pages.master_kategori_informasi.index', compact('kategoriinformasi'));
+        return view('admin_pages.master_kategori_informasi.index', compact('kategoriinformasi'));
     }
 
     public function create()
     {
-        return view('pages.master_kategori_informasi.create');
+        return view('admin_pages.master_kategori_informasi.create');
     }
 
     public function store(Request $request)
@@ -62,7 +62,7 @@ class KategoriInformasiController extends Controller
         ->first();
 
         //render view with post
-        return view('pages.master_kategori_informasi.edit', compact('kategoriinformasi'));
+        return view('admin_pages.master_kategori_informasi.edit', compact('kategoriinformasi'));
     }
 
     public function update(Request $request)

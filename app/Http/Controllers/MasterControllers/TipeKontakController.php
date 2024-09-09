@@ -23,12 +23,12 @@ class TipeKontakController extends Controller
         ->get();
 
         //render view with posts
-        return view('pages.master_tipe_kontak.index', compact('tipe_kontak'));
+        return view('admin_pages.master_tipe_kontak.index', compact('tipe_kontak'));
     }
 
     public function create()
     {
-        return view('pages.master_tipe_kontak.create');
+        return view('admin_pages.master_tipe_kontak.create');
     }
 
     public function store(Request $request)
@@ -62,7 +62,7 @@ class TipeKontakController extends Controller
         ->first();
 
         //render view with post
-        return view('pages.master_tipe_kontak.edit', compact('tipe_kontak'));
+        return view('admin_pages.master_tipe_kontak.edit', compact('tipe_kontak'));
     }
 
     public function update(Request $request)

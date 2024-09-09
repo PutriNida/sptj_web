@@ -23,12 +23,12 @@ class KartuIdentitasController extends Controller
         ->get();
 
         //render view with posts
-        return view('pages.master_kartu_identitas.index', compact('kartuidentitas'));
+        return view('admin_pages.master_kartu_identitas.index', compact('kartuidentitas'));
     }
 
     public function create()
     {
-        return view('pages.master_kartu_identitas.create');
+        return view('admin_pages.master_kartu_identitas.create');
     }
 
     public function store(Request $request)
@@ -62,7 +62,7 @@ class KartuIdentitasController extends Controller
         ->first();
 
         //render view with post
-        return view('pages.master_kartu_identitas.edit', compact('kartuidentitas'));
+        return view('admin_pages.master_kartu_identitas.edit', compact('kartuidentitas'));
     }
 
     public function update(Request $request)

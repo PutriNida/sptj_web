@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'login',
-        // 'passwords' => 'users',
+        'guard' => 'web',
+        'passwords' => 'users',
     ],
 
     /*
@@ -36,9 +36,15 @@ return [
     */
 
     'guards' => [
-        'login' => [
+        'web' => [
             'driver' => 'session',
-            'provider' => 'user_login',
+            'provider' => 'users',
+        ],
+
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+            'hash' => false,
         ],
     ],
 
@@ -60,9 +66,9 @@ return [
     */
 
     'providers' => [
-        'user_login' => [
+        'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Login::class,
+            'model' => App\Models\User::class, // Ensure this points to your User model
         ],
 
         // 'users' => [
@@ -86,14 +92,13 @@ return [
     |
     */
 
-    // 'passwords' => [
-    //     'users' => [
-    //         'provider' => 'user_login',
-    //         'table' => 'password_resets',
-    //         'expire' => 60,
-    //         'throttle' => 60,
-    //     ],
-    // ],
+    'passwords' => [
+        'users' => [
+            'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------

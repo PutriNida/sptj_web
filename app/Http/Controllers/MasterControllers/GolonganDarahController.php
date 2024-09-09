@@ -23,12 +23,12 @@ class GolonganDarahController extends Controller
         ->get();
 
         //render view with posts
-        return view('pages.master_golongan_darah.index', compact('goldarah'));
+        return view('admin_pages.master_golongan_darah.index', compact('goldarah'));
     }
 
     public function create()
     {
-        return view('pages.master_golongan_darah.create');
+        return view('admin_pages.master_golongan_darah.create');
     }
 
     public function store(Request $request)
@@ -62,7 +62,7 @@ class GolonganDarahController extends Controller
         ->first();
 
         //render view with post
-        return view('pages.master_golongan_darah.edit', compact('goldarah'));
+        return view('admin_pages.master_golongan_darah.edit', compact('goldarah'));
     }
 
     public function update(Request $request)

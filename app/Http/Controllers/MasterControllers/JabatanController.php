@@ -24,7 +24,7 @@ class JabatanController extends Controller
         ->get();
 
         //render view with posts
-        return view('pages.master_jabatan.index', compact('jabatan'));
+        return view('admin_pages.master_jabatan.index', compact('jabatan'));
     }
 
     public function create()
@@ -33,7 +33,7 @@ class JabatanController extends Controller
          ->orderBy('kd_departemen', 'asc')
         ->get();
 
-        return view('pages.master_jabatan.create', compact('departemen'));
+        return view('admin_pages.master_jabatan.create', compact('departemen'));
     }
 
     public function store(Request $request)
@@ -71,7 +71,7 @@ class JabatanController extends Controller
         ->first();
 
         //render view with post
-        return view('pages.master_jabatan.edit', compact('departemen','jabatan'));
+        return view('admin_pages.master_jabatan.edit', compact('departemen','jabatan'));
     }
 
     public function update(Request $request)

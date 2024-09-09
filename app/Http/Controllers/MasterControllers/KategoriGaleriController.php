@@ -23,12 +23,12 @@ class KategoriGaleriController extends Controller
         ->get();
 
         //render view with posts
-        return view('pages.master_kategori_galeri.index', compact('kategorigaleri'));
+        return view('admin_pages.master_kategori_galeri.index', compact('kategorigaleri'));
     }
 
     public function create()
     {
-        return view('pages.master_kategori_galeri.create');
+        return view('admin_pages.master_kategori_galeri.create');
     }
 
     public function store(Request $request)
@@ -62,7 +62,7 @@ class KategoriGaleriController extends Controller
         ->first();
 
         //render view with post
-        return view('pages.master_kategori_galeri.edit', compact('kategorigaleri'));
+        return view('admin_pages.master_kategori_galeri.edit', compact('kategorigaleri'));
     }
 
     public function update(Request $request)

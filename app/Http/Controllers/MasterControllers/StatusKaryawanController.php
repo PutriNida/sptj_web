@@ -23,12 +23,12 @@ class StatusKaryawanController extends Controller
         ->get();
 
         //render view with posts
-        return view('pages.master_status_karyawan.index', compact('status_karyawan'));
+        return view('admin_pages.master_status_karyawan.index', compact('status_karyawan'));
     }
 
     public function create()
     {
-        return view('pages.master_status_karyawan.create');
+        return view('admin_pages.master_status_karyawan.create');
     }
 
     public function store(Request $request)
@@ -62,7 +62,7 @@ class StatusKaryawanController extends Controller
         ->first();
 
         //render view with post
-        return view('pages.master_status_karyawan.edit', compact('status_karyawan'));
+        return view('admin_pages.master_status_karyawan.edit', compact('status_karyawan'));
     }
 
     public function update(Request $request)

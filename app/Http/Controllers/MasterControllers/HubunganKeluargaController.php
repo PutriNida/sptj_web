@@ -23,12 +23,12 @@ class hubungankeluargaController extends Controller
         ->get();
 
         //render view with posts
-        return view('pages.master_hub_keluarga.index', compact('hubungankeluarga'));
+        return view('admin_pages.master_hub_keluarga.index', compact('hubungankeluarga'));
     }
 
     public function create()
     {
-        return view('pages.master_hub_keluarga.create');
+        return view('admin_pages.master_hub_keluarga.create');
     }
 
     public function store(Request $request)
@@ -62,7 +62,7 @@ class hubungankeluargaController extends Controller
         ->first();
 
         //render view with post
-        return view('pages.master_hub_keluarga.edit', compact('hubungankeluarga'));
+        return view('admin_pages.master_hub_keluarga.edit', compact('hubungankeluarga'));
     }
 
     public function update(Request $request)

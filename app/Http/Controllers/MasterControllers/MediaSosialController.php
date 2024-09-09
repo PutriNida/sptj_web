@@ -17,12 +17,12 @@ class MediaSosialController extends Controller
             ->get();
 
         // Render view with posts
-        return view('pages.master_media_sosial.index', compact('mediasosial'));
+        return view('admin_pages.master_media_sosial.index', compact('mediasosial'));
     }
 
     public function create()
     {
-        return view('pages.master_media_sosial.create');
+        return view('admin_pages.master_media_sosial.create');
     }
 
     public function store(Request $request)
@@ -65,7 +65,7 @@ class MediaSosialController extends Controller
             ->first();
 
         // Render view with post
-        return view('pages.master_media_sosial.edit', compact('mediasosial'));
+        return view('admin_pages.master_media_sosial.edit', compact('mediasosial'));
     }
 
     public function update(Request $request)

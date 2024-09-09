@@ -23,12 +23,12 @@ class PendidikanController extends Controller
         ->get();
 
         //render view with posts
-        return view('pages.master_pendidikan.index', compact('pendidikan'));
+        return view('admin_pages.master_pendidikan.index', compact('pendidikan'));
     }
 
     public function create()
     {
-        return view('pages.master_pendidikan.create');
+        return view('admin_pages.master_pendidikan.create');
     }
 
     public function store(Request $request)
@@ -62,7 +62,7 @@ class PendidikanController extends Controller
         ->first();
 
         //render view with post
-        return view('pages.master_pendidikan.edit', compact('pendidikan'));
+        return view('admin_pages.master_pendidikan.edit', compact('pendidikan'));
     }
 
     public function update(Request $request)

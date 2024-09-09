@@ -23,12 +23,12 @@ class DirektoratController extends Controller
         ->get();
 
         //render view with posts
-        return view('pages.master_direktorat.index', compact('direktorat'));
+        return view('admin_pages.master_direktorat.index', compact('direktorat'));
     }
 
     public function create()
     {
-        return view('pages.master_direktorat.create');
+        return view('admin_pages.master_direktorat.create');
     }
 
     public function store(Request $request)
@@ -62,7 +62,7 @@ class DirektoratController extends Controller
         ->first();
 
         //render view with post
-        return view('pages.master_direktorat.edit', compact('direktorat'));
+        return view('admin_pages.master_direktorat.edit', compact('direktorat'));
     }
 
     public function update(Request $request)

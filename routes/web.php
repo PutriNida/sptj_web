@@ -13,20 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function() {
-//     return redirect('/home');
-// });
-// Route::get('/home', function () {
-//     return view('dashboard');
-// });
-
 // ====================================== authentication start =========================================================
-Route::get('/', \App\Http\Controllers\AuthController::class .'@login')->name('auth.login');
-Route::post('/loginaction', \App\Http\Controllers\AuthController::class . '@loginaction')->name('auth.loginaction');
+Route::get('/login', \App\Http\Controllers\AdminControllers\AuthController::class .'@login')->name('auth.login');
+Route::post('/loginaction', \App\Http\Controllers\AdminControllers\AuthController::class . '@loginaction')->name('auth.loginaction');
+Route::post('/logout', \App\Http\Controllers\AdminControllers\AuthController::class . '@logout')->name('logout');
 // ====================================== authentication finish =========================================================
 
+// ====================================== registrasi start =========================================================
+Route::get('/daftar', \App\Http\Controllers\AdminControllers\RegistrationController::class .'@index')->name('daftar.index');
+Route::post('/daftar/save', \App\Http\Controllers\AdminControllers\RegistrationController::class .'@store')->name('daftar.store');
+// ====================================== registrasi finish =========================================================
+
 // ====================================== home start =========================================================
-Route::get('/home', \App\Http\Controllers\HomeController::class .'@index')->name('home.index');
+Route::get('/home', \App\Http\Controllers\AdminControllers\HomeController::class .'@index')->name('admin.index');
 // ====================================== home finish =========================================================
 
 // ====================================== master data start =========================================================
@@ -160,22 +159,27 @@ Route::delete('/master_media_sosial/destroy/{kd_media_sosial}', \App\Http\Contro
 
 // ====================================== master data finish =========================================================
 
-
 // ====================================== website start =========================================================
 
 // website berita
-Route::get('/berita/{kd_kategori_berita}', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@index')->name('berita.index');
-Route::get('/website_berita/create', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@create')->name('berita.create');
-Route::post('/website_berita/save', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@store')->name('berita.store');
-Route::get('/website_berita/edit/{no_berita}', \App\Http\Controllers\WebsiteControllers\BeritaController::class . '@edit')->name('berita.edit');
-Route::put('/website_berita/update', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@update')->name('berita.update');
-Route::delete('/website_berita/destroy/{no_berita}', \App\Http\Controllers\WebsiteControllers\BeritaController::class .'@destroy')->name('berita.destroy');
+Route::get('/admin_berita/{kd_kategori_berita}', \App\Http\Controllers\AdminControllers\BeritaController::class .'@index')->name('admin_berita.index');
+Route::get('/admin_berita/create', \App\Http\Controllers\AdminControllers\BeritaController::class .'@create')->name('admin_berita.create');
+Route::post('/admin_berita/save', \App\Http\Controllers\AdminControllers\BeritaController::class .'@store')->name('admin_berita.store');
+Route::get('/admin_berita/edit/{no_berita}', \App\Http\Controllers\AdminControllers\BeritaController::class . '@edit')->name('admin_berita.edit');
+Route::put('/admin_berita/update', \App\Http\Controllers\AdminControllers\BeritaController::class .'@update')->name('admin_berita.update');
+Route::delete('/admin_berita/destroy/{no_berita}', \App\Http\Controllers\AdminControllers\BeritaController::class .'@destroy')->name('admin_berita.destroy');
 // website informasi
-Route::get('/informasi/{kd_kategori_informasi}', \App\Http\Controllers\WebsiteControllers\InformasiController::class .'@index')->name('informasi.index');
-Route::get('/website_informasi/create', \App\Http\Controllers\WebsiteControllers\InformasiController::class .'@create')->name('informasi.create');
-Route::post('/website_informasi/save', \App\Http\Controllers\WebsiteControllers\InformasiController::class .'@store')->name('informasi.store');
-Route::get('/website_informasi/edit/{no_informasi}', \App\Http\Controllers\WebsiteControllers\InformasiController::class . '@edit')->name('informasi.edit');
-Route::put('/website_informasi/update', \App\Http\Controllers\WebsiteControllers\InformasiController::class .'@update')->name('informasi.update');
-Route::delete('/website_informasi/destroy/{no_informasi}', \App\Http\Controllers\WebsiteControllers\InformasiController::class .'@destroy')->name('informasi.destroy');
+Route::get('/admin_informasi/{kd_kategori_informasi}', \App\Http\Controllers\AdminControllers\InformasiController::class .'@index')->name('admin_informas.index');
+Route::get('/admin_informasi/create', \App\Http\Controllers\AdminControllers\InformasiController::class .'@create')->name('admin_informas.create');
+Route::post('/admin_informasi/save', \App\Http\Controllers\AdminControllers\InformasiController::class .'@store')->name('admin_informas.store');
+Route::get('/admin_informasi/edit/{no_informasi}', \App\Http\Controllers\AdminControllers\InformasiController::class . '@edit')->name('admin_informas.edit');
+Route::put('/admin_informasi/update', \App\Http\Controllers\AdminControllers\InformasiController::class .'@update')->name('admin_informas.update');
+Route::delete('/admin_informasi/destroy/{no_informasi}', \App\Http\Controllers\AdminControllers\InformasiController::class .'@destroy')->name('admin_informas.destroy');
 
 // ====================================== website start =========================================================
+
+// ====================================== website page start =========================================================
+Route::get('/', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@index')->name('index');
+Route::get('/berita/{page}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@berita')->name('berita');
+Route::get('/berita/detail/{no_berita}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@detail')->name('berita.detail');
+// ====================================== website page start =========================================================

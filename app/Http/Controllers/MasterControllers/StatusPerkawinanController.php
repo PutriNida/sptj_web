@@ -23,12 +23,12 @@ class StatusPerkawinanController extends Controller
         ->get();
 
         //render view with posts
-        return view('pages.master_status_perkawinan.index', compact('status_perkawinan'));
+        return view('admin_pages.master_status_perkawinan.index', compact('status_perkawinan'));
     }
 
     public function create()
     {
-        return view('pages.master_status_perkawinan.create');
+        return view('admin_pages.master_status_perkawinan.create');
     }
 
     public function store(Request $request)
@@ -62,7 +62,7 @@ class StatusPerkawinanController extends Controller
         ->first();
 
         //render view with post
-        return view('pages.master_status_perkawinan.edit', compact('status_perkawinan'));
+        return view('admin_pages.master_status_perkawinan.edit', compact('status_perkawinan'));
     }
 
     public function update(Request $request)

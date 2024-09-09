@@ -23,12 +23,12 @@ class KategoriBeritaController extends Controller
         ->get();
 
         //render view with posts
-        return view('pages.master_kategori_berita.index', compact('kategoriberita'));
+        return view('admin_pages.master_kategori_berita.index', compact('kategoriberita'));
     }
 
     public function create()
     {
-        return view('pages.master_kategori_berita.create');
+        return view('admin_pages.master_kategori_berita.create');
     }
 
     public function store(Request $request)
@@ -62,7 +62,7 @@ class KategoriBeritaController extends Controller
         ->first();
 
         //render view with post
-        return view('pages.master_kategori_berita.edit', compact('kategoriberita'));
+        return view('admin_pages.master_kategori_berita.edit', compact('kategoriberita'));
     }
 
     public function update(Request $request)

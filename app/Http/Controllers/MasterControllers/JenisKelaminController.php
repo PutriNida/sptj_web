@@ -23,12 +23,12 @@ class JenisKelaminController extends Controller
         ->get();
 
         //render view with posts
-        return view('pages.master_jenis_kelamin.index', compact('jeniskelamin'));
+        return view('admin_pages.master_jenis_kelamin.index', compact('jeniskelamin'));
     }
 
     public function create()
     {
-        return view('pages.master_jenis_kelamin.create');
+        return view('admin_pages.master_jenis_kelamin.create');
     }
 
     public function store(Request $request)
@@ -62,7 +62,7 @@ class JenisKelaminController extends Controller
         ->first();
 
         //render view with post
-        return view('pages.master_jenis_kelamin.edit', compact('jeniskelamin'));
+        return view('admin_pages.master_jenis_kelamin.edit', compact('jeniskelamin'));
     }
 
     public function update(Request $request)

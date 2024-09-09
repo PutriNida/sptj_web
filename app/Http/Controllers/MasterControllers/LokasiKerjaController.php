@@ -23,12 +23,12 @@ class LokasiKerjaController extends Controller
         ->get();
 
         //render view with posts
-        return view('pages.master_lokasi_kerja.index', compact('lokasi_kerja'));
+        return view('admin_pages.master_lokasi_kerja.index', compact('lokasi_kerja'));
     }
 
     public function create()
     {
-        return view('pages.master_lokasi_kerja.create');
+        return view('admin_pages.master_lokasi_kerja.create');
     }
 
     public function store(Request $request)
@@ -62,7 +62,7 @@ class LokasiKerjaController extends Controller
         ->first();
 
         //render view with post
-        return view('pages.master_lokasi_kerja.edit', compact('lokasi_kerja'));
+        return view('admin_pages.master_lokasi_kerja.edit', compact('lokasi_kerja'));
     }
 
     public function update(Request $request)
