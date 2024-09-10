@@ -6,11 +6,11 @@
     <!-- Page Title -->
     <div class="page-title dark-background">
       <div class="container position-relative">
-        <h1>Berita</h1>
+        <h1>Informasi</h1>
         <nav class="breadcrumbs">
           <ol>
             <li><a href="{{ route('index') }}">Beranda</a></li>
-            <li class="current">Berita</li>
+            <li class="current">Informasi</li>
           </ol>
         </nav>
       </div>
@@ -21,29 +21,28 @@
 
       <div class="container">
         <div class="row gy-4">
-          @forelse($berita as $brt)
-          <a href="{{ route('berita.detail', $brt->no_berita) }}" class="col-lg-4">
+          @forelse($informasi as $info)
+          <a href="{{ route('informasi.detail', $info->no_informasi) }}" class="col-lg-4">
             <article>
               <div class="post-img">
-                <img src="{{ $brt->gambar }}" alt="" class="img-fluid">
+                <img src="{{ $info->gambar }}" alt="" class="img-fluid">
               </div>
 
-              <p class="post-category">{{ $brt->kategori_berita }}</p>
+              <p class="post-category">{{ $info->kategori_informasi }}</p>
                 <div class="stars">
-                  <i class="bi bi-eye-fill"></i><span>{{ $berita[0]->views }}</span>  
-                  <i class="bi bi-hand-thumbs-up-fill"></i><span>{{ $berita[0]->likes }}</span>  
-                  <i class="bi bi-hand-thumbs-down-fill"></i><span>{{ $berita[0]->dislikes }}</span>  
-                  <i class="bi bi-hand-thumbs-down-fill"></i><span>{{ $berita[0]->comments }}</span>
-              </div>
+                  <i class="bi bi-eye-fill"></i><span>{{ $info->views }}</span>  
+                  <i class="bi bi-hand-thumbs-up-fill"></i><span>{{ $info->likes }}</span>  
+                  <i class="bi bi-hand-thumbs-down-fill"></i><span>{{ $info->dislikes }}</span>  
+                </div>
               <h2 class="title">
-                {{ $brt->judul_berita }}
+                {{ $info->judul_informasi }}
               </h2>
 
               <div class="d-flex align-items-center">
                 <div class="post-meta">
-                  <p class="post-author">{{ $brt->nama_lengkap }}</p>
+                  <p class="post-author">{{ $info->nama_lengkap }}</p>
                   <p class="post-date">
-                    <time datetime="2022-01-01">{{ date('d-m-Y', strtotime($brt->publish_at)); }}</time>
+                    <time datetime="2022-01-01">{{ date('d-m-Y', strtotime($info->publish_at)); }}</time>
                   </p>
                 </div>
               </div>
@@ -63,11 +62,11 @@
       <div class="container">
         <div class="d-flex justify-content-center">
           <ul>
-            <li><a href="{{ $current_page > 1 ? route('berita', $current_page - 1) : ''}}"><i class="bi bi-chevron-left"></i></a></li>
+            <li><a href="{{ $current_page > 1 ? route('informasi', $current_page - 1) : ''}}"><i class="bi bi-chevron-left"></i></a></li>
             @for($i = 1; $i <= $total_pages; $i++)
-            <li><a href="{{ route('berita', $i) }}" class="{{ $current_page == $i ? 'active' : ''}}">{{ $i }}</a></li>
+            <li><a href="{{ route('informasi', $i) }}" class="{{ $current_page == $i ? 'active' : ''}}">{{ $i }}</a></li>
             @endfor
-            <li><a href="{{ $current_page < $total_pages ? route('berita', $current_page + 1) : ''}}"><i class="bi bi-chevron-right"></i></a></li>
+            <li><a href="{{ $current_page < $total_pages ? route('informasi', $current_page + 1) : ''}}"><i class="bi bi-chevron-right"></i></a></li>
           </ul>
         </div>
       </div>

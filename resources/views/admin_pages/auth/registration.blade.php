@@ -30,7 +30,9 @@
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image">
+                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 20rem;" src="{{ URL::asset('sptj_img/logo.jpg'); }}">
+                    </div>
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
@@ -40,8 +42,8 @@
                                 {{ csrf_field() }}
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" name="nik" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="NIK" maxlength="16" minlength="16" autocomplete="off">
+                                        <input type="text" name="no_karyawan" class="form-control form-control-user" id="exampleFirstName"
+                                            placeholder="Nomor Induk Karyawan" maxlength="6" minlength="6" autocomplete="off">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" name="nik_sptj" class="form-control form-control-user" id="exampleLastName"

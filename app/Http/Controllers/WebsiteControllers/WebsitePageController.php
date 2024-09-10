@@ -15,14 +15,14 @@ class WebsitePageController extends Controller
       
         $berita = DB::table('berita')
             ->join('master_kategori_berita', 'master_kategori_berita.kd_kategori_berita', '=', 'berita.kd_kategori_berita')
-            ->join('anggota', 'anggota.no_anggota', '=', 'berita.no_anggota')
+            ->join('anggota', 'anggota.no_karyawan', '=', 'berita.no_karyawan')
             ->orderBy('publish_at', 'desc')
             ->offset(0)->limit(5)
             ->get();
         
         $informasi = DB::table('informasi')
             ->join('master_kategori_informasi', 'master_kategori_informasi.kd_kategori_informasi', '=', 'informasi.kd_kategori_informasi')
-            // ->join('anggota', 'anggota.no_anggota', '=', 'informasi.no_anggota')
+            ->join('anggota', 'anggota.no_karyawan', '=', 'informasi.no_karyawan')
             ->orderBy('publish_at', 'desc')
             ->offset(0)->limit(5)
             ->get();
@@ -36,7 +36,7 @@ class WebsitePageController extends Controller
         $offset = ($page -1 ) * 6;
         $berita = DB::table('berita')
             ->join('master_kategori_berita', 'master_kategori_berita.kd_kategori_berita', '=', 'berita.kd_kategori_berita')
-            ->join('anggota', 'anggota.no_anggota', '=', 'berita.no_anggota')
+            ->join('anggota', 'anggota.no_karyawan', '=', 'berita.no_karyawan')
             ->orderBy('publish_at', 'desc')
             ->offset($offset)->limit(6)
             ->get();
@@ -51,12 +51,12 @@ class WebsitePageController extends Controller
         return view('website_pages.berita', compact('berita', 'kategori_berita', 'total_pages', 'current_page'));
     }
 
-    public function detail($no_berita)
+    public function detailberita($no_berita)
     {
       
         $berita = DB::table('berita')
             ->join('master_kategori_berita', 'master_kategori_berita.kd_kategori_berita', '=', 'berita.kd_kategori_berita')
-            ->join('anggota', 'anggota.no_anggota', '=', 'berita.no_anggota')
+            ->join('anggota', 'anggota.no_karyawan', '=', 'berita.no_karyawan')
             ->where('no_berita', $no_berita)
             ->first();
         
@@ -67,6 +67,45 @@ class WebsitePageController extends Controller
             ->get();
             
         return view('website_pages.detail_berita', compact('berita', 'kategori_berita'));
+    }
+
+    public function informasi($page)
+    {
+      
+        $offset = ($page -1 ) * 6;
+        $informasi = DB::table('informasi')
+            ->join('master_kategori_informasi', 'master_kategori_informasi.kd_kategori_informasi', '=', 'informasi.kd_kategori_informasi')
+            ->join('anggota', 'anggota.no_karyawan', '=', 'informasi.no_karyawan')
+            ->orderBy('publish_at', 'desc')
+            ->offset($offset)->limit(6)
+            ->get();
+
+        $kategori_informasi = DB::table('master_kategori_informasi')
+            ->orderBy('kategori_informasi', 'asc')
+            ->get();
+
+        $total_pages = ceil(count($informasi) / 6);
+        $current_page = $page;
+            
+        return view('website_pages.informasi', compact('informasi', 'kategori_informasi', 'total_pages', 'current_page'));
+    }
+
+    public function detailinformasi($no_informasi)
+    {
+      
+        $informasi = DB::table('informasi')
+            ->join('master_kategori_informasi', 'master_kategori_informasi.kd_kategori_informasi', '=', 'informasi.kd_kategori_informasi')
+            ->join('anggota', 'anggota.no_karyawan', '=', 'informasi.no_karyawan')
+            ->where('no_informasi', $no_informasi)
+            ->first();
+        
+        $kategori_informasi = DB::table('informasi')
+            ->join('master_kategori_informasi', 'master_kategori_informasi.kd_kategori_informasi', '=', 'informasi.kd_kategori_informasi')
+            ->select(DB::raw('count(*) as num'), 'master_kategori_informasi.kategori_informasi as kategori_informasi')
+            ->groupBy('master_kategori_informasi.kategori_informasi')
+            ->get();
+            
+        return view('website_pages.detail_informasi', compact('informasi', 'kategori_informasi'));
     }
 
 }

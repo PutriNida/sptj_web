@@ -12,7 +12,7 @@
                         @csrf
                         @method('PUT')
                         <input type="hidden" value="{{ $berita->no_berita }}" name="no_berita"/>
-                        <!-- <input type="hideen" value="no_anggota" name="no_anggota"/> -->
+                        <!-- <input type="hideen" value="no_karyawan" name="no_karyawan"/> -->
                         <div class="form-group row">
                             <label class="control-label col-sm-3 align-self-center mb-0" for="exampleFormControlSelect1">Pilih Kategori Berita:</label>
                             <div class="col-sm-9">

@@ -26,7 +26,7 @@ class RegistrationController extends Controller
             
         }
         try{
-            $member = \App\Models\Member::where('nik', '=', $request->nik)
+            $member = \App\Models\Member::where('no_karyawan', '=', $request->no_karyawan)
             ->where('nik_sptj', '=', $request->nik_sptj)
             ->first();
 
@@ -35,13 +35,13 @@ class RegistrationController extends Controller
                 ->insert([
                     'username' => $request->username,
                     'password' => $request->password,
-                    'no_anggota' => $member['no_anggota']
+                    'no_karyawan' => $member['no_karyawan']
                 ]);
                  $status = 'success';
                 $message = 'Akun Berhasil Dibuat. Silahkan Login!';
             }else{
                 $status = 'error';
-                $message = 'Akun Gagal Dibuat. NIK dan NIK SPTJ belum terdaftar!';
+                $message = 'Akun Gagal Dibuat. Nomor Induk Karyawan dan NIK SPTJ belum terdaftar!';
             }        
           
         }catch(Exception $error){

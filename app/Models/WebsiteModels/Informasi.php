@@ -16,7 +16,7 @@ class Informasi extends Model
         'judul_informasi',
         'content',
         'gambar',
-        'no_anggota',
+        'no_karyawan',
         'create_at',
         'update_at',
         'publish_at',

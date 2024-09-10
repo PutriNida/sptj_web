@@ -33,12 +33,12 @@ class AuthController extends Controller
             // If user exists and passwords match, authenticate
             Auth::login($user);
 
-            // $member = \App\Models\Member::where('no_anggota', $user['no_anggota'])->first();
+            // $member = \App\Models\Member::where('no_karyawan', $user['no_karyawan'])->first();
             $member = DB::table('anggota')
             ->join('master_jabatan', 'master_jabatan.kd_jabatan', '=', 'anggota.kd_jabatan')
             ->first();
             session(['nama_lengkap' => $member->nama_lengkap]);
-            session(['no_anggota' => $member->no_anggota]);
+            session(['no_karyawan' => $member->no_karyawan]);
             session(['level' => $member->level]);
 
             error_log($member->level);
@@ -62,7 +62,7 @@ class AuthController extends Controller
         // Optionally, regenerate the session to prevent fixation
         request()->session()->regenerateToken();
 
-        return redirect('/login'); // Redirect to the homepage or login page
+        return redirect('/'); // Redirect to the homepage or login page
     }
 }
 

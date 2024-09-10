@@ -10,7 +10,7 @@ class Member extends Model
     use HasFactory;
 
     protected $table = 'anggota';
-    protected $primaryKey = 'no_anggota';
+    protected $primaryKey = 'no_karyawan';
     protected $fillable = [
         'foto_diri',
         'gelar_belakang',

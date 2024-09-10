@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <form action="{{ route('admin_berita.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                         {{ csrf_field() }}
-                        <!-- <input type="hideen" value="no_anggota" name="no_anggota"/> -->
+                        <!-- <input type="hideen" value="no_karyawan" name="no_karyawan"/> -->
                         <div class="form-group row">
                             <label class="control-label col-sm-3 align-self-center mb-0" for="exampleFormControlSelect1">Pilih Kategori Berita:</label>
                             <div class="col-sm-9">

@@ -164,17 +164,23 @@
           <section id="comment-form" class="comment-form section">
             <div class="container">
 
-              <form action="">
-
+              <form action="" method="POST" enctype="multipart/form-data" >
+                <input type="hidden" name="no_berita" value="{{ $berita->no_berita }}" />
                 <h4>Komentar</h4>
                 <div class="row">
-                  <div class="col form-group">
-                    <input name="name" type="text" class="form-control" placeholder="Nama">
+                  <div class="col-md-6 form-group">
+                    <input name="nama" type="text" class="form-control" placeholder="Nama">
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <input class="form-check-input" type="checkbox" name="isAnonymous" id="isAnonymous" value="1">
+                    <label class="form-check-label" for="isAnonymous">
+                      Anonymous
+                    </label>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col form-group">
-                    <textarea name="comment" class="form-control" placeholder="Komentar"></textarea>
+                    <textarea name="komentar" class="form-control" placeholder="Komentar"></textarea>
                   </div>
                 </div>
 

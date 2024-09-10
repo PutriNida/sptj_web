@@ -61,8 +61,8 @@
                 Karyawan
             </div>
 
-            <li class="nav-item">
-                <a class="nav-link" href="#">
+            <li class="nav-item {{ str_contains(url()->current(), '/anggota') ? 'active' : ''}}">
+                <a class="nav-link" href="{{ route('member.index') }}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Data Karyawan</span>
                 </a>
@@ -77,14 +77,14 @@
             </div>
 
             <li class="nav-item {{ str_contains(url()->current(), '/admin_berita') ? 'active' : ''}}">
-                <a class="nav-link" href="{{ url('/admin_berita/0') }}">
+                <a class="nav-link" href="{{ url('/admin_berita') }}">
                     <i class="fas fa-fw fa-list-alt"></i>
                     <span>Berita</span>
                 </a>
             </li>
 
             <li class="nav-item {{ str_contains(url()->current(), '/admin_informasi') ? 'active' : ''}}">
-                <a class="nav-link" href="{{ url('/informasi/0') }}">
+                <a class="nav-link" href="{{ url('/admin_informasi') }}">
                     <i class="fas fa-fw fa-list-alt"></i>
                     <span>Informasi</span>
                 </a>

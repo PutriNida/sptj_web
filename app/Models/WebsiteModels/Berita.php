@@ -16,7 +16,7 @@ class Berita extends Model
         'judul_berita',
         'content',
         'gambar',
-        'no_anggota',
+        'no_karyawan',
         'create_at',
         'update_at',
         'publish_at',

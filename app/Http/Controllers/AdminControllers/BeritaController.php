@@ -11,29 +11,44 @@ use Carbon\Carbon;
 class BeritaController extends Controller
 {
 
-    public function index($kd_kategori_berita)
+    public function index()
     {
         $kategoriberita = DB::table('master_kategori_berita')
          ->orderBy('kd_kategori_berita', 'asc')
         ->get();
 
-        $berita = [];
-        if($kd_kategori_berita == '0' || is_empty($kd_kategori_berita)){
-            $berita = DB::table('berita')
+        $berita =  DB::table('berita')
             ->join('master_kategori_berita', 'master_kategori_berita.kd_kategori_berita', '=', 'berita.kd_kategori_berita')
-            // ->join('anggota', 'anggota.no_anggota', '=', 'berita.no_anggota')
+            ->join('anggota', 'anggota.no_karyawan', '=', 'berita.no_karyawan')
             ->orderBy('create_at', 'desc')
             ->get();
+        
+        $kd_kategori_berita = 0;
+        
+        return view('admin_pages.admin_berita.index', compact('kategoriberita', 'berita', 'kd_kategori_berita'));
+    }
+
+    public function search(Request $request)
+    {
+        $kategoriberita = DB::table('master_kategori_berita')
+         ->orderBy('kd_kategori_berita', 'asc')
+        ->get();
+
+        if($request->kd_kategori_berita == ''){
+            return redirect()->route('admin_berita.index');
         }else{
             $berita = DB::table('berita')
-            ->join('master_kategori_berita', 'master_kategori_berita.kd_kategori_berita', '=', 'berita.kd_kategori_berita')
-            // ->join('anggota', 'anggota.no_anggota', '=', 'berita.no_anggota')
-            ->where('berita.kd_kategori_berita', $kd_kategori_berita)
-            ->orderBy('berita.kd_kategori_berita', 'asc')
-            ->get();
-        }
+                ->join('master_kategori_berita', 'master_kategori_berita.kd_kategori_berita', '=', 'berita.kd_kategori_berita')
+                ->join('anggota', 'anggota.no_karyawan', '=', 'berita.no_karyawan')
+                ->where('berita.kd_kategori_berita', $request->kd_kategori_berita)
+                ->orderBy('berita.create_at', 'desc')
+                ->get();
+
+            $kd_kategori_berita = $request->kd_kategori_berita;
         
-        return view('admin_pages.admin_berita.index', compact('kategoriberita', 'berita'));
+        return view('admin_pages.admin_berita.index', compact('kategoriberita', 'berita', 'kd_kategori_berita'));
+        }
+      
     }
 
     public function create()
@@ -72,7 +87,7 @@ class BeritaController extends Controller
                         'judul_berita' => $request->judul_berita,
                         'content' => $request->content,
                         'gambar' => $base64Image,
-                        'no_anggota' => session('no_anggota'),
+                        'no_karyawan' => session('no_karyawan'),
                         'create_at' => Carbon::now()->format('Y-m-d'),
                         'publish_at' => Carbon::now()->format('Y-m-d'),
                         'views' => 0,
@@ -110,7 +125,7 @@ class BeritaController extends Controller
                 break;
         }
 
-        return redirect()->route('berita.index', '0')
+        return redirect()->route('admin_berita.index')
         ->with([ $status => $message]);
     }
 
@@ -192,7 +207,7 @@ class BeritaController extends Controller
                 break;
         }
 
-        return redirect()->route('berita.index', '0')
+        return redirect()->route('admin_berita.index')
         ->with([$status => $message]);
     }
 
@@ -204,7 +219,7 @@ class BeritaController extends Controller
         ->delete();
 
         //render view with post
-         return redirect()->route('berita.index', '0')
+         return redirect()->route('admin_berita.index')
         ->with(['success' => 'Data Berhasil Dihapus!']);
     }
 

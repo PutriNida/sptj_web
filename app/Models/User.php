@@ -49,7 +49,7 @@ class User extends Authenticatable
     protected $fillable = [
         'username',
         'password',
-        'no_anggota'
+        'no_karyawan'
     ];
 
     // Define hidden attributes (e.g., for passwords)

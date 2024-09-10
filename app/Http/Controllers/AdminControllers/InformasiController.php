@@ -11,29 +11,44 @@ use Carbon\Carbon;
 class InformasiController extends Controller
 {
 
-    public function index($kd_kategori_informasi)
+    public function index()
     {
         $kategoriinformasi = DB::table('master_kategori_informasi')
          ->orderBy('kd_kategori_informasi', 'asc')
         ->get();
 
-        $informasi = [];
-        if($kd_kategori_informasi == '0' || is_empty($kd_kategori_informasi)){
-            $informasi = DB::table('informasi')
+        $informasi =  DB::table('informasi')
             ->join('master_kategori_informasi', 'master_kategori_informasi.kd_kategori_informasi', '=', 'informasi.kd_kategori_informasi')
-            // ->join('anggota', 'anggota.no_anggota', '=', 'informasi.no_anggota')
+            ->join('anggota', 'anggota.no_karyawan', '=', 'informasi.no_karyawan')
             ->orderBy('create_at', 'desc')
             ->get();
+        
+        $kd_kategori_informasi = 0;
+        
+        return view('admin_pages.admin_informasi.index', compact('kategoriinformasi', 'informasi', 'kd_kategori_informasi'));
+    }
+
+    public function search(Request $request)
+    {
+        $kategoriinformasi = DB::table('master_kategori_informasi')
+         ->orderBy('kd_kategori_informasi', 'asc')
+        ->get();
+
+        if($request->kd_kategori_informasi == ''){
+            return redirect()->route('admin_informasi.index');
         }else{
             $informasi = DB::table('informasi')
-            ->join('master_kategori_informasi', 'master_kategori_informasi.kd_kategori_informasi', '=', 'informasi.kd_kategori_informasi')
-            // ->join('anggota', 'anggota.no_anggota', '=', 'informasi.no_anggota')
-            ->where('informasi.kd_kategori_informasi', $kd_kategori_informasi)
-            ->orderBy('informasi.kd_kategori_informasi', 'asc')
-            ->get();
-        }
+                ->join('master_kategori_informasi', 'master_kategori_informasi.kd_kategori_informasi', '=', 'informasi.kd_kategori_informasi')
+                ->join('anggota', 'anggota.no_karyawan', '=', 'informasi.no_karyawan')
+                ->where('informasi.kd_kategori_informasi', $request->kd_kategori_informasi)
+                ->orderBy('informasi.create_at', 'desc')
+                ->get();
+
+            $kd_kategori_informasi = $request->kd_kategori_informasi;
         
-        return view('admin_pages.admin_informasi.index', compact('kategoriinformasi', 'informasi'));
+        return view('admin_pages.admin_informasi.index', compact('kategoriinformasi', 'informasi', 'kd_kategori_informasi'));
+        }
+      
     }
 
     public function create()
@@ -107,7 +122,7 @@ class InformasiController extends Controller
                 break;
         }
 
-        return redirect()->route('informasi.index', '0')
+        return redirect()->route('admin_informasi.index')
         ->with([ $status => $message]);
     }
 
@@ -189,7 +204,7 @@ class InformasiController extends Controller
                 break;
         }
 
-        return redirect()->route('informasi.index', '0')
+        return redirect()->route('admin_informasi.index')
         ->with([$status => $message]);
     }
 
@@ -201,7 +216,7 @@ class InformasiController extends Controller
         ->delete();
 
         //render view with post
-         return redirect()->route('informasi.index', '0')
+         return redirect()->route('admin_informasi.index')
         ->with(['success' => 'Data Berhasil Dihapus!']);
     }
 

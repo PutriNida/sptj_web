@@ -24,17 +24,21 @@
                     <a href="{{ url('./website_informasi/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
                 </div>
                 <div class="card-body">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" method="POST" action="{{ route('admin_informasi.search') }}">
+                        {{ csrf_field() }}
                         <div class="form-group row">
                             <label class="control-label col-sm-3 align-self-center mb-0" for="exampleFormControlSelect1">Kategori Informasi:</label>
-                            <div class="col-sm-9">
+                            <div class="col-sm-3">
                                 <select class="form-select" id="exampleFormControlSelect1" name="kd_kategori_informasi">
-                                    <option selected="" value="0">--Pilih--</option>
+                                    <option selected="" value=""  {{ $kd_kategori_informasi == 0 ? 'selected' : '' }}>Semua Kategori</option>
                                     @forelse ($kategoriinformasi as $kb)
-                                    <option value="{{ $kb->kd_kategori_informasi }}">{{ $kb->kategori_informasi }}</option>
+                                    <option value="{{ $kb->kd_kategori_informasi }}"  {{ $kb->kd_kategori_informasi == $kd_kategori_informasi ? 'selected' : '' }}>{{ $kb->kategori_informasi }}</option>
                                     @empty
                                     @endforelse
                                 </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="submit" class="btn btn-primary" name="cari">Cari</button>
                             </div>
                         </div>
                     </form>
@@ -53,30 +57,30 @@
                                 </tr>
                             </thead>
                             <tbody>
-                        @forelse ($informasi as $brt)
+                        @forelse ($informasi as $info)
                             <tr>
                                 <td>
                                         {{ $loop->iteration }}
                                 </td>
                                 <td>
-                                        {{ $brt->judul_informasi }}
+                                        {{ $info->judul_informasi }}
                                 </td>
                                 <td>
-                                        {{ $brt->kategori_informasi }}
+                                        {{ $info->kategori_informasi }}
                                 </td>
                                 <td>
-                                        {{ $brt->create_at }}
+                                        {{ $info->create_at }}
                                 </td>
                                 <td>
-                                        {{ $brt->publish_at }}
+                                        {{ $info->publish_at }}
                                 </td>
                                 <td>
-                                        <!-- {{ $brt->judul_informasi }} -->
+                                        {{ $info->nama_lengkap }}
                                 </td>
                                 <td>
-                                        Dilihat: {{ $brt->views }} <br>
-                                        Disukai: {{ $brt->likes }} <br>
-                                        Tidak Disukai: {{ $brt->dislikes }}
+                                        Dilihat: {{ $info->views }} <br>
+                                        Disukai: {{ $info->likes }} <br>
+                                        Tidak Disukai: {{ $info->dislikes }}
                                 </td>
                                 <td>
                                     <div class="dropdown no-arrow">
@@ -86,12 +90,12 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                             aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item" href="#">Preview</a>
-                                            <a class="dropdown-item" href="{{ route('informasi.edit', $brt->no_informasi) }}">Edit</a>
-                                            <form action="{{ route('informasi.destroy', $brt->no_informasi) }}" method="post">
+                                            <a class="dropdown-item" href="{{ route('informasi.detail', $info->no_informasi) }}" target="_blank">Preview</a>
+                                            <a class="dropdown-item" href="{{ route('admin_informasi.edit', $info->no_informasi) }}">Edit</a>
+                                            <form action="{{ route('admin_informasi.destroy', $info->no_informasi) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <input type="hidden" name="no_informasi" value="{{ $brt->no_informasi }}"/>
+                                                <input type="hidden" name="no_informasi" value="{{ $info->no_informasi }}"/>
                                                 <button type="submit" class="dropdown-item" type="submit">Hapus</button>
                                             </form>
                                         </div>

@@ -24,17 +24,21 @@
                     <a href="{{ url('./website_berita/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
                 </div>
                 <div class="card-body">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" method="POST" action="{{ route('admin_berita.search') }}">
+                        {{ csrf_field() }}
                         <div class="form-group row">
                             <label class="control-label col-sm-3 align-self-center mb-0" for="exampleFormControlSelect1">Kategori Berita:</label>
-                            <div class="col-sm-9">
+                            <div class="col-sm-3">
                                 <select class="form-select" id="exampleFormControlSelect1" name="kd_kategori_berita">
-                                    <option selected="" value="0">--Pilih--</option>
+                                    <option selected="" value=""  {{ $kd_kategori_berita == 0 ? 'selected' : '' }}>Semua Kategori</option>
                                     @forelse ($kategoriberita as $kb)
-                                    <option value="{{ $kb->kd_kategori_berita }}">{{ $kb->kategori_berita }}</option>
+                                    <option value="{{ $kb->kd_kategori_berita }}" {{ $kb->kd_kategori_berita == $kd_kategori_berita ? 'selected' : '' }}>{{ $kb->kategori_berita }}</option>
                                     @empty
                                     @endforelse
                                 </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="submit" class="btn btn-primary" name="cari">Cari</button>
                             </div>
                         </div>
                     </form>
@@ -87,7 +91,7 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                             aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item" href="#">Preview</a>
+                                            <a class="dropdown-item" href="{{ route('berita.detail', $brt->no_berita) }}" target="_blank">Preview</a>
                                             <a class="dropdown-item" href="{{ route('admin_berita.edit', $brt->no_berita) }}">Edit</a>
                                             <form action="{{ route('admin_berita.destroy', $brt->no_berita) }}" method="post">
                                                 @csrf
