@@ -16,6 +16,7 @@ class WebsitePageController extends Controller
         $berita = DB::table('berita')
             ->join('master_kategori_berita', 'master_kategori_berita.kd_kategori_berita', '=', 'berita.kd_kategori_berita')
             ->join('anggota', 'anggota.no_karyawan', '=', 'berita.no_karyawan')
+            ->where('publish_at', 'IS NOT', null)
             ->orderBy('publish_at', 'desc')
             ->offset(0)->limit(5)
             ->get();
@@ -23,6 +24,7 @@ class WebsitePageController extends Controller
         $informasi = DB::table('informasi')
             ->join('master_kategori_informasi', 'master_kategori_informasi.kd_kategori_informasi', '=', 'informasi.kd_kategori_informasi')
             ->join('anggota', 'anggota.no_karyawan', '=', 'informasi.no_karyawan')
+            ->where('publish_at', 'IS NOT', null)
             ->orderBy('publish_at', 'desc')
             ->offset(0)->limit(5)
             ->get();
@@ -37,6 +39,7 @@ class WebsitePageController extends Controller
         $berita = DB::table('berita')
             ->join('master_kategori_berita', 'master_kategori_berita.kd_kategori_berita', '=', 'berita.kd_kategori_berita')
             ->join('anggota', 'anggota.no_karyawan', '=', 'berita.no_karyawan')
+            ->where('publish_at', 'IS NOT', null)
             ->orderBy('publish_at', 'desc')
             ->offset($offset)->limit(6)
             ->get();
@@ -76,6 +79,7 @@ class WebsitePageController extends Controller
         $informasi = DB::table('informasi')
             ->join('master_kategori_informasi', 'master_kategori_informasi.kd_kategori_informasi', '=', 'informasi.kd_kategori_informasi')
             ->join('anggota', 'anggota.no_karyawan', '=', 'informasi.no_karyawan')
+            ->where('publish_at', 'IS NOT', null)
             ->orderBy('publish_at', 'desc')
             ->offset($offset)->limit(6)
             ->get();
@@ -106,6 +110,34 @@ class WebsitePageController extends Controller
             ->get();
             
         return view('website_pages.detail_informasi', compact('informasi', 'kategori_informasi'));
+    }
+
+    public function galeri($kd_kategori_galeri)
+    {
+      
+        $galeri = [];
+        if($kd_kategori_galeri > 0){
+            $galeri = DB::table('galeri')
+                ->join('master_kategori_galeri', 'master_kategori_galeri.kd_kategori_galeri', '=', 'galeri.kd_kategori_galeri')
+                ->join('anggota', 'anggota.no_karyawan', '=', 'galeri.no_karyawan')
+                ->where('galeri.kd_kategori_galeri', '=', $kd_kategori_galeri)
+                ->where('publish_at', 'IS NOT', null)
+                ->orderBy('publish_at', 'desc')
+                ->get();
+        }else{
+            $galeri = DB::table('galeri')
+                ->join('master_kategori_galeri', 'master_kategori_galeri.kd_kategori_galeri', '=', 'galeri.kd_kategori_galeri')
+                ->join('anggota', 'anggota.no_karyawan', '=', 'galeri.no_karyawan')
+                ->where('publish_at', 'IS NOT', null)
+                ->orderBy('publish_at', 'desc')
+                ->get();
+        }        
+
+        $kategori_galeri = DB::table('master_kategori_galeri')
+            ->orderBy('kategori_galeri', 'asc')
+            ->get();
+            
+        return view('website_pages.galeri', compact('galeri', 'kategori_galeri'));
     }
 
 }

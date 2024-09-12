@@ -36,6 +36,7 @@ class AuthController extends Controller
             // $member = \App\Models\Member::where('no_karyawan', $user['no_karyawan'])->first();
             $member = DB::table('anggota')
             ->join('master_jabatan', 'master_jabatan.kd_jabatan', '=', 'anggota.kd_jabatan')
+            ->where('anggota.no_karyawan', $user['no_karyawan'])
             ->first();
             session(['nama_lengkap' => $member->nama_lengkap]);
             session(['no_karyawan' => $member->no_karyawan]);

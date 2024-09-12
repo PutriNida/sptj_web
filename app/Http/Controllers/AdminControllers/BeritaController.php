@@ -66,7 +66,8 @@ class BeritaController extends Controller
         $message = '';
 
         $request->validate([
-            'judul_berita' => 'required|string|max:250'
+            'judul_berita' => 'required|string|max:250',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -110,6 +111,7 @@ class BeritaController extends Controller
                         'judul_berita' => $request->judul_berita,
                         'content' => $request->content,
                         'gambar' => $base64Image,
+                        'no_karyawan' => session('no_karyawan'),
                         'create_at' => Carbon::now()->format('Y-m-d'),
                         'views' => 0,
                         'likes' => 0,
@@ -150,7 +152,8 @@ class BeritaController extends Controller
         $message = '';
 
         $request->validate([
-            'judul_berita' => 'required|string|max:250'
+            'judul_berita' => 'required|string|max:250',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         if ($request->hasFile('gambar')) {

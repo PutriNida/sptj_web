@@ -53,7 +53,7 @@
           <li><a href="{{ route('index') }}" class="{{ request()->is('/') ? 'active' : ''}}">Beranda</a></li>
           <li><a href="{{ route('berita', 1) }}" class="{{ str_contains(url()->current(), '/berita') ? 'active' : ''}}">Berita</a></li>
           <li><a href="{{ route('informasi', 1) }}" class="{{ str_contains(url()->current(), '/informasi') ? 'active' : ''}}">Informasi</a></li>
-          <li><a href="" class="{{ str_contains(url()->current(), '/galeri') ? 'active' : ''}}">Galeri</a></li>
+          <li><a href="{{ route('galeri', 0) }}" class="{{ str_contains(url()->current(), '/galeri') ? 'active' : ''}}">Galeri</a></li>
           <li><a href="" class="{{ str_contains(url()->current(), '/tentang_kami') ? 'active' : ''}}">Tentang Kami</a></li>
           <li><a href="" class="{{ str_contains(url()->current(), '/hubungi_kami') ? 'active' : ''}}">Hubungi Kami</a></li>
           <li><a href="{{ route('auth.login') }}">Masuk</a></li>

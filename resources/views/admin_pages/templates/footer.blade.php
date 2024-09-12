@@ -56,8 +56,6 @@
 
     <!-- Page level custom scripts -->
     <script src="{{ URL::asset('js/demo/datatables-demo.js'); }}"></script>
-
-
 </body>
 
 </html>

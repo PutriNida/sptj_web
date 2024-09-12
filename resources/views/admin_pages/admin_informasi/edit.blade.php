@@ -5,7 +5,7 @@
         <div class="col-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Tambah Informasi</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Edit Informasi</h6>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('informasi.update') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
@@ -40,7 +40,7 @@
                                 @if($informasi->gambar)
                                     <img src="{{ $informasi->gambar }}" alt="{{ $informasi->judul_informasi }}" style="max-width: 500px; max-height: 250px; display: block; margin-bottom: 10px;">
                                 @else
-                                    <p>Tidak ada ikon yang diunggah.</p>
+                                    <p>Tidak ada gambar yang diunggah.</p>
                                 @endif
                                 <input type="file" class="form-control" id="gambar" name="gambar" accept="image/*">
                                 <!-- 'accept' memastikan hanya file gambar yang dapat dipilih -->
@@ -55,7 +55,7 @@
                         <div class="form-group">
                             <button type="submit" class="btn btn-success" value="publish" name="save">Simpan dan Publikasikan</button>
                             <button type="submit" class="btn btn-primary" value="draft" name="save">Simpan di Draft</button>
-                            <a href="{{ url('/informasi/0') }}" class="btn btn-danger">Batal</a>
+                            <a href="{{ url('/admin_informasi') }}" class="btn btn-danger">Batal</a>
                         </div>
                     </form>
                 </div>

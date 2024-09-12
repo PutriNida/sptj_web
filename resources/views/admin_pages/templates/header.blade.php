@@ -9,6 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <link href="{{ URL::asset('sptj_img/logo.png'); }}" rel="icon">
     <title>Serikat Pekerja Transportasi Jakarta</title>
 
     <!-- Custom fonts for this template-->
@@ -23,8 +24,6 @@
     <!-- Custom styles for this page -->
     <link href="{{ URL::asset('vendor/datatables/dataTables.bootstrap4.min.css'); }}" rel="stylesheet">
     <link href="{{ URL::asset('css/richtext.min.css'); }}" rel="stylesheet">
-
-
 </head>
 
 <body id="page-top">
@@ -37,10 +36,10 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/home') }}">
-                <!-- <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div> -->
-                <div class="sidebar-brand-text mx-1">SPTJ</div>
+                <div class="sidebar-brand-icon">
+                    <img src="{{ URL::asset('sptj_img/logo.png'); }}" width="40" height="50"/>
+                </div>
+                <!-- <div class="sidebar-brand-text mx-1">SPTJ</div> -->
             </a>
 
             <!-- Divider -->
@@ -90,10 +89,31 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="#">
+            <li class="nav-item {{ str_contains(url()->current(), '/admin_galeri') ? 'active' : ''}}">
+                <a class="nav-link" href="{{ route('admin_galeri.index') }}">
                     <i class="fas fa-fw fa-image"></i>
                     <span>Galeri</span>
+                </a>
+            </li>
+
+            <li class="nav-item {{ str_contains(url()->current(), '/admin_tentang_kami') ? 'active' : ''}}">
+                <a class="nav-link" href="{{ route('admin_tentang_kami.index') }}">
+                    <i class="fas fa-fw fa-list-alt"></i>
+                    <span>Tentang Kami</span>
+                </a>
+            </li>
+
+            <li class="nav-item {{ str_contains(url()->current(), '/admin_media_sosial') ? 'active' : ''}}">
+                <a class="nav-link" href="{{ route('admin_media_sosial.index') }}">
+                    <i class="fas fa-fw fa-list-alt"></i>
+                    <span>Media Sosial</span>
+                </a>
+            </li>
+
+            <li class="nav-item {{ str_contains(url()->current(), '/admin_tentang_kami') ? 'active' : ''}}">
+                <a class="nav-link" href="{{ route('admin_tentang_kami.index') }}">
+                    <i class="fas fa-fw fa-list-alt"></i>
+                    <span>Pusat Bantuan</span>
                 </a>
             </li>
 

@@ -181,7 +181,27 @@ Route::post('/admin_informasi/save', \App\Http\Controllers\AdminControllers\Info
 Route::get('/admin_informasi/edit/{no_informasi}', \App\Http\Controllers\AdminControllers\InformasiController::class . '@edit')->name('admin_informasi.edit');
 Route::put('/admin_informasi/update', \App\Http\Controllers\AdminControllers\InformasiController::class .'@update')->name('admin_informasi.update');
 Route::delete('/admin_informasi/destroy/{no_informasi}', \App\Http\Controllers\AdminControllers\InformasiController::class .'@destroy')->name('admin_informasi.destroy');
-
+// website galeri
+Route::get('/admin_galeri', \App\Http\Controllers\AdminControllers\GaleriController::class .'@index')->name('admin_galeri.index');
+Route::get('/admin_galeri/detail/{kd_kategori_galeri}', \App\Http\Controllers\AdminControllers\GaleriController::class .'@detail')->name('admin_galeri.detail');
+Route::get('/admin_galeri/upload', \App\Http\Controllers\AdminControllers\GaleriController::class .'@upload')->name('admin_galeri.upload');
+Route::post('/admin_galeri/save', \App\Http\Controllers\AdminControllers\GaleriController::class .'@store')->name('admin_galeri.store');
+Route::put('/admin_galeri/publish', \App\Http\Controllers\AdminControllers\GaleriController::class .'@publish')->name('admin_galeri.publish');
+Route::delete('/admin_galeri/destroy/{no_galeri}', \App\Http\Controllers\AdminControllers\GaleriController::class .'@destroy')->name('admin_galeri.destroy');
+// website tentang kami
+Route::get('/admin_tentang_kami', \App\Http\Controllers\AdminControllers\TentangKamiController::class .'@index')->name('admin_tentang_kami.index');
+Route::get('/admin_tentang_kami/create', \App\Http\Controllers\AdminControllers\TentangKamiController::class .'@create')->name('admin_tentang_kami.create');
+Route::post('/admin_tentang_kami/save', \App\Http\Controllers\AdminControllers\TentangKamiController::class .'@store')->name('admin_tentang_kami.store');
+Route::get('/admin_tentang_kami/edit/{no}', \App\Http\Controllers\AdminControllers\TentangKamiController::class . '@edit')->name('admin_tentang_kami.edit');
+Route::put('/admin_tentang_kami/update', \App\Http\Controllers\AdminControllers\TentangKamiController::class .'@update')->name('admin_tentang_kami.update');
+Route::delete('/admin_tentang_kami/destroy/{no}', \App\Http\Controllers\AdminControllers\TentangKamiController::class .'@destroy')->name('admin_tentang_kami.destroy');
+// website media sosial
+Route::get('/admin_media_sosial', \App\Http\Controllers\AdminControllers\MediaSosialController::class .'@index')->name('admin_media_sosial.index');
+Route::get('/admin_media_sosial/create', \App\Http\Controllers\AdminControllers\MediaSosialController::class .'@create')->name('admin_media_sosial.create');
+Route::post('/admin_media_sosial/save', \App\Http\Controllers\AdminControllers\MediaSosialController::class .'@store')->name('admin_media_sosial.store');
+Route::get('/admin_media_sosial/edit/{no_media_sosial}', \App\Http\Controllers\AdminControllers\MediaSosialController::class . '@edit')->name('admin_media_sosial.edit');
+Route::put('/admin_media_sosial/update', \App\Http\Controllers\AdminControllers\MediaSosialController::class .'@update')->name('admin_media_sosial.update');
+Route::delete('/admin_media_sosial/destroy/{no_media_sosial}', \App\Http\Controllers\AdminControllers\MediaSosialController::class .'@destroy')->name('admin_media_sosial.destroy');
 // ====================================== website start =========================================================
 
 // ====================================== website page start =========================================================
@@ -190,4 +210,5 @@ Route::get('/berita/{page}', \App\Http\Controllers\WebsiteControllers\WebsitePag
 Route::get('/berita/detail/{no_berita}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@detailberita')->name('berita.detail');
 Route::get('/informasi/{page}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@informasi')->name('informasi');
 Route::get('/informasi/detail/{no_informasi}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@detailinformasi')->name('informasi.detail');
+Route::get('/galeri/{kd_kategori_berita}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@galeri')->name('galeri');
 // ====================================== website page start =========================================================

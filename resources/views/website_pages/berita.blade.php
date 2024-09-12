@@ -16,40 +16,24 @@
       </div>
     </div><!-- End Page Title -->
 
-    <!-- Blog Posts Section -->
-    <section id="blog-posts" class="blog-posts section">
+    <section id="services" class="services section">
 
       <div class="container">
         <div class="row gy-4">
           @forelse($berita as $brt)
-          <a href="{{ route('berita.detail', $brt->no_berita) }}" class="col-lg-4">
-            <article>
-              <div class="post-img">
-                <img src="{{ $brt->gambar }}" alt="" class="img-fluid">
+          <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
+            <div class="service-item position-relative">
+              <div class="img">
+                <img src="{{ $brt->gambar }}" class="img-fluid" alt="">
               </div>
-
-              <p class="post-category">{{ $brt->kategori_berita }}</p>
-                <div class="stars">
-                  <i class="bi bi-eye-fill"></i><span>{{ $berita[0]->views }}</span>  
-                  <i class="bi bi-hand-thumbs-up-fill"></i><span>{{ $berita[0]->likes }}</span>  
-                  <i class="bi bi-hand-thumbs-down-fill"></i><span>{{ $berita[0]->dislikes }}</span>  
-                  <i class="bi bi-hand-thumbs-down-fill"></i><span>{{ $berita[0]->comments }}</span>
+              <div class="details">
+                <a href="service-details.html" class="stretched-link">
+                  <h3>{{ $brt->judul_berita }}</h3>
+                </a>
+                <p>{{ $brt->judul_berita }}</p>
               </div>
-              <h2 class="title">
-                {{ $brt->judul_berita }}
-              </h2>
-
-              <div class="d-flex align-items-center">
-                <div class="post-meta">
-                  <p class="post-author">{{ $brt->nama_lengkap }}</p>
-                  <p class="post-date">
-                    <time datetime="2022-01-01">{{ date('d-m-Y', strtotime($brt->publish_at)); }}</time>
-                  </p>
-                </div>
-              </div>
-
-            </article>
-          </a><!-- End post list item -->
+            </div>
+          </div><!-- End Service Item -->
           @empty
           @endforelse
         </div>

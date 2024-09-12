@@ -21,7 +21,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Informasi</h6>
-                    <a href="{{ url('./website_informasi/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
+                    <a href="{{ url('./admin_informasi/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
                 </div>
                 <div class="card-body">
                     <form class="form-horizontal" method="POST" action="{{ route('admin_informasi.search') }}">

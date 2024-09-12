@@ -66,7 +66,8 @@ class InformasiController extends Controller
         $message = '';
 
         $request->validate([
-            'judul_informasi' => 'required|string|max:250'
+            'judul_informasi' => 'required|string|max:250',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -87,6 +88,7 @@ class InformasiController extends Controller
                         'judul_informasi' => $request->judul_informasi,
                         'content' => $request->content,
                         'gambar' => $base64Image,
+                        'no_karyawan' => session('no_karyawan'),
                         'create_at' => Carbon::now()->format('Y-m-d'),
                         'publish_at' => Carbon::now()->format('Y-m-d'),
                         'views' => 0,
@@ -108,6 +110,7 @@ class InformasiController extends Controller
                         'judul_informasi' => $request->judul_informasi,
                         'content' => $request->content,
                         'gambar' => $base64Image,
+                        'no_karyawan' => session('no_karyawan'),
                         'create_at' => Carbon::now()->format('Y-m-d'),
                         'views' => 0,
                         'likes' => 0,
@@ -147,7 +150,8 @@ class InformasiController extends Controller
         $message = '';
 
         $request->validate([
-            'judul_informasi' => 'required|string|max:250'
+            'judul_informasi' => 'required|string|max:250',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         if ($request->hasFile('gambar')) {

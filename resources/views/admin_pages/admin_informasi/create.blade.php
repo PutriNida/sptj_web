@@ -45,7 +45,7 @@
                         <div class="form-group">
                             <button type="submit" class="btn btn-success" value="publish" name="save">Simpan dan Publikasikan</button>
                             <button type="submit" class="btn btn-primary" value="draft" name="save">Simpan di Draft</button>
-                            <a href="{{ url('/informasi/0') }}" class="btn btn-danger">Batal</a>
+                            <a href="{{ url('/admin_informasi') }}" class="btn btn-danger">Batal</a>
                         </div>
                     </form>
                 </div>
