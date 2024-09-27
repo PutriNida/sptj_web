@@ -103,7 +103,7 @@ $('.content').richText({
   // uploads
   imageUpload: false,
   fileUpload: false,
-    
+
   // media
   videoEmbed: false,
 
@@ -231,16 +231,16 @@ $("#kd_direktorat").change(function(){
         success:function(data){
             var options = "<option selected='' disabled=''>--Pilih--</option>";
             if(member != null){
-              $(data).each(function(k, v){ 
+              $(data).each(function(k, v){
                   options += "<option value='"+v.kd_divisi+"' >"+v.divisi+"</option>";
                 });
             }else{
-              	$(data).each(function(k, v){ 
+              	$(data).each(function(k, v){
 			options += "<option value='"+v.kd_divisi+"'>"+v.divisi+"</option>";
 		});
             }
-	
-		
+
+
 		$("#kd_divisi").html(options);
         $("#kd_departemen").html("<option selected='' disabled=''>--Pilih--</option>");
         $("#kd_jabatan").html("<option selected='' disabled=''>--Pilih--</option>");
@@ -260,10 +260,10 @@ $("#kd_divisi").change(function(){
 		async: true,
         success:function(data){
             var options = "<option selected='' disabled=''>--Pilih--</option>";
-		$(data).each(function(k, v){ 
+		$(data).each(function(k, v){
 			options += "<option value='"+v.kd_departemen+"'>"+v.departemen+"</option>";
 		});
-		
+
 		$("#kd_departemen").html(options);
         $("#kd_jabatan").html("<option selected='' disabled=''>--Pilih--</option>");
 	}
@@ -282,10 +282,10 @@ $("#kd_departemen").change(function(){
 		async: true,
         success:function(data){
             var options = "<option selected='' disabled=''>--Pilih--</option>";
-		$(data).each(function(k, v){ 
+		$(data).each(function(k, v){
 			options += "<option value='"+v.kd_jabatan+"'>"+v.jabatan+"</option>";
 		});
-		
+
 		$("#kd_jabatan").html(options);
 	}
 	}).failed(function(){
@@ -569,7 +569,7 @@ dynamic_medsos(countMedsos);
             $('#datakontak').append(html);
         }
         else
-        {   
+        {
             html += '<td class="col-sm-3"><button type="button" name="add" id="add" class="btn btn-success">Tambah</button></div>';
             html += '</div>';
             $('#datakontak').html(html);
@@ -586,15 +586,14 @@ dynamic_medsos(countMedsos);
   $(this).closest('div.form-group').remove();
  });
 
- $('document').ready(function(){
-  var detailkontak = <?php echo json_encode($detailkontak); ?>;
+ $(document).ready(function() {
+    var detailkontak = <?php echo isset($detailkontak) ? json_encode($detailkontak) : '[]'; ?>;
 
-  for (let i = 1; i <= detailkontak.length; i++) {
-    dynamic_kontak(i);
-  }
+    for (let i = 0; i < detailkontak.length; i++) {
+        dynamic_kontak(i + 1); // Gunakan i + 1 jika ingin indeks mulai dari 1
+    }
+});
 
- });
- 
  function dynamic_medsos(number)
  {
   html = '<div class="form-group row">';
@@ -618,7 +617,7 @@ dynamic_medsos(countMedsos);
             $('#datamedsos').append(html);
         }
         else
-        {   
+        {
             html += '<td class="col-sm-3"><button type="button" name="addmedsos" id="addmedsos" class="btn btn-success">Tambah</button></div>';
             html += '</div>';
             $('#datamedsos').html(html);
@@ -670,7 +669,7 @@ function dynamic_pendidikan(number)
             $('#datapendidikan').append(html);
         }
         else
-        {   
+        {
             html += '<td class="col-sm-3"><button type="button" name="addpend" id="addpend" class="btn btn-success">Tambah</button></div>';
             html += '</div>';
             $('#datapendidikan').html(html);
@@ -711,7 +710,7 @@ function dynamic_pendidikan(number)
             $('#datakeluarga').append(html);
         }
         else
-        {   
+        {
             html += '<td class="col-sm-3"><button type="button" name="addkel" id="addkel" class="btn btn-success">Tambah</button></div>';
             html += '</div>';
             $('#datakeluarga').html(html);
