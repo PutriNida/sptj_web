@@ -10,6 +10,25 @@ use Carbon\Carbon;
 class WebsitePageController extends Controller
 {
 
+    public function footercontact(){
+        $hubungi_kami = DB::table('hubungi_kami')
+            ->join('master_tipe_kontak', 'master_tipe_kontak.kd_tipe_kontak','=','hubungi_kami.kd_tipe_kontak')
+            ->where('publish', '=', '1')          
+            ->OrderBy('hubungi_kami.kd_tipe_kontak', 'desc')  
+            ->get();
+        
+        return $hubungi_kami;
+    }
+
+    public function footermedsos(){
+        $media_sosial = DB::table('media_sosial')
+            ->join('master_media_sosial', 'master_media_sosial.kd_media_sosial','=','media_sosial.kd_media_sosial')
+            ->where('publish', '=', '1')            
+            ->get();
+        
+        return $media_sosial;
+    }
+
     public function index()
     {
       
@@ -28,8 +47,11 @@ class WebsitePageController extends Controller
             ->orderBy('publish_at', 'desc')
             ->offset(0)->limit(5)
             ->get();
+
+        $hubungi_kami = $this->footercontact();
+        $medsos = $this->footermedsos();
             
-        return view('website_pages.index', compact('berita', 'informasi'));
+        return view('website_pages.index', compact('berita', 'informasi', 'medsos', 'hubungi_kami'));
     }
 
     public function berita($page)
@@ -50,8 +72,11 @@ class WebsitePageController extends Controller
 
         $total_pages = ceil(count($berita) / 6);
         $current_page = $page;
+
+        $hubungi_kami = $this->footercontact();
+        $medsos = $this->footermedsos();
             
-        return view('website_pages.berita', compact('berita', 'kategori_berita', 'total_pages', 'current_page'));
+        return view('website_pages.berita', compact('berita', 'kategori_berita', 'total_pages', 'current_page', 'medsos', 'hubungi_kami'));
     }
 
     public function detailberita($no_berita)
@@ -68,8 +93,11 @@ class WebsitePageController extends Controller
             ->select(DB::raw('count(*) as num'), 'master_kategori_berita.kategori_berita as kategori_berita')
             ->groupBy('master_kategori_berita.kategori_berita')
             ->get();
+
+            $hubungi_kami = $this->footercontact();
+        $medsos = $this->footermedsos();
             
-        return view('website_pages.detail_berita', compact('berita', 'kategori_berita'));
+        return view('website_pages.detail_berita', compact('berita', 'kategori_berita', 'medsos', 'hubungi_kami'));
     }
 
     public function informasi($page)
@@ -90,8 +118,11 @@ class WebsitePageController extends Controller
 
         $total_pages = ceil(count($informasi) / 6);
         $current_page = $page;
+
+        $hubungi_kami = $this->footercontact();
+        $medsos = $this->footermedsos();
             
-        return view('website_pages.informasi', compact('informasi', 'kategori_informasi', 'total_pages', 'current_page'));
+        return view('website_pages.informasi', compact('informasi', 'kategori_informasi', 'total_pages', 'current_page', 'medsos', 'hubungi_kami'));
     }
 
     public function detailinformasi($no_informasi)
@@ -108,8 +139,11 @@ class WebsitePageController extends Controller
             ->select(DB::raw('count(*) as num'), 'master_kategori_informasi.kategori_informasi as kategori_informasi')
             ->groupBy('master_kategori_informasi.kategori_informasi')
             ->get();
+
+            $hubungi_kami = $this->footercontact();
+        $medsos = $this->footermedsos();
             
-        return view('website_pages.detail_informasi', compact('informasi', 'kategori_informasi'));
+        return view('website_pages.detail_informasi', compact('informasi', 'kategori_informasi', 'medsos', 'hubungi_kami'));
     }
 
     public function galeri($kd_kategori_galeri)
@@ -136,8 +170,50 @@ class WebsitePageController extends Controller
         $kategori_galeri = DB::table('master_kategori_galeri')
             ->orderBy('kategori_galeri', 'asc')
             ->get();
+
+            $hubungi_kami = $this->footercontact();
+        $medsos = $this->footermedsos();
             
-        return view('website_pages.galeri', compact('galeri', 'kategori_galeri'));
+        return view('website_pages.galeri', compact('galeri', 'kategori_galeri', 'medsos', 'hubungi_kami'));
+    }
+
+    public function tentangkami()
+    {
+      
+        $tentang_kami = DB::table('tentang_kami')
+            ->where('publish', '=', '1')            
+            ->get();
+        
+            $hubungi_kami = $this->footercontact();
+        $medsos = $this->footermedsos();
+            
+        return view('website_pages.tentang_kami', compact('tentang_kami', 'medsos', 'hubungi_kami'));
+    }
+
+    public function hubungikami()
+    {
+      
+        $hubungi_kami = $this->footercontact();
+        $medsos = $this->footermedsos();
+
+        $alamat = '';
+        $notelp = '';
+        $email = '';
+        $map = '';
+
+        foreach($hubungi_kami as $hk){
+            if($hk->kd_tipe_kontak == 1){
+                $notelp = $hk->tujuan;
+            }elseif($hk->kd_tipe_kontak == 3){
+                $email = $hk->tujuan;
+            }elseif($hk->kd_tipe_kontak == 4){
+                $alamat = $hk->tujuan;
+            }elseif($hk->kd_tipe_kontak == 5){
+                $map = $hk->tujuan;
+            }
+        }
+
+        return view('website_pages.hubungi_kami', compact('medsos', 'hubungi_kami', 'notelp', 'alamat', 'email', 'map'));
     }
 
 }

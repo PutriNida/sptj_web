@@ -35,7 +35,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                        @forelse ($tentangkami as $tk)
+                            @forelse ($tentangkami as $tk)
                             <tr>
                                 <td>
                                         {{ $loop->iteration }}

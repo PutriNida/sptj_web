@@ -30,6 +30,12 @@ Route::get('/home', \App\Http\Controllers\AdminControllers\HomeController::class
 
 // ====================================== home start =========================================================
 Route::get('/anggota', \App\Http\Controllers\AdminControllers\MemberController::class .'@index')->name('member.index');
+Route::get('/anggota/create', \App\Http\Controllers\AdminControllers\MemberController::class .'@create')->name('member.create');
+Route::get('/getDivisi/{kd_direktorat}', \App\Http\Controllers\AdminControllers\MemberController::class .'@getDivisi')->name('divisi');
+Route::get('/getDepartemen/{kd_divisi}', \App\Http\Controllers\AdminControllers\MemberController::class .'@getDepartemen')->name('departemen');
+Route::get('/getJabatan/{kd_departemen}', \App\Http\Controllers\AdminControllers\MemberController::class .'@getJabatan')->name('jabatan');
+Route::post('/anggota/save', \App\Http\Controllers\AdminControllers\MemberController::class .'@store')->name('member.store');
+Route::get('/anggota/edit/{no_karyawan}', \App\Http\Controllers\AdminControllers\MemberController::class .'@edit')->name('member.edit');
 // ====================================== home finish =========================================================
 
 // ====================================== master data start =========================================================
@@ -202,6 +208,13 @@ Route::post('/admin_media_sosial/save', \App\Http\Controllers\AdminControllers\M
 Route::get('/admin_media_sosial/edit/{no_media_sosial}', \App\Http\Controllers\AdminControllers\MediaSosialController::class . '@edit')->name('admin_media_sosial.edit');
 Route::put('/admin_media_sosial/update', \App\Http\Controllers\AdminControllers\MediaSosialController::class .'@update')->name('admin_media_sosial.update');
 Route::delete('/admin_media_sosial/destroy/{no_media_sosial}', \App\Http\Controllers\AdminControllers\MediaSosialController::class .'@destroy')->name('admin_media_sosial.destroy');
+// website hubungi kami
+Route::get('/admin_hubungi_kami', \App\Http\Controllers\AdminControllers\HubungiKamiController::class .'@index')->name('admin_hubungi_kami.index');
+Route::get('/admin_hubungi_kami/create', \App\Http\Controllers\AdminControllers\HubungiKamiController::class .'@create')->name('admin_hubungi_kami.create');
+Route::post('/admin_hubungi_kami/save', \App\Http\Controllers\AdminControllers\HubungiKamiController::class .'@store')->name('admin_hubungi_kami.store');
+Route::get('/admin_hubungi_kami/edit/{no}', \App\Http\Controllers\AdminControllers\HubungiKamiController::class . '@edit')->name('admin_hubungi_kami.edit');
+Route::put('/admin_hubungi_kami/update', \App\Http\Controllers\AdminControllers\HubungiKamiController::class .'@update')->name('admin_hubungi_kami.update');
+Route::delete('/admin_hubungi_kami/destroy/{no}', \App\Http\Controllers\AdminControllers\HubungiKamiController::class .'@destroy')->name('admin_hubungi_kami.destroy');
 // ====================================== website start =========================================================
 
 // ====================================== website page start =========================================================
@@ -211,4 +224,6 @@ Route::get('/berita/detail/{no_berita}', \App\Http\Controllers\WebsiteController
 Route::get('/informasi/{page}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@informasi')->name('informasi');
 Route::get('/informasi/detail/{no_informasi}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@detailinformasi')->name('informasi.detail');
 Route::get('/galeri/{kd_kategori_berita}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@galeri')->name('galeri');
+Route::get('/tentang_kami', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@tentangkami')->name('tentang_kami');
+Route::get('/hubungi_kami', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@hubungikami')->name('hubungi_kami');
 // ====================================== website page start =========================================================

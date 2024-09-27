@@ -7,10 +7,23 @@
             <span class="sitename">Serikat Pekerja Transportasi Jakarta</span>
           </a>
           <div class="footer-contact pt-3">
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
-            <p class="mt-3"><strong>Nomor Telepon:</strong> <span>+1 5589 55488 55</span></p>
-            <p><strong>Email:</strong> <span>info@example.com</span></p>
+            @forelse($hubungi_kami as $hk)
+            @if($hk->kd_tipe_kontak == 4)
+            <p>              
+              {{ $hk->tujuan }}
+            </p>
+            <br>
+            @elseif($hk->kd_tipe_kontak == 1)
+            <p class="mt-3"><strong>Nomor Telepon:</strong> <span>
+              {{ $hk->tujuan }}
+            </span></p>
+            @elseif($hk->kd_tipe_kontak == 3)
+            <p><strong>Email:</strong> <span>
+              {{ $hk->tujuan }}
+              </span></p>
+            @endif
+            @empty
+            @endforelse
           </div>
         </div>
 
@@ -18,20 +31,28 @@
           <ul>
             <li><i class="bi bi-chevron-right"></i> <a href="{{ route('index') }}">Beranda</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="{{ route('berita', 1) }}">Berita</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Informasi</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Galeri</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Tentang Kami</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Hubungi Kami</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="{{ route('informasi', 1) }}">Informasi</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="{{ route('galeri', 0) }}">Galeri</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="{{ route('tentang_kami') }}">Tentang Kami</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="{{ route('hubungi_kami') }}">Hubungi Kami</a></li>
           </ul>
         </div>
 
         <div class="col-lg-4 col-md-12">
           <h4>Ikuti Kami</h4>
           <div class="social-links d-flex">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
+            @forelse($medsos as $ms)
+              @if($ms->kd_media_sosial == 2)
+              <a href="{{ $ms->url }}" target="_blank"><i class="bi bi-twitter-x"></i></a>
+              @endif
+              @if($ms->kd_media_sosial == 1)
+              <a href="{{ $ms->url }}" target="_blank"><i class="bi bi-facebook"></i></a>
+              @endif
+              @if($ms->kd_media_sosial == 3)
+              <a href="{{ $ms->url }}" target="_blank"><i class="bi bi-instagram"></i></a>
+              @endif
+            @empty
+            @endforelse
           </div>
         </div>
 

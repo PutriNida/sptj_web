@@ -1,4 +1,4 @@
-@extends('admin_pages/templates/layout') 
+@extends('admin_pages/templates/layout')
 @section('content')
 <div class="container-fluid py-4">
     @if(session('success'))
@@ -20,57 +20,62 @@
         <div class="col-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Anggota</h6>
-                    <a href="{{ url('/anggota/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
+                    <h6 class="m-0 font-weight-bold text-primary">Hubungi Kami</h6>
+                    <a href="{{ url('./admin_hubungi_kami/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                                <tr>              
-                                    <th>No Karywan</th>
-                                    <th>NIK SPTJ</th>
-                                    <th>Nama</th>
-                                    <th>Lokasi Kerja</th>
-                                    <th>Jabatan</th>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Tipe Kontak</th>
+                                    <th>Judul</th>
+                                    <th>Tujuan</th>
+                                    <th>Dipublikasikan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                        @forelse ($member as $mb)
+                        @forelse ($hubungi_kami as $hk)
                             <tr>
                                 <td>
-                                        {{ $mb->no_karyawan }}
+                                        {{ $loop->iteration }}
                                 </td>
                                 <td>
-                                        {{ $mb->nik_sptj }}
+                                        {{ $hk->tipe_kontak }}
                                 </td>
                                 <td>
-                                        {{ $mb->nama_lengkap }}
+                                        {{ $hk->judul }}
                                 </td>
                                 <td>
-                                        {{ $mb->lokasi_kerja }}
+                                        {{ $hk->tujuan }}
                                 </td>
-                                <td>
-                                        {{ $mb->jabatan }}
-                                </td>
-                                <td>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                @if($hk->publish == '1') 
+                                    <td>
+                                        <span class="btn btn-success btn-sm">Ya</span>
+                                    </td>
+                                @else 
+                                    <td>
+                                        <span class="btn btn-secondary btn-sm">Tidak</span>
+                                    </td>
+                                @endif
+                                <td>   
+                                    <form action="{{ route('admin_hubungi_kami.destroy', $hk->no) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a class="btn btn-warning btn-circle" href="{{ route('admin_hubungi_kami.edit', $hk->no) }}">
+                                            <i class="fas fa-edit"></i>
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                             <a class="dropdown-item" href="{{ route('member.edit', $mb->no_karyawan) }}">Edit</a>
-                                        </div>
-                                    </div>
+                                        <input type="hidden" name="no" value="{{ $hk->no }}"/>
+                                        <button type="submit" class="btn btn-danger btn-circle" type="submit"><i class="fas fa-trash"></i></button>
+                                    </form>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan='4' class="alert alert-warning">
-                                    <strong>Maaf!</strong>    Data Anggota Belum Tersedia!
+                                <td colspan='8' class="alert alert-warning">
+                                    <strong>Maaf!</strong>    Data Hubungi Kami Belum Tersedia!
                                 </td>
                             </tr>
                         @endforelse

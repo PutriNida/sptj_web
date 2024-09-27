@@ -41,6 +41,7 @@ class AuthController extends Controller
             session(['nama_lengkap' => $member->nama_lengkap]);
             session(['no_karyawan' => $member->no_karyawan]);
             session(['level' => $member->level]);
+            session(['foto_diri' => $member->foto_diri]);
 
             error_log($member->level);
 

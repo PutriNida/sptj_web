@@ -96,27 +96,6 @@
                 </a>
             </li>
 
-            <li class="nav-item {{ str_contains(url()->current(), '/admin_tentang_kami') ? 'active' : ''}}">
-                <a class="nav-link" href="{{ route('admin_tentang_kami.index') }}">
-                    <i class="fas fa-fw fa-list-alt"></i>
-                    <span>Tentang Kami</span>
-                </a>
-            </li>
-
-            <li class="nav-item {{ str_contains(url()->current(), '/admin_media_sosial') ? 'active' : ''}}">
-                <a class="nav-link" href="{{ route('admin_media_sosial.index') }}">
-                    <i class="fas fa-fw fa-list-alt"></i>
-                    <span>Media Sosial</span>
-                </a>
-            </li>
-
-            <li class="nav-item {{ str_contains(url()->current(), '/admin_tentang_kami') ? 'active' : ''}}">
-                <a class="nav-link" href="{{ route('admin_tentang_kami.index') }}">
-                    <i class="fas fa-fw fa-list-alt"></i>
-                    <span>Pusat Bantuan</span>
-                </a>
-            </li>
-
             @if(session('level') == 1)
 
             <!-- Divider -->
@@ -249,6 +228,27 @@
                         </a>                        
                     </div>
                 </div>
+            </li>
+
+            <li class="nav-item {{ str_contains(url()->current(), '/admin_tentang_kami') ? 'active' : ''}}">
+                <a class="nav-link" href="{{ route('admin_tentang_kami.index') }}">
+                    <i class="fas fa-fw fa-list-alt"></i>
+                    <span>Tentang Kami</span>
+                </a>
+            </li>
+
+            <li class="nav-item {{ str_contains(url()->current(), '/admin_media_sosial') ? 'active' : ''}}">
+                <a class="nav-link" href="{{ route('admin_media_sosial.index') }}">
+                    <i class="fas fa-fw fa-list-alt"></i>
+                    <span>Media Sosial</span>
+                </a>
+            </li>
+
+            <li class="nav-item {{ str_contains(url()->current(), '/admin_hubungi_kami') ? 'active' : ''}}">
+                <a class="nav-link" href="{{ route('admin_hubungi_kami.index') }}">
+                    <i class="fas fa-fw fa-list-alt"></i>
+                    <span>Hubungi Kami</span>
+                </a>
             </li>
 
             @endif
