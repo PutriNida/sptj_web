@@ -54,6 +54,43 @@ class AuthController extends Controller
         return redirect('/login');
     }
 
+    public function resetform()
+    {        
+        return view('admin_pages.auth.resetpw');
+    }
+
+    public function resetpassword(Request $request)
+    {
+        $status = '';
+        $message = '';
+
+        // $reset = DB::table('user_login')
+        //        ->where('username', '=', $request->username)
+        //        ->where('no_karyawan', '=', (int) $request->no_karywan)
+        //        ->limit(1)->get();
+        // error_log($reset);
+
+        try{
+            DB::table('user_login')
+               ->where('username', '=', $request->username)
+               ->where('no_karyawan', '=', (int) $request->no_karywan)
+               ->limit(1) 
+               ->update([
+                   'password' => $request->password
+               ]);
+            $status = 'success';
+            $message = 'Password Baru Berhasil Dibuat. Silahkan Login!';    
+          
+        }catch(Exception $error){
+            $status = 'error';
+            $message = $error;
+        }
+
+        //redirect to index
+        return redirect()->route('auth.login')
+        ->with([ $status => $message]);
+    }
+
     public function logout()
     {
         Auth::logout(); // Log the user out

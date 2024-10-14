@@ -29,11 +29,6 @@
               </div>
 
               <p class="post-category">{{ $info->kategori_informasi }}</p>
-                <div class="stars">
-                  <i class="bi bi-eye-fill"></i><span>{{ $info->views }}</span>  
-                  <i class="bi bi-hand-thumbs-up-fill"></i><span>{{ $info->likes }}</span>  
-                  <i class="bi bi-hand-thumbs-down-fill"></i><span>{{ $info->dislikes }}</span>  
-                </div>
               <h2 class="title">
                 {{ $info->judul_informasi }}
               </h2>

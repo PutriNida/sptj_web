@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 // ====================================== authentication start =========================================================
 Route::get('/login', \App\Http\Controllers\AdminControllers\AuthController::class .'@login')->name('auth.login');
 Route::post('/loginaction', \App\Http\Controllers\AdminControllers\AuthController::class . '@loginaction')->name('auth.loginaction');
+Route::get('/reset', \App\Http\Controllers\AdminControllers\AuthController::class . '@resetform')->name('auth.resetform');
+Route::post('/resetpassword/save', \App\Http\Controllers\AdminControllers\AuthController::class . '@resetpassword')->name('auth.resetpassword');
 Route::post('/logout', \App\Http\Controllers\AdminControllers\AuthController::class . '@logout')->name('logout');
 // ====================================== authentication finish =========================================================
 
@@ -36,6 +38,7 @@ Route::get('/getDepartemen/{kd_divisi}', \App\Http\Controllers\AdminControllers\
 Route::get('/getJabatan/{kd_departemen}', \App\Http\Controllers\AdminControllers\MemberController::class .'@getJabatan')->name('jabatan');
 Route::post('/anggota/save', \App\Http\Controllers\AdminControllers\MemberController::class .'@store')->name('member.store');
 Route::get('/anggota/edit/{no_karyawan}', \App\Http\Controllers\AdminControllers\MemberController::class .'@edit')->name('member.edit');
+Route::get('/anggota/edit_status/{no_karyawan}/{kd_status_karyawan}', \App\Http\Controllers\AdminControllers\MemberController::class .'@updateStatusKarywan')->name('member.edit.status');
 // ====================================== home finish =========================================================
 
 // ====================================== master data start =========================================================
@@ -221,9 +224,14 @@ Route::delete('/admin_hubungi_kami/destroy/{no}', \App\Http\Controllers\AdminCon
 Route::get('/', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@index')->name('index');
 Route::get('/berita/{page}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@berita')->name('berita');
 Route::get('/berita/detail/{no_berita}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@detailberita')->name('berita.detail');
+Route::get('/berita/likes/{no_berita}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@likeberita')->name('berita.likes');
+Route::get('/berita/dislikes/{no_berita}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@dislikeberita')->name('berita.dislikes');
+Route::post('/berita/save/komentar', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@savekomentar')->name('berita.komen');
 Route::get('/informasi/{page}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@informasi')->name('informasi');
 Route::get('/informasi/detail/{no_informasi}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@detailinformasi')->name('informasi.detail');
 Route::get('/galeri/{kd_kategori_berita}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@galeri')->name('galeri');
 Route::get('/tentang_kami', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@tentangkami')->name('tentang_kami');
 Route::get('/hubungi_kami', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@hubungikami')->name('hubungi_kami');
+Route::get('/informasi/likes/{no_informasi}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@likeinformasi')->name('informasi.likes');
+Route::get('/informasi/dislikes/{no_informasi}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@dislikeinformasi')->name('informasi.dislikes');
 // ====================================== website page start =========================================================

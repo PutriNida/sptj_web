@@ -231,15 +231,38 @@ class InformasiController extends Controller
         ->first();
 
         DB::table('informasi')
-                    ->where('no_informasi', $request->no_informasi)
+                    ->where('no_informasi', $no_informasi)
                     ->limit(1)
                     ->update([
-                        'kd_kategori_informasi' => $request->kd_kategori_informasi,
-                        'judul_informasi' => $request->judul_informasi,
-                        'content' => $request->content,
-                        'gambar' => $base64Image,
-                        'update_at' => Carbon::now()->format('Y-m-d'),
-                        'publish_at' => Carbon::now()->format('Y-m-d')
+                        'views' => $informasi->views + 1
+                    ]);
+    }
+
+    public function increaseLikes($no_informasi)
+    {
+        $informasi = DB::table('informasi')
+        ->where('no_informasi', $no_informasi)
+        ->first();
+
+        DB::table('informasi')
+                    ->where('no_informasi', $no_informasi)
+                    ->limit(1)
+                    ->update([
+                        'likes' => $informasi->likes + 1
+                    ]);
+    }
+    
+    public function increaseDislike($no_informasi)
+    {
+        $informasi = DB::table('informasi')
+        ->where('no_informasi', $no_informasi)
+        ->first();
+
+        DB::table('informasi')
+                    ->where('no_informasi', $no_informasi)
+                    ->limit(1)
+                    ->update([
+                        'dislikes' => $informasi->dislikes + 1
                     ]);
     }
 }

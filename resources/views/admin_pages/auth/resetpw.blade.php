@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Daftar Akun</title>
+    <title>Reset Password</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ URL::asset('vendor/fontawesome-free/css/all.min.css'); }}" rel="stylesheet" type="text/css">
@@ -26,29 +26,27 @@
 
     <div class="container">
 
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
                 <div class="row">
                     <div class="col-lg-5 d-none d-lg-block bg-register-image">
                         <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 20rem;" src="{{ URL::asset('sptj_img/logo.jpg'); }}">
                     </div>
-                    <div class="col-lg-7">
+                    <div class="col-lg-6">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Daftar Akun!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Reset Password!</h1>
                             </div>
-                            <form class="user" action="{{ route('daftar.store') }}" method="POST" enctype="multipart/form-data" >
+                            <form class="user" action="{{ route('auth.resetpassword') }}" method="POST" enctype="multipart/form-data" >
                                 {{ csrf_field() }}
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="number" name="no_karyawan" class="form-control form-control-user" id="exampleFirstName"
+                                <div class="form-group">
+                                    <input type="number" name="no_karyawan" class="form-control form-control-user" id="exampleFirstName"
                                             placeholder="Nomor Induk Karyawan" autocomplete="off">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" name="nik_sptj" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="NIK SPTJ" autocomplete="off">
-                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" name="username" class="form-control form-control-user" id="exampleInputEmail"
@@ -59,15 +57,12 @@
                                         id="exampleInputPassword" placeholder="Password" autocomplete="off">
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
-                                    Daftar Akun
+                                    Reset Password
                                 </button>
                             </form>
                             <hr>
                             <div class="text-center">
-                                <a class="small" href="{{ route('auth.resetform') }}">Lupa Password?</a>
-                            </div>
-                            <div class="text-center">
-                                <a class="small" href="{{ url('/login') }}">Sudah punya akun? Login!</a>
+                                <a class="small" href="{{ url('/login') }}">Kembali ke Login</a>
                             </div>
                         </div>
                     </div>

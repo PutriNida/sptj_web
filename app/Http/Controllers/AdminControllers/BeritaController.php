@@ -233,12 +233,13 @@ class BeritaController extends Controller
         ->first();
 
         DB::table('berita')
-                    ->where('no_berita', $request->no_berita)
+                    ->where('no_berita', $no_berita)
                     ->limit(1)
                     ->update([
                         'views' => $berita->views + 1
                     ]);
     }
+
     public function increaseLikes($no_berita)
     {
         $berita = DB::table('berita')
@@ -246,12 +247,13 @@ class BeritaController extends Controller
         ->first();
 
         DB::table('berita')
-                    ->where('no_berita', $request->no_berita)
+                    ->where('no_berita', $no_berita)
                     ->limit(1)
                     ->update([
-                        'likes' => $berita->views + 1
+                        'likes' => $berita->likes + 1
                     ]);
     }
+    
     public function increaseDislike($no_berita)
     {
         $berita = DB::table('berita')
@@ -259,10 +261,24 @@ class BeritaController extends Controller
         ->first();
 
         DB::table('berita')
-                    ->where('no_berita', $request->no_berita)
+                    ->where('no_berita', $no_berita)
                     ->limit(1)
                     ->update([
-                        'dislikes' => $berita->views + 1
+                        'dislikes' => $berita->dislikes + 1
+                    ]);
+    }
+
+    public function increaseComment($no_berita)
+    {
+        $berita = DB::table('berita')
+        ->where('no_berita', $no_berita)
+        ->first();
+
+        DB::table('berita')
+                    ->where('no_berita', $no_berita)
+                    ->limit(1)
+                    ->update([
+                        'comments' => $berita->comments + 1
                     ]);
     }
 }

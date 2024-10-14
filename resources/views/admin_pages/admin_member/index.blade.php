@@ -33,6 +33,7 @@
                                     <th>Nama</th>
                                     <th>Lokasi Kerja</th>
                                     <th>Jabatan</th>
+                                    <th>Status Karyawan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -58,13 +59,23 @@
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                            {{ $mb->status_karyawan }}
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                             aria-labelledby="dropdownMenuLink">
-                                             <a class="dropdown-item" href="{{ route('member.edit', $mb->no_karyawan) }}">Edit</a>
+                                            @forelse ($statuskaryawan as $status)
+                                                @if($status->kd_status_karyawan != $mb->kd_status_karyawan )
+                                                    <a class="dropdown-item" href="{{ route('member.edit.status', ['no_karyawan'=>$mb->no_karyawan,'kd_status_karyawan'=>$status->kd_status_karyawan]) }}">{{ $status->status_karyawan }}</a>
+                                                @endif
+                                            @empty
+                                            @endforelse
                                         </div>
                                     </div>
+                                </td>
+                                <td>
+                                    <a class="btn btn-warning btn-circle" href="{{ route('member.edit', $mb->no_karyawan) }}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @empty

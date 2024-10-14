@@ -37,9 +37,9 @@
                   <ul>
                     <li class="d-flex align-items-center"><i class="bi bi-person"></i> {{ $informasi->nama_lengkap }}</li>
                     <li class="d-flex align-items-center"><i class="bi bi-clock"></i> Dipublikasikan: {{ date('d-m-Y', strtotime($informasi->publish_at)); }}</li>
-                    <li class="d-flex align-items-center"><i class="bi bi-eye-fill"></i> {{ $informasi->views }}</a></li>
-                    <li class="d-flex align-items-center"><i class="bi bi-hand-thumbs-up-fill"></i> {{ $informasi->likes }}</a></li>
-                    <li class="d-flex align-items-center"><i class="bi bi-hand-thumbs-down-fill"></i> {{ $informasi->dislikes }}</a></li>
+                    <li class="d-flex align-items-center"><i class="bi bi-eye-fill"></i> {{ $informasi->views }}</li>
+                    <a href="{{ route('informasi.likes', $informasi->no_informasi) }}"><li class="d-flex align-items-center"><i class="bi bi-hand-thumbs-up-fill"></i> {{ $informasi->likes }}</li></a>
+                    <a href="{{ route('informasi.likes', $informasi->no_informasi) }}"><li class="d-flex align-items-center"><i class="bi bi-hand-thumbs-down-fill"></i> {{ $informasi->dislikes }}</li></a>
                   </ul>
                 </div><!-- End meta top -->
 
@@ -64,63 +64,21 @@
         <div class="col-lg-4 sidebar">
 
           <div class="widgets-container">
-            <!-- Categories Widget -->
-            <div class="categories-widget widget-item">
-
-              <h3 class="widget-title">Kategori</h3>
-              <ul class="mt-3">
-                @forelse($kategori_informasi as $kb)
-                <li><a href="#">{{ $kb->kategori_informasi }} <span>({{ $kb->num }})</span></a></li>
-                @empty
-                @endforelse
-              </ul>
-
-            </div><!--/Categories Widget -->
 
             <!-- Recent Posts Widget -->
             <div class="recent-posts-widget widget-item">
 
-              <h3 class="widget-title">Recent Posts</h3>
+              <h3 class="widget-title">Informasi terbaru</h3>
 
+              @forelse ($latestpost as $latest)
               <div class="post-item">
-                <img src="assets/img/blog/blog-recent-1.jpg" alt="" class="flex-shrink-0">
                 <div>
-                  <h4><a href="blog-details.html">Nihil blanditiis at in nihil autem</a></h4>
-                  <time datetime="2020-01-01">Jan 1, 2020</time>
+                  <h4><a href="blog-details.html">{{ $latest->judul_informasi }}</a></h4>
+                  <time datetime="2020-01-01">{{ $latest->create_at }}</time>
                 </div>
-              </div><!-- End recent post item-->
-
-              <div class="post-item">
-                <img src="assets/img/blog/blog-recent-2.jpg" alt="" class="flex-shrink-0">
-                <div>
-                  <h4><a href="blog-details.html">Quidem autem et impedit</a></h4>
-                  <time datetime="2020-01-01">Jan 1, 2020</time>
-                </div>
-              </div><!-- End recent post item-->
-
-              <div class="post-item">
-                <img src="assets/img/blog/blog-recent-3.jpg" alt="" class="flex-shrink-0">
-                <div>
-                  <h4><a href="blog-details.html">Id quia et et ut maxime similique occaecati ut</a></h4>
-                  <time datetime="2020-01-01">Jan 1, 2020</time>
-                </div>
-              </div><!-- End recent post item-->
-
-              <div class="post-item">
-                <img src="assets/img/blog/blog-recent-4.jpg" alt="" class="flex-shrink-0">
-                <div>
-                  <h4><a href="blog-details.html">Laborum corporis quo dara net para</a></h4>
-                  <time datetime="2020-01-01">Jan 1, 2020</time>
-                </div>
-              </div><!-- End recent post item-->
-
-              <div class="post-item">
-                <img src="assets/img/blog/blog-recent-5.jpg" alt="" class="flex-shrink-0">
-                <div>
-                  <h4><a href="blog-details.html">Et dolores corrupti quae illo quod dolor</a></h4>
-                  <time datetime="2020-01-01">Jan 1, 2020</time>
-                </div>
-              </div><!-- End recent post item-->
+              </div>
+              @empty
+              @endforelse
 
             </div><!--/Recent Posts Widget -->
 

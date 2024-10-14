@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\WebsiteControllers;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminControllers\BeritaController;
+use App\Http\Controllers\AdminControllers\InformasiController;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -57,7 +59,7 @@ class WebsitePageController extends Controller
     public function berita($page)
     {
       
-        $offset = ($page -1 ) * 6;
+        $offset = ((int)$page - 1 ) * 6;
         $berita = DB::table('berita')
             ->join('master_kategori_berita', 'master_kategori_berita.kd_kategori_berita', '=', 'berita.kd_kategori_berita')
             ->join('anggota', 'anggota.no_karyawan', '=', 'berita.no_karyawan')
@@ -66,12 +68,16 @@ class WebsitePageController extends Controller
             ->offset($offset)->limit(6)
             ->get();
 
+        $countberita = DB::table('berita')
+            ->where('publish_at', 'IS NOT', null)
+            ->count();
+
         $kategori_berita = DB::table('master_kategori_berita')
             ->orderBy('kategori_berita', 'asc')
             ->get();
 
-        $total_pages = ceil(count($berita) / 6);
-        $current_page = $page;
+        $total_pages = ceil($countberita / 6);
+        $current_page = $page;       
 
         $hubungi_kami = $this->footercontact();
         $medsos = $this->footermedsos();
@@ -80,24 +86,120 @@ class WebsitePageController extends Controller
     }
 
     public function detailberita($no_berita)
-    {
-      
+    {      
+        $result = app(BeritaController::class)->increaseViews($no_berita);
         $berita = DB::table('berita')
             ->join('master_kategori_berita', 'master_kategori_berita.kd_kategori_berita', '=', 'berita.kd_kategori_berita')
             ->join('anggota', 'anggota.no_karyawan', '=', 'berita.no_karyawan')
             ->where('no_berita', $no_berita)
             ->first();
-        
-        $kategori_berita = DB::table('berita')
-            ->join('master_kategori_berita', 'master_kategori_berita.kd_kategori_berita', '=', 'berita.kd_kategori_berita')
-            ->select(DB::raw('count(*) as num'), 'master_kategori_berita.kategori_berita as kategori_berita')
-            ->groupBy('master_kategori_berita.kategori_berita')
+
+        $komentar = DB::table('histori_komentar_berita')
+            ->where('no_berita','=',$no_berita)
             ->get();
 
-            $hubungi_kami = $this->footercontact();
+        $latestpost = DB::table('berita')
+            ->orderBy('publish_at', 'desc')
+            ->limit(5)
+            ->get();
+
+        $hubungi_kami = $this->footercontact();
+        $medsos = $this->footermedsos();      
+
+        return view('website_pages.detail_berita', compact('berita', 'medsos', 'hubungi_kami', 'komentar', 'latestpost'));
+    }
+
+    public function likeberita($no_berita)
+    {      
+        $result = app(BeritaController::class)->increaseLikes($no_berita);
+        $berita = DB::table('berita')
+            ->join('master_kategori_berita', 'master_kategori_berita.kd_kategori_berita', '=', 'berita.kd_kategori_berita')
+            ->join('anggota', 'anggota.no_karyawan', '=', 'berita.no_karyawan')
+            ->where('no_berita', $no_berita)
+            ->first();
+
+        $komentar = DB::table('histori_komentar_berita')
+            ->where('no_berita','=',$no_berita)
+            ->get();
+
+        $latestpost = DB::table('berita')
+            ->orderBy('publish_at', 'desc')
+            ->limit(5)
+            ->get();
+
+        $hubungi_kami = $this->footercontact();
         $medsos = $this->footermedsos();
             
-        return view('website_pages.detail_berita', compact('berita', 'kategori_berita', 'medsos', 'hubungi_kami'));
+        return view('website_pages.detail_berita', compact('berita', 'medsos', 'hubungi_kami', 'komentar', 'latestpost'));
+    }
+
+    public function dislikeberita($no_berita)
+    {      
+        $result = app(BeritaController::class)->increaseDislike($no_berita);
+        $berita = DB::table('berita')
+            ->join('master_kategori_berita', 'master_kategori_berita.kd_kategori_berita', '=', 'berita.kd_kategori_berita')
+            ->join('anggota', 'anggota.no_karyawan', '=', 'berita.no_karyawan')
+            ->where('no_berita', $no_berita)
+            ->first();
+
+        $komentar = DB::table('histori_komentar_berita')
+            ->where('no_berita','=',$no_berita)
+            ->get();
+
+        $latestpost = DB::table('berita')
+            ->orderBy('publish_at', 'desc')
+            ->limit(5)
+            ->get();
+
+        $hubungi_kami = $this->footercontact();
+        $medsos = $this->footermedsos();
+            
+        return view('website_pages.detail_berita', compact('berita', 'medsos', 'hubungi_kami', 'komentar', 'latestpost'));
+    }
+
+    
+
+    public function savekomentar(Request $request)
+    {
+        $status = '';
+        $message = '';
+
+        try{
+            DB::table('histori_komentar_berita')->insert([
+                'no_berita' => $request->no_berita,
+                'nama' => $request->nama,
+                'isAnonymous' => isset($request->isAnonymous) ? 1 : 0,
+                'create_at' => Carbon::now()->format('Y-m-d'),
+                'komentar' => $request->komentar,
+                'reply_to' => $request->reply_to
+            ]);
+            $result = app(BeritaController::class)->increaseComment($request->no_berita);
+            $status = 'success';
+            $message = 'Data Berhasil Disimpan!';
+        }catch(Exception $error){
+            $status = 'error';
+            $message = 'Data Gagal Disimpan!';
+        }
+
+        $berita = DB::table('berita')
+            ->join('master_kategori_berita', 'master_kategori_berita.kd_kategori_berita', '=', 'berita.kd_kategori_berita')
+            ->join('anggota', 'anggota.no_karyawan', '=', 'berita.no_karyawan')
+            ->where('no_berita', $request->no_berita)
+            ->first();
+
+        $latestpost = DB::table('berita')
+            ->orderBy('publish_at', 'desc')
+            ->limit(5)
+            ->get();
+
+        $hubungi_kami = $this->footercontact();
+        $medsos = $this->footermedsos();
+        
+        $komentar = DB::table('histori_komentar_berita')
+            ->where('no_berita','=', $request->no_berita)
+            ->get();
+
+        return view('website_pages.detail_berita', compact('berita', 'medsos', 'hubungi_kami', 'komentar', 'latestpost'));
     }
 
     public function informasi($page)
@@ -112,11 +214,15 @@ class WebsitePageController extends Controller
             ->offset($offset)->limit(6)
             ->get();
 
+        $countinformasi = DB::table('informasi')
+            ->where('publish_at', 'IS NOT', null)
+            ->count();
+
         $kategori_informasi = DB::table('master_kategori_informasi')
             ->orderBy('kategori_informasi', 'asc')
             ->get();
 
-        $total_pages = ceil(count($informasi) / 6);
+        $total_pages = ceil($countinformasi / 6);
         $current_page = $page;
 
         $hubungi_kami = $this->footercontact();
@@ -127,23 +233,62 @@ class WebsitePageController extends Controller
 
     public function detailinformasi($no_informasi)
     {
-      
+        $result = app(InformasiController::class)->increaseViews($no_informasi);
         $informasi = DB::table('informasi')
             ->join('master_kategori_informasi', 'master_kategori_informasi.kd_kategori_informasi', '=', 'informasi.kd_kategori_informasi')
             ->join('anggota', 'anggota.no_karyawan', '=', 'informasi.no_karyawan')
             ->where('no_informasi', $no_informasi)
             ->first();
-        
-        $kategori_informasi = DB::table('informasi')
-            ->join('master_kategori_informasi', 'master_kategori_informasi.kd_kategori_informasi', '=', 'informasi.kd_kategori_informasi')
-            ->select(DB::raw('count(*) as num'), 'master_kategori_informasi.kategori_informasi as kategori_informasi')
-            ->groupBy('master_kategori_informasi.kategori_informasi')
+
+        $latestpost = DB::table('informasi')
+            ->orderBy('publish_at', 'desc')
+            ->limit(5)
             ->get();
 
-            $hubungi_kami = $this->footercontact();
+        $hubungi_kami = $this->footercontact();
         $medsos = $this->footermedsos();
             
-        return view('website_pages.detail_informasi', compact('informasi', 'kategori_informasi', 'medsos', 'hubungi_kami'));
+        return view('website_pages.detail_informasi', compact('informasi', 'medsos', 'hubungi_kami', 'latestpost'));
+    }
+
+    public function likeinformasi($no_informasi)
+    {
+        $result = app(InformasiController::class)->increaseLikes($no_informasi);
+        $informasi = DB::table('informasi')
+            ->join('master_kategori_informasi', 'master_kategori_informasi.kd_kategori_informasi', '=', 'informasi.kd_kategori_informasi')
+            ->join('anggota', 'anggota.no_karyawan', '=', 'informasi.no_karyawan')
+            ->where('no_informasi', $no_informasi)
+            ->first();
+            
+        $latestpost = DB::table('informasi')
+            ->orderBy('publish_at', 'desc')
+            ->limit(5)
+            ->get();
+
+        $hubungi_kami = $this->footercontact();
+        $medsos = $this->footermedsos();
+            
+        return view('website_pages.detail_informasi', compact('informasi', 'medsos', 'hubungi_kami', 'latestpost'));
+    }
+
+    public function dislikeinformasi($no_informasi)
+    {
+        $result = app(InformasiController::class)->increaseDisikes($no_informasi);
+        $informasi = DB::table('informasi')
+            ->join('master_kategori_informasi', 'master_kategori_informasi.kd_kategori_informasi', '=', 'informasi.kd_kategori_informasi')
+            ->join('anggota', 'anggota.no_karyawan', '=', 'informasi.no_karyawan')
+            ->where('no_informasi', $no_informasi)
+            ->first();
+
+        $latestpost = DB::table('informasi')
+            ->orderBy('publish_at', 'desc')
+            ->limit(5)
+            ->get();
+
+        $hubungi_kami = $this->footercontact();
+        $medsos = $this->footermedsos();
+            
+        return view('website_pages.detail_informasi', compact('informasi', 'medsos', 'hubungi_kami', 'latestpost'));
     }
 
     public function galeri($kd_kategori_galeri)
@@ -171,7 +316,7 @@ class WebsitePageController extends Controller
             ->orderBy('kategori_galeri', 'asc')
             ->get();
 
-            $hubungi_kami = $this->footercontact();
+        $hubungi_kami = $this->footercontact();
         $medsos = $this->footermedsos();
             
         return view('website_pages.galeri', compact('galeri', 'kategori_galeri', 'medsos', 'hubungi_kami'));
@@ -215,6 +360,7 @@ class WebsitePageController extends Controller
 
         return view('website_pages.hubungi_kami', compact('medsos', 'hubungi_kami', 'notelp', 'alamat', 'email', 'map'));
     }
+
 
 }
 

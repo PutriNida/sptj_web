@@ -94,10 +94,14 @@
 
         <div class="row gy-4 align-items-center features-item">
           <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
-            <img src="{{ $berita[0]->gambar }}" class="img-fluid" alt="" width="300" height="300">
+            <a href="{{ route('berita.detail', $berita[0]->no_berita) }}">
+              <img src="{{ $berita[0]->gambar }}" class="img-fluid" alt="" width="300" height="300">
+            </a>
           </div>
           <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
-            <h3>{{ $berita[0]->judul_berita }}</h3>
+            <a href="{{ route('berita.detail', $berita[0]->no_berita) }}">
+              <h3>{{ $berita[0]->judul_berita }}</h3>
+            </a>
             <h4>{{ $berita[0]->kategori_berita }}</h4>
             <div class="stars">
                 <i class="bi bi-eye-fill"></i><span>{{ $berita[0]->views }}</span>  

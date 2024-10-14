@@ -231,9 +231,12 @@ class MemberController extends Controller
             $member = DB::table('anggota')
             ->join('master_lokasi_kerja', 'master_lokasi_kerja.kd_lokasi_kerja', '=', 'anggota.kd_lokasi_kerja')
             ->join('master_jabatan', 'master_jabatan.kd_jabatan', '=', 'anggota.kd_jabatan')
+            ->join('master_status_karyawan', 'master_status_karyawan.kd_status_karyawan', '=', 'anggota.kd_status_karyawan')
             ->get();
+
+            $statuskaryawan = $this->getStatusKaryawan();
         
-        return view('admin_pages.admin_member.index', compact('member'));
+        return view('admin_pages.admin_member.index', compact('member', 'statuskaryawan'));
     }
 
     public function create()
@@ -457,6 +460,283 @@ class MemberController extends Controller
             'detailmedsos'
         ));
     }
+
+    public function update(Request $request){
+        $status = '';
+        $message = '';
+        $no_karyawan = $request->no_karyawan;
+
+        $member = DB::table('anggota')
+        ->where('no_karyawan', $no_karyawan)
+        ->first();   
+
+        if ($request->hasFile('foto_diri_ubah')) {
+            $file = $request->file('foto_diri_ubah');
+            $imageData = file_get_contents($file->getRealPath());
+            $base64Image = base64_encode($imageData);
+            $mimeType = $file->getClientMimeType();
+            $base64Image = 'data:' . $mimeType . ';base64,' . $base64Image;
+        } else {
+            $base64Image = $member->foto_diri;
+        }        
+
+        $detailalamat = $this->getDetailAlamat($no_karyawan);
+        $detailkontak = $this->getDetailKontak($no_karyawan);
+        $detailpend = $this->getDetailPendidikan($no_karyawan);
+        $detailkel = $this->getDetailKeluarga($no_karyawan);
+        $detailmedsos = $this->getDetailMedsos($no_karyawan);
+        $detailkartu = $this->getDetailKartu($no_karyawan);
+        $detailbpjs = $this->getDetailBPJS($no_karyawan);
+
+        try{
+            DB::table('anggota')
+            ->where('no_karyawan', $request->no_karyawan)
+            ->limit(1) 
+            ->update([
+                'nik_sptj' => $request->nik_sptj,
+                'nik' => $request->nik,
+                'nama_lengkap' => $request->nama_lengkap,
+                'gelar_depan' => $request->gelar_depan,
+                'gelar_belakang' => $request->gelar_belakang,
+                'tempat_lahir' => $request->tempat_lahir,
+                'tgl_lahir' => $request->tgl_lahir,
+                'kd_status_perkawinan' => $request->kd_status_perkawinan,
+                'jum_anak' => $request->jum_anak,
+                'jum_tanggungan' => $request->jum_tanggungan,
+                'kd_jenis_kelamin' => $request->kd_jenis_kelamin,
+                'kd_agama' => $request->kd_agama,
+                'kd_gol_darah' => $request->kd_gol_darah,
+                'kd_lokasi_kerja' => $request->kd_lokasi_kerja,
+                'kd_direktorat' => $request->kd_direktorat,
+                'kd_divisi' => $request->kd_divisi,
+                'kd_departemen' => $request->kd_departemen,
+                'kd_jabatan' => $request->kd_jabatan,
+                'kd_status_karyawan' => $request->kd_status_karyawan,
+                'foto_diri' => $base64Image
+            ]);
+        
+        if(!is_null($request->alamat)){
+            for($i = 0; $i < count($request->kd_jenis_alamat) ; $i++){
+                DB::table('detail_alamat')
+                    ->where('no_karyawan', $request->no_karyawan)
+                    ->where('kd_jenis_alamat', $request->kd_jenis_alamat[$i])
+                    ->limit(1) 
+                    ->update([
+                        'detail_alamat' => $request->alamat[$i]
+                    ]);
+            }
+        }else{
+             DB::table('detail_alamat')
+                ->where('no_karyawan', $request->no_karyawan)
+                ->delete();
+        }
+
+        if(!is_null($request->tujuan)){
+            for($i = 0; $i < count($request->kd_tipe_kontak) ; $i++){
+                $cek = DB::table('detail_kontak')
+                    ->where('no_karyawan', $request->no_karyawan)
+                    ->where('kd_tipe_kontak', $request->kd_tipe_kontak[$i])
+                    ->limit(1);
+                if(!is_null($cek)){
+                    DB::table('detail_kontak')
+                        ->where('no_karyawan', $request->no_karyawan)
+                        ->where('kd_tipe_kontak', $request->kd_tipe_kontak[$i])
+                        ->limit(1) 
+                        ->update([
+                            'kontak' => $request->tujuan[$i]
+                        ]);
+                }else{
+                     DB::table('detail_kontak')->insert([
+                        'no_karyawan' => $request->no_karyawan,
+                        'kd_tipe_kontak' => $request->kd_tipe_kontak[$i],
+                        'kontak' => $request->tujuan[$i]]);
+                }                    
+            }
+        }else{
+             DB::table('detail_kontak')
+                ->where('no_karyawan', $request->no_karyawan)
+                ->delete();
+        }
+
+        if(!is_null($request->nama_institusi)){
+            for($i = 0; $i < count($request->kd_pendidikan) ; $i++){
+                $cek = DB::table('detail_pendidikan')
+                    ->where('no_karyawan', $request->no_karyawan)
+                    ->where('kd_pendidikan', $request->kd_pendidikan[$i])
+                    ->limit(1);
+                if(!is_null($cek)){
+                    DB::table('detail_pendidikan')
+                        ->where('no_karyawan', $request->no_karyawan)
+                        ->where('kd_pendidikan', $request->kd_pendidikan[$i])
+                        ->limit(1) 
+                        ->update([                           
+                        'nama_institusi' => $request->nama_institusi[$i],
+                        'jurusan' => $request->jurusan[$i],
+                        'thn_masuk' => $request->thn_masuk[$i],
+                        'thn_lulus' => $request->thn_keluar[$i]
+                        ]);
+                }else{
+                    DB::table('detail_pendidikan')->insert([
+                        'no_karyawan' => $request->no_karyawan,
+                        'kd_pendidikan' => $request->kd_pendidikan[$i],
+                        'nama_institusi' => $request->nama_institusi[$i],
+                        'jurusan' => $request->jurusan[$i],
+                        'thn_masuk' => $request->thn_masuk[$i],
+                        'thn_lulus' => $request->thn_keluar[$i]]);
+                }
+            }
+        }else{
+             DB::table('detail_pendidikan')
+                ->where('no_karyawan', $request->no_karyawan)
+                ->delete();
+        }
+
+        if(!is_null($request->nama_lengkap_kel)){
+            for($i = 0; $i < count($request->kd_hub_keluarga) ; $i++){
+                $cek = DB::table('detail_keluarga')
+                    ->where('no_karyawan', $request->no_karyawan)
+                    ->where('kd_hub_keluarga', $request->kd_hub_keluarga[$i])
+                    ->limit(1);
+                if(!is_null($cek)){
+                    DB::table('detail_keluarga')
+                        ->where('no_karyawan', $request->no_karyawan)
+                        ->where('kd_hub_keluarga', $request->kd_hub_keluarga[$i])
+                        ->limit(1) 
+                        ->update([                           
+                        'nama_lengkap' => $request->nama_lengkap_kel[$i]
+                        ]);
+                }else{
+                    DB::table('detail_keluarga')->insert([
+                        'no_karyawan' => $request->no_karyawan,
+                        'kd_hub_keluarga' => $request->kd_hub_keluarga[$i],
+                        'nama_lengkap' => $request->nama_lengkap_kel[$i]]);
+                }
+            }
+        }else{
+             DB::table('detail_keluarga')
+                ->where('no_karyawan', $request->no_karyawan)
+                ->delete();
+        }
+
+        if(!is_null($request->gambar)){
+            for($i = 0; $i < count($request->kd_kartu_identitas) ; $i++){
+                $fotobase64 = null;
+                if ($request->hasFile('gambar')) {
+                    $file = $request->file('gambar'.[$i]);
+                    $imageData = file_get_contents($file->getRealPath());
+                    $fotobase64 = base64_encode($imageData);
+                    $mimeType = $file->getClientMimeType();
+                    $fotobase64 = 'data:' . $mimeType . ';base64,' . $fotobase64;
+                } else {
+                    $fotobase64 = null;
+                }
+
+                $cek = DB::table('detail_kartu_identitas')
+                    ->where('no_karyawan', $request->no_karyawan)
+                    ->where('kd_kartu_identitas', $request->kd_kartu_identitas[$i])
+                    ->limit(1);
+                if(!is_null($cek)){
+                    DB::table('detail_kartu_identitas')
+                        ->where('no_karyawan', $request->no_karyawan)
+                        ->where('kd_kartu_identitas', $request->kd_kartu_identitas[$i])
+                        ->limit(1) 
+                        ->update([                           
+                            'nomor_kartu_identitas' => $request->nomor[$i],
+                            'gambar' => $fotobase64
+                        ]);
+                }else{
+                    DB::table('detail_kartu_identitas')->insert([
+                    'no_karyawan' => $request->no_karyawan,
+                    'kd_kartu_identitas' => $request->kd_kartu_identitas[$i],
+                    'nomor_kartu_identitas' => $request->nomor[$i],
+                    'gambar' => $fotobase64]);
+                }
+            }
+        }else{
+             DB::table('detail_kartu_identitas')
+                ->where('no_karyawan', $request->no_karyawan)
+                ->delete();
+        }
+
+        if(!is_null($request->username[0])){
+            for($i = 0; $i < count($request->kd_media_sosial) ; $i++){
+                $cek = DB::table('detail_media_sosial')
+                    ->where('no_karyawan', $request->no_karyawan)
+                    ->where('kd_media_sosial', $request->kd_media_sosial[$i])
+                    ->limit(1);
+                if(!is_null($cek)){
+                    DB::table('detail_media_sosial')
+                        ->where('no_karyawan', $request->no_karyawan)
+                        ->where('kd_media_sosial', $request->kd_media_sosial[$i])
+                        ->limit(1) 
+                        ->update([                           
+                            'username' => $request->username[$i]
+                        ]);
+                }else{
+                    DB::table('detail_media_sosial')->insert([
+                    'no_karyawan' => $request->no_karyawan,
+                    'kd_media_sosial' => $request->kd_media_sosial[$i],
+                    'username' => $request->username[$i]]);
+                }
+            }
+        }else{
+             DB::table('detail_media_sosial')
+                ->where('no_karyawan', $request->no_karyawan)
+                ->delete();
+        }
+
+        if(!is_null($request->no_bpjs)){
+            DB::table('detail_bpjs')
+                ->where('no_karyawan', $request->no_karyawan)
+                ->limit(1) 
+                ->update([                           
+                    'no_bpjs' => $request->no_bpjs
+                ]);
+        }
+
+            $status = 'success';
+            $message = 'Data Berhasil Diubah!';
+        }catch(Exception $error){
+            $status = 'error';
+            $message = 'Data Gagal Diubah!';
+        }
+
+        //redirect to index
+        return redirect()->route('member.index')
+        ->with([ $status => $message]);
+
+    }
+
+    public function updateStatusKarywan($no_karyawan, $kd_status_karyawan){
+        try{
+            $statuskaryawan = DB::table('master_status_karyawan')
+            ->where('kd_status_karyawan', '=', $kd_status_karyawan)
+            ->where('status_enabled', '=', '1')
+            ->limit(1)
+            ->get();
+        
+            if(!is_null($statuskaryawan)){
+                DB::table('anggota')
+                ->where('no_karyawan', $no_karyawan)
+                ->limit(1) 
+                ->update([
+                    'kd_status_karyawan' => $kd_status_karyawan
+                ]);
+                $status = 'success';
+                $message = 'Data Berhasil Diubah!';
+            }else{
+                $status = 'error';
+                $message = 'Status Karyawan tidak ditemukan!';
+            }         
+        }catch(Exception $error){
+            $status = 'error';
+            $message = 'Data Gagal Diubah!';
+        }
+        //redirect to index
+        return redirect()->route('member.index')
+        ->with([ $status => $message]);
+    }
+    
 }
 
 

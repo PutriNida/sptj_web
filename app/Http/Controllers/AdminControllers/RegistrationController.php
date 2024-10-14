@@ -19,12 +19,7 @@ class RegistrationController extends Controller
     {
         $status = '';
         $message = '';
-
-        $pass = $request->password;
-        $repass = $request->repassword;
-        if($pass == $repass){
-            
-        }
+        
         try{
             $member = \App\Models\Member::where('no_karyawan', '=', $request->no_karyawan)
             ->where('nik_sptj', '=', $request->nik_sptj)

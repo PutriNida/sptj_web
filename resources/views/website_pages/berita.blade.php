@@ -27,10 +27,10 @@
                 <img src="{{ $brt->gambar }}" class="img-fluid" alt="">
               </div>
               <div class="details">
-                <a href="service-details.html" class="stretched-link">
+                <a href="{{ route('berita.detail', $brt->no_berita) }}" class="stretched-link">
                   <h3>{{ $brt->judul_berita }}</h3>
                 </a>
-                <p>{{ $brt->judul_berita }}</p>
+                <p>{{ $brt->highlight }}</p>
               </div>
             </div>
           </div><!-- End Service Item -->
@@ -47,11 +47,11 @@
       <div class="container">
         <div class="d-flex justify-content-center">
           <ul>
-            <li><a href="{{ $current_page > 1 ? route('berita', $current_page - 1) : ''}}"><i class="bi bi-chevron-left"></i></a></li>
+            <li><a href="{{ (int)$current_page > 1 ? route('berita', (int)$current_page - 1) : ''}}"><i class="bi bi-chevron-left"></i></a></li>
             @for($i = 1; $i <= $total_pages; $i++)
-            <li><a href="{{ route('berita', $i) }}" class="{{ $current_page == $i ? 'active' : ''}}">{{ $i }}</a></li>
+            <li><a href="{{ route('berita', $i) }}" class="{{ (int)$current_page == $i ? 'active' : ''}}">{{ $i }}</a></li>
             @endfor
-            <li><a href="{{ $current_page < $total_pages ? route('berita', $current_page + 1) : ''}}"><i class="bi bi-chevron-right"></i></a></li>
+            <li><a href="{{ (int)$current_page < $total_pages ? route('berita', (int)$current_page + 1) : ''}}"><i class="bi bi-chevron-right"></i></a></li>
           </ul>
         </div>
       </div>

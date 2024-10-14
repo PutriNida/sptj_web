@@ -75,7 +75,7 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Lupa Password?</a>
+                                        <a class="small" href="{{ route('auth.resetform') }}">Lupa Password?</a>
                                     </div>
                                     <div class="text-center">
                                         <a class="small" href="{{ url('/daftar') }}">Daftar Akun Baru!</a>
