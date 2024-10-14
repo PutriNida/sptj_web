@@ -103,7 +103,7 @@ $('.content').richText({
   // uploads
   imageUpload: false,
   fileUpload: false,
-    
+
   // media
   videoEmbed: false,
 
@@ -231,16 +231,16 @@ $("#kd_direktorat").change(function(){
         success:function(data){
             var options = "<option selected='' disabled=''>--Pilih--</option>";
             if(member != null){
-              $(data).each(function(k, v){ 
+              $(data).each(function(k, v){
                   options += "<option value='"+v.kd_divisi+"' >"+v.divisi+"</option>";
                 });
             }else{
-              	$(data).each(function(k, v){ 
+              	$(data).each(function(k, v){
 			options += "<option value='"+v.kd_divisi+"'>"+v.divisi+"</option>";
 		});
             }
-	
-		
+
+
 		$("#kd_divisi").html(options);
         $("#kd_departemen").html("<option selected='' disabled=''>--Pilih--</option>");
         $("#kd_jabatan").html("<option selected='' disabled=''>--Pilih--</option>");
@@ -260,10 +260,10 @@ $("#kd_divisi").change(function(){
 		async: true,
         success:function(data){
             var options = "<option selected='' disabled=''>--Pilih--</option>";
-		$(data).each(function(k, v){ 
+		$(data).each(function(k, v){
 			options += "<option value='"+v.kd_departemen+"'>"+v.departemen+"</option>";
 		});
-		
+
 		$("#kd_departemen").html(options);
         $("#kd_jabatan").html("<option selected='' disabled=''>--Pilih--</option>");
 	}
@@ -282,10 +282,10 @@ $("#kd_departemen").change(function(){
 		async: true,
         success:function(data){
             var options = "<option selected='' disabled=''>--Pilih--</option>";
-		$(data).each(function(k, v){ 
+		$(data).each(function(k, v){
 			options += "<option value='"+v.kd_jabatan+"'>"+v.jabatan+"</option>";
 		});
-		
+
 		$("#kd_jabatan").html(options);
 	}
 	}).failed(function(){
