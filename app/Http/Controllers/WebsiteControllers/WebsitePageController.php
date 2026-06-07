@@ -8,6 +8,7 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Exception;
 
 class WebsitePageController extends Controller
 {
@@ -33,7 +34,14 @@ class WebsitePageController extends Controller
 
     public function index()
     {
-      
+        $allmember = DB::table('anggota')
+            ->count();
+
+        $unitkerja = DB::table('master_divisi')
+            ->count();
+        $lokasikerja = DB::table('master_lokasi_kerja')
+            ->count();
+
         $berita = DB::table('berita')
             ->join('master_kategori_berita', 'master_kategori_berita.kd_kategori_berita', '=', 'berita.kd_kategori_berita')
             ->join('anggota', 'anggota.no_karyawan', '=', 'berita.no_karyawan')
@@ -51,11 +59,12 @@ class WebsitePageController extends Controller
             ->get();
 
         $hubungi_kami = $this->footercontact();
+
         $medsos = $this->footermedsos();
             
-        return view('website_pages.index', compact('berita', 'informasi', 'medsos', 'hubungi_kami'));
+        return view('website_pages.index', compact('lokasikerja','unitkerja','allmember','berita', 'informasi', 'medsos', 'hubungi_kami'));
     }
-
+    
     public function berita($page)
     {
       
@@ -313,6 +322,7 @@ class WebsitePageController extends Controller
         }        
 
         $kategori_galeri = DB::table('master_kategori_galeri')
+        ->whereNot('kd_kategori_galeri', '=', 3)
             ->orderBy('kategori_galeri', 'asc')
             ->get();
 
@@ -321,7 +331,32 @@ class WebsitePageController extends Controller
             
         return view('website_pages.galeri', compact('galeri', 'kategori_galeri', 'medsos', 'hubungi_kami'));
     }
+    public function struktur()
+    {
+        $struktur_organisasi = DB::table('struktur')
+            ->where('publish_at', 'IS NOT', null)
+            ->orderBy('no_struktur', 'asc')
+            ->get();
 
+        $hubungi_kami = $this->footercontact();
+        $medsos = $this->footermedsos();
+
+        return view('website_pages.struktur_organisasi', compact('struktur_organisasi', 'medsos', 'hubungi_kami'));
+    }
+
+    public function increaseViewsStruktur($no_struktur)
+    {
+        $struktur = DB::table('struktur')
+            ->where('no_struktur', $no_struktur)
+            ->first();
+
+        DB::table('struktur')
+            ->where('no_struktur', $no_struktur)
+            ->limit(1)
+            ->update([
+                'views' => $struktur->views + 1
+            ]);
+    }
     public function tentangkami()
     {
       
@@ -337,7 +372,7 @@ class WebsitePageController extends Controller
 
     public function hubungikami()
     {
-      
+
         $hubungi_kami = $this->footercontact();
         $medsos = $this->footermedsos();
 
@@ -359,6 +394,27 @@ class WebsitePageController extends Controller
         }
 
         return view('website_pages.hubungi_kami', compact('medsos', 'hubungi_kami', 'notelp', 'alamat', 'email', 'map'));
+    }
+
+    public function submitpengaduan(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'jenis' => 'required|in:pengaduan,aspirasi',
+            'pesan' => 'required|string',
+        ]);
+
+        DB::table('pengaduan_aspirasi')->insert([
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'jenis' => $request->jenis,
+            'pesan' => $request->pesan,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        return redirect()->back()->with('success', 'Pengaduan atau aspirasi Anda telah berhasil dikirim.');
     }
 
 

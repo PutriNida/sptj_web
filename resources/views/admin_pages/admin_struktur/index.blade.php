@@ -20,68 +20,43 @@
         <div class="col-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Berita</h6>
-                    <a href="{{ url('./admin_berita/create') }}" class="btn btn-primary btn-sm ms-auto">Tambah</a>
+                    <h6 class="m-0 font-weight-bold text-primary">Struktur Organisasi</h6>
+                    <a href="{{ route('admin_struktur.upload') }}" class="btn btn-primary btn-sm ms-auto">Upload</a>
                 </div>
                 <div class="card-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('admin_berita.search') }}">
-                        {{ csrf_field() }}
-                        <div class="form-group row">
-                            <label class="control-label col-sm-3 align-self-center mb-0" for="exampleFormControlSelect1">Kategori Berita:</label>
-                            <div class="col-sm-3">
-                                <select class="form-select" id="exampleFormControlSelect1" name="kd_kategori_berita">
-                                    <option selected="" value=""  {{ $kd_kategori_berita == 0 ? 'selected' : '' }}>Semua Kategori</option>
-                                    @forelse ($kategoriberita as $kb)
-                                    <option value="{{ $kb->kd_kategori_berita }}" {{ $kb->kd_kategori_berita == $kd_kategori_berita ? 'selected' : '' }}>{{ $kb->kategori_berita }}</option>
-                                    @empty
-                                    @endforelse
-                                </select>
-                            </div>
-                            <div class="col-sm-3">
-                                <button type="submit" class="btn btn-primary" name="cari">Cari</button>
-                            </div>
-                        </div>
-                    </form>
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Judul Berita</th>
-                                    <th>Kategori Berita</th>
+                                    <th>Gambar</th>
+                                    <th>Keterangan</th>
                                     <th>Tanggal Dibuat</th>
                                     <th>Tanggal Publikasi</th>
-                                    <th>Dibuat Oleh</th>
-                                    <th>Respon</th>
+                                    <th>Views</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                        @forelse ($berita as $brt)
+                        @forelse ($struktur as $str)
                             <tr>
                                 <td>
                                         {{ $loop->iteration }}
                                 </td>
                                 <td>
-                                        {{ $brt->judul_berita }}
+                                        <img src="{{ $str->gambar }}" alt="Struktur" style="width: 100px; height: auto;">
                                 </td>
                                 <td>
-                                        {{ $brt->kategori_berita }}
+                                        {{ $str->keterangan }}
                                 </td>
                                 <td>
-                                        {{ $brt->create_at }}
+                                        {{ $str->create_at }}
                                 </td>
                                 <td>
-                                        {{ $brt->publish_at }}
+                                        {{ $str->publish_at }}
                                 </td>
                                 <td>
-                                        <!-- {{ $brt->judul_berita }} -->
-                                </td>
-                                <td>
-                                        Dilihat: {{ $brt->views }} <br>
-                                        Disukai: {{ $brt->likes }} <br>
-                                        Tidak Disukai: {{ $brt->dislikes }} <br>
-                                        Komentar: {{ $brt->comments }}
+                                        {{ $str->views }}
                                 </td>
                                 <td>
                                     <div class="dropdown no-arrow">
@@ -91,22 +66,27 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in "
                                             aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item" href="{{ route('berita.detail', $brt->no_berita) }}" target="_blank">Preview</a>
-                                            <a class="dropdown-item" href="{{ route('admin_berita.edit', $brt->no_berita) }}">Edit</a>
-                                            <button type="button" class="dropdown-item" onclick="if(confirm('Apakah Anda yakin ingin menghapus berita ini?')) { document.getElementById('delete-form-{{ $brt->no_berita }}').submit(); }">Hapus</button>
+                                            @if(!$str->publish_at)
+                                            <form action="{{ route('admin_struktur.publish', $str->no_struktur) }}" method="post" style="display:inline;">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" class="dropdown-item">Publikasikan</button>
+                                            </form>
+                                            @endif
+                                            <button type="button" class="dropdown-item" onclick="if(confirm('Apakah Anda yakin ingin menghapus struktur ini?')) { document.getElementById('delete-form-{{ $str->no_struktur }}').submit(); }">Hapus</button>
                                         </div>
                                     </div>
-                                    <form id="delete-form-{{ $brt->no_berita }}" action="{{ route('admin_berita.destroy', $brt->no_berita) }}" method="post" style="display:none;">
+                                    <form id="delete-form-{{ $str->no_struktur }}" action="{{ route('admin_struktur.destroy', $str->no_struktur) }}" method="post" style="display:none;">
                                         @csrf
                                         @method('DELETE')
-                                        <input type="hidden" name="no_berita" value="{{ $brt->no_berita }}"/>
+                                        <input type="hidden" name="no_struktur" value="{{ $str->no_struktur }}"/>
                                     </form>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan='8' class="alert alert-warning">
-                                    <strong>Maaf!</strong>    Data Berita Belum Tersedia!
+                                <td colspan='7' class="alert alert-warning">
+                                    <strong>Maaf!</strong>    Data Struktur Belum Tersedia!
                                 </td>
                             </tr>
                         @endforelse

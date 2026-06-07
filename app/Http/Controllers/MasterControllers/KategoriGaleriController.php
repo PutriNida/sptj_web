@@ -4,13 +4,16 @@ namespace App\Http\Controllers\MasterControllers;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\MasterModels\kategorigaleri;
+use App\Models\MasterModels\KategoriGaleri;
 
 use Illuminate\View\View;
 
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Exception;
+
 
 class KategoriGaleriController extends Controller
 {

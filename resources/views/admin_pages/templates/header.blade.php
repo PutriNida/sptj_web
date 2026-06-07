@@ -24,6 +24,32 @@
     <!-- Custom styles for this page -->
     <link href="{{ URL::asset('vendor/datatables/dataTables.bootstrap4.min.css'); }}" rel="stylesheet">
     <link href="{{ URL::asset('css/richtext.min.css'); }}" rel="stylesheet">
+    <script>
+        function checkAuth() {
+            fetch('/check-auth', {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (!data.authenticated) {
+                    window.location.href = '/login';
+                }
+            })
+            .catch(error => {
+                console.error('Error checking authentication:', error);
+            });
+        }
+
+        // Check authentication every 5 minutes (300000 milliseconds)
+        setInterval(checkAuth, 300000);
+
+        // Also check on page load
+        window.addEventListener('load', checkAuth);
+    </script>
 </head>
 
 <body id="page-top">
@@ -66,6 +92,12 @@
                     <span>Data Karyawan</span>
                 </a>
             </li>
+            <li class="nav-item {{ str_contains(url()->current(), 'kartu_anggota') ? 'active' : ''}}">
+                <a class="nav-link" href="{{ url('/kartu_anggota') }}">
+                    <i class="fas fa-fw fa-id-card"></i>
+                    <span>Kartu Anggota</span>
+                </a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -74,6 +106,13 @@
             <div class="sidebar-heading">
                 Website
             </div>
+
+            <li class="nav-item {{ str_contains(url()->current(), '/admin_pendaftaran_anggota') ? 'active' : ''}}">
+                <a class="nav-link" href="{{ route('admin_pendaftaran_anggota.index') }}">
+                    <i class="fas fa-fw fa-id-card"></i>
+                    <span>Pendaftaran Anggota</span>
+                </a>
+            </li>
 
             <li class="nav-item {{ str_contains(url()->current(), '/admin_berita') ? 'active' : ''}}">
                 <a class="nav-link" href="{{ url('/admin_berita') }}">
@@ -96,6 +135,19 @@
                 </a>
             </li>
 
+             <li class="nav-item {{ str_contains(url()->current(), '/admin_aspirasi') ? 'active' : ''}}">
+                <a class="nav-link" href="{{ route('admin_aspirasi.index') }}">
+                    <i class="fas fa-fw fa-image"></i>
+                    <span>Aspirasi/pengaduan</span>
+                </a>
+            </li>
+             <li class="nav-item {{ str_contains(url()->current(), '/admin_struktur') ? 'active' : ''}}">
+                <a class="nav-link" href="{{ route('admin_struktur.index') }}">
+                    <i class="fas fa-fw fa-image"></i>
+                    <span>Struktur Organisasi</span>
+                </a>
+            </li>
+
             @if(session('level') == 1)
 
             <!-- Divider -->
@@ -105,6 +157,7 @@
             <div class="sidebar-heading">
                 Master Data
             </div>
+
 
             <li class="nav-item             
                 {{ str_contains(url()->current(), 'master_jenis_kelamin') ? 'active' : ''}}
@@ -153,6 +206,13 @@
                       </a>
                       <a class="collapse-item {{ str_contains(url()->current(), 'master_kartu_identitas') ? 'active' : ''}}"  href="{{ url('/master_kartu_identitas') }}">
                         Kartu Identitas
+                      </a>
+                      <div class="dropdown-divider"></div>
+                      <a class="collapse-item" href="{{ url('/kartu_anggota') }}">
+                        Lihat Kartu Anggota
+                      </a>
+                      <a class="collapse-item" href="{{ url('/kartu_anggota/detail/'.(session('no_karyawan') ?? '')) }}">
+                        Cetak Kartu Anggota
                       </a>
                     </div>
                 </div>

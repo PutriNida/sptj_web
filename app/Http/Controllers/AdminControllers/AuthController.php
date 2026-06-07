@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Session;
+use Illuminate\Support\Facades\Session;
+use Exception;
 
 class AuthController extends Controller
 {
@@ -97,11 +98,16 @@ class AuthController extends Controller
 
         // Optionally, you can invalidate the session
         request()->session()->invalidate();
-        
+
         // Optionally, regenerate the session to prevent fixation
         request()->session()->regenerateToken();
 
         return redirect('/'); // Redirect to the homepage or login page
+    }
+
+    public function checkAuth()
+    {
+        return response()->json(['authenticated' => Auth::check()]);
     }
 }
 

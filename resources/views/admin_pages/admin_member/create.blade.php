@@ -149,6 +149,24 @@
                         </div>
                     </div>
                     <div class="card-body" id="datakontak" style="display: none">
+                        <div class="form-group row">
+                            <div class="col-sm-3">
+                                <select class="form-select" id="exampleFormControlSelect1" name="kd_tipe_kontak[]">
+                                    @if(isset($tipekontak))
+                                    @forelse ($tipekontak as $tipe)
+                                    <option value="{{ $tipe->kd_tipe_kontak }}">{{ $tipe->tipe_kontak }}</option>
+                                    @empty
+                                    @endforelse
+                                    @endif
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="tujuan" name="tujuan[]" autocomplete="off">
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="button" name="add" id="add" class="btn btn-success">Tambah</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card shadow mb-4">
@@ -230,7 +248,37 @@
                             </button>
                         </div>
                     </div>
-                    <div class="card-body" id="datapendidikan" style="display: none"></div>
+                    <div class="card-body" id="datapendidikan" style="display: none">
+                        <div class="form-group row">
+                            <div class="col-sm-3">
+                                <select class="form-select" id="exampleFormControlSelect1" name="kd_pendidikan[]">
+                                    @if(isset($pendidikan))
+                                    @forelse ($pendidikan as $pend)
+                                    <option value="{{ $pend->kd_pendidikan }}">{{ $pend->pendidikan }}</option>
+                                    @empty
+                                    @endforelse
+                                    @endif
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="institusi" name="nama_institusi[]" placeholder="Nama Institusi" autocomplete="off">
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="jurusan" name="jurusan[]" placeholder="Jurusan" autocomplete="off">
+                            </div>
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-3">
+                                <input type="number" class="form-control" id="thn_masuk" name="thn_masuk[]" placeholder="Tahun Masuk" autocomplete="off">
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="number" class="form-control" id="thn_keluar" name="thn_keluar[]" placeholder="Tahun Keluar" autocomplete="off">
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="button" name="addpend" id="addpend" class="btn btn-success">Tambah</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -242,7 +290,26 @@
                             </button>
                         </div>
                     </div>
-                    <div class="card-body" id="datakeluarga" style="display: none"></div>
+                    <div class="card-body" id="datakeluarga" style="display: none">
+                        <div class="form-group row">
+                            <div class="col-sm-3">
+                                <select class="form-select" id="exampleFormControlSelect1" name="kd_hub_keluarga[]">
+                                    @if(isset($hubungankeluarga))
+                                    @forelse ($hubungankeluarga as $hub)
+                                    <option value="{{ $hub->kd_hub_keluarga }}">{{ $hub->hub_keluarga }}</option>
+                                    @empty
+                                    @endforelse
+                                    @endif
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="nama_lengkap_kel" name="nama_lengkap_kel[]" placeholder="Nama Lengkap" autocomplete="off">
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="button" name="addkel" id="addkel" class="btn btn-success">Tambah</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -260,7 +327,7 @@
                                 <input type="hidden" name="kd_kartu_identitas[]" value="{{ $ki->kd_kartu_identitas }}"/>
                                 <label class="control-label col-sm-3 align-self-center mb-0" for="kartu_identitas">{{ $ki->kartu_identitas }}:</label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control" id="nomor" name="nomor[]"  autocomplete="off"></textarea>
+                                    <input type="text" class="form-control" id="nomor" name="nomor[]"  autocomplete="off">
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="file" class="form-control" id="gambar" name="gambar[]" accept="image/*">
@@ -281,6 +348,24 @@
                         </div>
                     </div>
                     <div class="card-body" id="datamedsos" style="display: none">
+                         <div class="form-group row">
+                            <div class="col-sm-3">
+                                <select class="form-select" id="exampleFormControlSelect1" name="kd_media_sosial[]">
+                                    @if(isset($mediasosial))
+                                    @forelse ($mediasosial as $ms)
+                                    <option value="{{ $ms->kd_media_sosial }}">{{ $ms->media_sosial }}</option>
+                                    @empty
+                                    @endforelse
+                                    @endif
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="username" name="username[]" placeholder="Username" autocomplete="off">
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="button" name="addmedsos" id="addmedsos" class="btn btn-success">Tambah</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card shadow mb-4">
@@ -853,11 +938,6 @@ var countPendidikan = 1;
 var countKeluarga = 1;
 var countMedsos = 1;
 
-dynamic_kontak(countKontak);
-dynamic_pendidikan(countPendidikan);
-dynamic_keluarga(countKeluarga);
-dynamic_medsos(countMedsos);
-
  function dynamic_kontak(number)
  {
   html = '<div class="form-group row">';
@@ -874,18 +954,9 @@ dynamic_medsos(countMedsos);
   html += '<div class="col-sm-6">';
   html += '<input type="text" class="form-control" id="tujuan" name="tujuan[]" autocomplete="off">';
   html += '</div>';
-        if(number > 1)
-        {
-            html += '<div class="col-sm-3"><button type="button" name="remove" id="" class="btn btn-danger remove">Hapus</button></div>';
-            html += '</div>';
-            $('#datakontak').append(html);
-        }
-        else
-        {   
-            html += '<td class="col-sm-3"><button type="button" name="add" id="add" class="btn btn-success">Tambah</button></div>';
-            html += '</div>';
-            $('#datakontak').html(html);
-        }
+  html += '<div class="col-sm-3"><button type="button" name="remove" id="" class="btn btn-danger remove">Hapus</button></div>';
+  html += '</div>';
+  $('#datakontak').append(html);
  }
 
  $(document).on('click', '#add', function(){
@@ -914,18 +985,9 @@ dynamic_medsos(countMedsos);
   html += '<div class="col-sm-6">';
   html += '<input type="text" class="form-control" id="username" name="username[]" placeholder="Username" autocomplete="off">';
   html += '</div>';
-        if(number > 1)
-        {
-            html += '<div class="col-sm-3"><button type="button" name="removemedsos" id="" class="btn btn-danger remove">Hapus</button></div>';
-            html += '</div>';
-            $('#datamedsos').append(html);
-        }
-        else
-        {   
-            html += '<td class="col-sm-3"><button type="button" name="addmedsos" id="addmedsos" class="btn btn-success">Tambah</button></div>';
-            html += '</div>';
-            $('#datamedsos').html(html);
-        }
+  html += '<div class="col-sm-3"><button type="button" name="removemedsos" id="" class="btn btn-danger remove">Hapus</button></div>';
+  html += '</div>';
+  $('#datamedsos').append(html);
  }
 
  $(document).on('click', '#addmedsos', function(){
@@ -965,19 +1027,9 @@ function dynamic_pendidikan(number)
   html += '<div class="col-sm-3">';
   html += '<input type="number" class="form-control" id="thn_keluar" name="thn_keluar[]" placeholder="Tahun Keluar" autocomplete="off">';
   html += '</div>';
-
-        if(number > 1)
-        {
-            html += '<div class="col-sm-3"><button type="button" name="removepend" id="" class="btn btn-danger remove">Hapus</button></div>';
-            html += '</div>';
-            $('#datapendidikan').append(html);
-        }
-        else
-        {   
-            html += '<td class="col-sm-3"><button type="button" name="addpend" id="addpend" class="btn btn-success">Tambah</button></div>';
-            html += '</div>';
-            $('#datapendidikan').html(html);
-        }
+  html += '<div class="col-sm-3"><button type="button" name="removepend" id="" class="btn btn-danger remove">Hapus</button></div>';
+  html += '</div>';
+  $('#datapendidikan').append(html);
  }
 
  $(document).on('click', '#addpend', function(){
@@ -1006,19 +1058,9 @@ function dynamic_pendidikan(number)
   html += '<div class="col-sm-6">';
   html += '<input type="text" class="form-control" id="nama_lengkap_kel" name="nama_lengkap_kel[]" placeholder="Nama Lengkap" autocomplete="off">';
   html += '</div>';
-
-        if(number > 1)
-        {
-            html += '<div class="col-sm-3"><button type="button" name="removekel" id="" class="btn btn-danger remove">Hapus</button></div>';
-            html += '</div>';
-            $('#datakeluarga').append(html);
-        }
-        else
-        {   
-            html += '<td class="col-sm-3"><button type="button" name="addkel" id="addkel" class="btn btn-success">Tambah</button></div>';
-            html += '</div>';
-            $('#datakeluarga').html(html);
-        }
+  html += '<div class="col-sm-3"><button type="button" name="removekel" id="" class="btn btn-danger remove">Hapus</button></div>';
+  html += '</div>';
+  $('#datakeluarga').append(html);
  }
 
  $(document).on('click', '#addkel', function(){

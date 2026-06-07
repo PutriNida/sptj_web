@@ -70,6 +70,148 @@
 }
 
 /*--------------------------------------------------------------
+# Futuristic (Neo-tech) Add-ons
+--------------------------------------------------------------*/
+.futuristic-hero {
+  position: relative;
+  isolation: isolate;
+}
+
+.futuristic-hero .hero-glow {
+  position: absolute;
+  inset: -40px 0 -60px 0;
+  background:
+    radial-gradient(700px 280px at 50% 45%, rgba(104, 164, 196, 0.30), transparent 60%),
+    radial-gradient(500px 220px at 20% 60%, rgba(104, 164, 196, 0.18), transparent 55%),
+    radial-gradient(520px 260px at 80% 65%, rgba(104, 164, 196, 0.14), transparent 58%);
+  filter: blur(6px);
+  z-index: 1;
+  pointer-events: none;
+  animation: heroGlowPulse 6s ease-in-out infinite;
+}
+
+.futuristic-hero .hero-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.65;
+  background:
+    linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(60% 70% at 50% 40%, #000 55%, transparent 100%);
+}
+
+.futuristic-hero .hero-orbit {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.futuristic-hero .hero-orbit::before,
+.futuristic-hero .hero-orbit::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  width: 680px;
+  height: 680px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(104, 164, 196, 0.25);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.04) inset;
+  animation: orbitSpin 14s linear infinite;
+}
+
+.futuristic-hero .hero-orbit::after {
+  width: 980px;
+  height: 980px;
+  border-color: rgba(104, 164, 196, 0.18);
+  animation-duration: 22s;
+  animation-direction: reverse;
+}
+
+.futuristic-hero .hero-badge {
+  position: relative;
+  z-index: 3;
+  margin-bottom: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  backdrop-filter: blur(10px);
+}
+
+.futuristic-hero .badge-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--accent-color);
+  box-shadow:
+    0 0 0 4px rgba(104, 164, 196, 0.22),
+    0 0 24px rgba(104, 164, 196, 0.55);
+}
+
+.futuristic-hero .hero-badge span {
+  color: rgba(255,255,255,0.92);
+  font-family: var(--nav-font);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-size: 13px;
+}
+
+.futuristic-hero .hero-cta {
+  position: relative;
+  z-index: 3;
+}
+
+/* Neo button (for CTA) */
+.btn-neo {
+  position: relative;
+  overflow: hidden;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 35%);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.05) inset,
+    0 10px 30px rgba(0,0,0,0.25);
+}
+
+.btn-neo::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background:
+    linear-gradient(120deg,
+      transparent 0%,
+      rgba(255,255,255,0.22) 35%,
+      rgba(255,255,255,0.06) 55%,
+      transparent 70%);
+  transform: translateX(-60%);
+  transition: transform 0.7s ease;
+}
+
+.btn-neo:hover::before {
+  transform: translateX(60%);
+}
+
+@keyframes heroGlowPulse {
+  0%, 100% { opacity: 0.95; transform: translateZ(0) scale(1); }
+  50% { opacity: 1; transform: translateZ(0) scale(1.02); }
+}
+
+@keyframes orbitSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+
+/*--------------------------------------------------------------
 # General Styling & Shared Classes
 --------------------------------------------------------------*/
 body {
@@ -854,7 +996,7 @@ section,
 --------------------------------------------------------------*/
 .hero {
   width: 100%;
-  min-height: 80vh;
+  min-height: 50vh;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -867,12 +1009,11 @@ section,
   position: absolute;
   left: 50%;
   top: 0;
-  width: 130%;
-  height: 95%;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(to right, color-mix(in srgb, var(--background-color), transparent 90%), var(--background-color)), url("../../img/web/hero-bg.jpg") center top no-repeat;
   background-size: cover;
-  z-index: 0;
-  border-radius: 0 0 50% 50%;
+  border-radius: 0 0 0% 0%;
   transform: translateX(-50%) rotate(0deg);
 }
 

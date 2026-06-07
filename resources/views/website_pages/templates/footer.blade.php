@@ -7,7 +7,7 @@
             <span class="sitename">Serikat Pekerja Transportasi Jakarta</span>
           </a>
           <div class="footer-contact pt-3">
-            @forelse($hubungi_kami as $hk)
+            @forelse($hubungi_kami ?? [] as $hk)
             @if($hk->kd_tipe_kontak == 4)
             <p>              
               {{ $hk->tujuan }}
@@ -41,7 +41,7 @@
         <div class="col-lg-4 col-md-12">
           <h4>Ikuti Kami</h4>
           <div class="social-links d-flex">
-            @forelse($medsos as $ms)
+            @forelse($medsos ?? [] as $ms)
               @if($ms->kd_media_sosial == 2)
               <a href="{{ $ms->url }}" target="_blank"><i class="bi bi-twitter-x"></i></a>
               @endif
@@ -79,7 +79,7 @@
   <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
-  <script src="{{ URL::asset('vendor/web/bootstrap/js/bootstrap.bundle.min.js'); }}"></script>
+<script src="{{ URL::asset('vendor/web/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ URL::asset('vendor/web/php-email-form/validate.js'); }}"></script>
   <script src="{{ URL::asset('vendor/web/aos/aos.js'); }}"></script>
   <script src="{{ URL::asset('vendor/web/glightbox/js/glightbox.min.js'); }}"></script>

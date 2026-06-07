@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminControllers\HubungiKamiController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,7 @@ Route::post('/loginaction', \App\Http\Controllers\AdminControllers\AuthControlle
 Route::get('/reset', \App\Http\Controllers\AdminControllers\AuthController::class . '@resetform')->name('auth.resetform');
 Route::post('/resetpassword/save', \App\Http\Controllers\AdminControllers\AuthController::class . '@resetpassword')->name('auth.resetpassword');
 Route::post('/logout', \App\Http\Controllers\AdminControllers\AuthController::class . '@logout')->name('logout');
+Route::get('/check-auth', \App\Http\Controllers\AdminControllers\AuthController::class . '@checkAuth')->name('auth.check');
 // ====================================== authentication finish =========================================================
 
 // ====================================== registrasi start =========================================================
@@ -197,6 +200,12 @@ Route::get('/admin_galeri/upload', \App\Http\Controllers\AdminControllers\Galeri
 Route::post('/admin_galeri/save', \App\Http\Controllers\AdminControllers\GaleriController::class .'@store')->name('admin_galeri.store');
 Route::put('/admin_galeri/publish', \App\Http\Controllers\AdminControllers\GaleriController::class .'@publish')->name('admin_galeri.publish');
 Route::delete('/admin_galeri/destroy/{no_galeri}', \App\Http\Controllers\AdminControllers\GaleriController::class .'@destroy')->name('admin_galeri.destroy');
+// website struktur
+Route::get('/admin_struktur', \App\Http\Controllers\AdminControllers\StrukturController::class .'@index')->name('admin_struktur.index');
+Route::get('/admin_struktur/upload', \App\Http\Controllers\AdminControllers\StrukturController::class .'@upload')->name('admin_struktur.upload');
+Route::post('/admin_struktur/save', \App\Http\Controllers\AdminControllers\StrukturController::class .'@store')->name('admin_struktur.store');
+Route::put('/admin_struktur/publish', \App\Http\Controllers\AdminControllers\StrukturController::class .'@publish')->name('admin_struktur.publish');
+Route::delete('/admin_struktur/destroy/{no_struktur}', \App\Http\Controllers\AdminControllers\StrukturController::class .'@destroy')->name('admin_struktur.destroy');
 // website tentang kami
 Route::get('/admin_tentang_kami', \App\Http\Controllers\AdminControllers\TentangKamiController::class .'@index')->name('admin_tentang_kami.index');
 Route::get('/admin_tentang_kami/create', \App\Http\Controllers\AdminControllers\TentangKamiController::class .'@create')->name('admin_tentang_kami.create');
@@ -218,9 +227,45 @@ Route::post('/admin_hubungi_kami/save', \App\Http\Controllers\AdminControllers\H
 Route::get('/admin_hubungi_kami/edit/{no}', \App\Http\Controllers\AdminControllers\HubungiKamiController::class . '@edit')->name('admin_hubungi_kami.edit');
 Route::put('/admin_hubungi_kami/update', \App\Http\Controllers\AdminControllers\HubungiKamiController::class .'@update')->name('admin_hubungi_kami.update');
 Route::delete('/admin_hubungi_kami/destroy/{no}', \App\Http\Controllers\AdminControllers\HubungiKamiController::class .'@destroy')->name('admin_hubungi_kami.destroy');
+// Website Pengaduan
+Route::get('/admin_aspirasi',\App\Http\Controllers\AdminControllers\AspirasiController::class .'@index')->name('admin_aspirasi.index');
+Route::get('/admin_aspirasi/create', \App\Http\Controllers\AdminControllers\AspirasiController::class .'@create')->name('admin_aspirasi.create');
+Route::post('/admin_aspirasi/save', \App\Http\Controllers\AdminControllers\AspirasiController::class .'@store')->name('admin_aspirasi.store');
+Route::get('/admin_aspirasi/{id}', \App\Http\Controllers\AdminControllers\AspirasiController::class .'@show')->name('admin_aspirasi.show');
+Route::get('/admin_aspirasi/edit/{id}', \App\Http\Controllers\AdminControllers\AspirasiController::class .'@edit')->name('admin_aspirasi.edit');
+Route::put('/admin_aspirasi/update/{id}', \App\Http\Controllers\AdminControllers\AspirasiController::class .'@update')->name('admin_aspirasi.update');
+Route::delete('/admin_aspirasi/destroy/{id}', \App\Http\Controllers\AdminControllers\AspirasiController::class .'@destroy')->name('admin_aspirasi.destroy');
+Route::patch('/admin_aspirasi/{id}/change-type', \App\Http\Controllers\AdminControllers\AspirasiController::class .'@changeType')->name('admin_aspirasi.changeType');
 // ====================================== website start =========================================================
 
+// ====================================== kartu anggota start =========================================================
+Route::get('/kartu_anggota', \App\Http\Controllers\AdminControllers\KartuAnggotaController::class .'@index');
+Route::get('/kartu_anggota/detail/{no_karyawan}', \App\Http\Controllers\AdminControllers\KartuAnggotaController::class .'@detail');
+Route::get('/kartu_anggota/print/{no_karyawan}', \App\Http\Controllers\AdminControllers\KartuAnggotaController::class .'@print');
+// ====================================== kartu anggota finish =========================================================
+
+/*
+|--------------------------------------------------------------------------
+| Pendaftaran Anggota Online (Website + Admin Approval)
+|--------------------------------------------------------------------------
+*/
+Route::get('/pendaftaran-anggota', \App\Http\Controllers\WebsiteControllers\PendaftaranAnggotaController::class .'@create')
+    ->name('pendaftaran_anggota.create');
+Route::post('/pendaftaran-anggota/save', \App\Http\Controllers\WebsiteControllers\PendaftaranAnggotaController::class .'@store')
+    ->name('pendaftaran_anggota.store');
+
+// Admin approval pending
+Route::get('/admin_pendaftaran_anggota', \App\Http\Controllers\AdminControllers\AdminPendaftaranAnggotaController::class .'@index')
+    ->name('admin_pendaftaran_anggota.index');
+Route::get('/admin_pendaftaran_anggota/{id}', \App\Http\Controllers\AdminControllers\AdminPendaftaranAnggotaController::class .'@show')
+    ->name('admin_pendaftaran_anggota.show');
+Route::post('/admin_pendaftaran_anggota/{id}/approve', \App\Http\Controllers\AdminControllers\AdminPendaftaranAnggotaController::class .'@approve')
+    ->name('admin_pendaftaran_anggota.approve');
+Route::post('/admin_pendaftaran_anggota/{id}/reject', \App\Http\Controllers\AdminControllers\AdminPendaftaranAnggotaController::class .'@reject')
+    ->name('admin_pendaftaran_anggota.reject');
+
 // ====================================== website page start =========================================================
+
 Route::get('/', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@index')->name('index');
 Route::get('/berita/{page}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@berita')->name('berita');
 Route::get('/berita/detail/{no_berita}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@detailberita')->name('berita.detail');
@@ -232,6 +277,8 @@ Route::get('/informasi/detail/{no_informasi}', \App\Http\Controllers\WebsiteCont
 Route::get('/galeri/{kd_kategori_berita}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@galeri')->name('galeri');
 Route::get('/tentang_kami', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@tentangkami')->name('tentang_kami');
 Route::get('/hubungi_kami', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@hubungikami')->name('hubungi_kami');
+Route::post('/hubungi_kami/submit', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@submitpengaduan')->name('hubungi_kami.submit');
 Route::get('/informasi/likes/{no_informasi}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@likeinformasi')->name('informasi.likes');
 Route::get('/informasi/dislikes/{no_informasi}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@dislikeinformasi')->name('informasi.dislikes');
+Route::get('/struktur', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@struktur')->name('struktur');
 // ====================================== website page start =========================================================

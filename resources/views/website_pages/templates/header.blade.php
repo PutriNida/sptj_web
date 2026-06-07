@@ -18,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="{{ URL::asset('vendor/web/bootstrap/css/bootstrap.min.css'); }}" rel="stylesheet">
+<link href="{{ URL::asset('vendor/web/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ URL::asset('vendor/web/bootstrap-icons/bootstrap-icons.css'); }}" rel="stylesheet">
   <link href="{{ URL::asset('vendor/web/aos/aos.css'); }}" rel="stylesheet">
   <link href="{{ URL::asset('vendor/web/glightbox/css/glightbox.min.css'); }}" rel="stylesheet">
@@ -26,6 +26,9 @@
 
   <!-- Main CSS File -->
   <link href="{{ URL::asset('css/web/main.css'); }}" rel="stylesheet">
+
+  <!-- Custom CSS File -->
+  <link href="{{ URL::asset('css/custom.css'); }}" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Moderna
@@ -49,14 +52,16 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <ul>
           <li><a href="{{ route('index') }}" class="{{ request()->is('/') ? 'active' : ''}}">Beranda</a></li>
+          <li><a href="{{ route('tentang_kami') }}" class="{{ str_contains(url()->current(), '/tentang_kami') ? 'active' : ''}}">Profil</a></li>
           <li><a href="{{ route('berita', 1) }}" class="{{ str_contains(url()->current(), '/berita') ? 'active' : ''}}">Berita</a></li>
-          <li><a href="{{ route('informasi', 1) }}" class="{{ str_contains(url()->current(), '/informasi') ? 'active' : ''}}">Informasi</a></li>
-          <li><a href="{{ route('galeri', 0) }}" class="{{ str_contains(url()->current(), '/galeri') ? 'active' : ''}}">Galeri</a></li>
-          <li><a href="{{ route('tentang_kami') }}" class="{{ str_contains(url()->current(), '/tentang_kami') ? 'active' : ''}}">Tentang Kami</a></li>
-          <li><a href="{{ route('hubungi_kami') }}" class="{{ str_contains(url()->current(), '/hubungi_kami') ? 'active' : ''}}">Hubungi Kami</a></li>
-          <li><a href="{{ route('auth.login') }}">Masuk</a></li>
+          <li><a href="{{ route('informasi', 1) }}" class="{{ str_contains(url()->current(), '/informasi') ? 'active' : ''}}">Layanan Anggota</a></li>
+          <li><a href="{{ route('struktur') }}" class="{{ str_contains(url()->current(), '/struktur') ? 'active' : ''}}">Struktur Organisasi</a></li>
+          <li class="{{ request()->is('galeri') || request()->is('/galeri/*') ? 'active' : '' }}"><a href="{{ route('galeri', 0) }}">Galeri</a></li>
+
+          <li><a href="{{ route('pendaftaran_anggota.create') }}" class="{{ str_contains(url()->current(), '/pendaftaran-anggota') ? 'active' : '' }}">Pendaftaran Anggota</a></li>
+          
+          <li><a href="{{ route('auth.login') }}">Login Anggota</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
