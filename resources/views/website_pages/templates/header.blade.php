@@ -8,127 +8,153 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
 
+  <!-- Favicons -->
   <link href="{{ URL::asset('sptj_img/logo.png') }}" rel="icon">
   <link href="{{ URL::asset('sptj_img/logo.png') }}" rel="apple-touch-icon">
 
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
+  <!-- Vendor CSS Files -->
   <link href="{{ URL::asset('vendor/web/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ URL::asset('vendor/web/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
   <link href="{{ URL::asset('vendor/web/aos/aos.css') }}" rel="stylesheet">
   <link href="{{ URL::asset('vendor/web/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
   <link href="{{ URL::asset('vendor/web/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
+  <!-- Main CSS File -->
   <link href="{{ URL::asset('css/web/main.css') }}" rel="stylesheet">
 
+  <!-- Custom CSS File -->
   <link href="{{ URL::asset('css/custom.css') }}" rel="stylesheet">
 
+  <!-- =======================================================
+  * Template Name: Moderna
+  * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
   <style>
-    /* REVISI CSS: Membuat topbar bersih, putih, dengan aksen biru profesional */
     .sptj-topbar {
       background: #ffffff;
-      color: #00008B;
-      padding: 10px 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      color: #00008B; /* biru */
+       padding: 12px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
       position: relative;
       z-index: 1030;
+      margin-top: 0;
     }
 
     .sptj-topbar .sitename {
       margin: 0;
       font-weight: 700;
-      color: #00008B;
+      color: #00008B; /* biru */
     }
 
-    /* Ukuran logo adaptif: agak kecil di HP, normal di Desktop */
-    .sptj-topbar .sptj-logo-img {
-      height: 50px;
+    .sptj-topbar img {
+      height: 42px;
       width: auto;
-    }
-    @media (min-width: 768px) {
-      .sptj-topbar .sptj-logo-img {
-        height: 70px;
-      }
     }
 
     .sptj-social a {
-      color: #00008B;
-      transition: color 0.2s ease;
-    }
-    .sptj-social a:hover {
-      color: #3b82f6;
+      color: #00008B; /* biru */
     }
 
+    /* Pastikan navbar berada di bawah topbar */
     #header {
       position: sticky;
       top: 0;
       z-index: 1020;
     }
-    
     .sptj-topbar span {
-      line-height: 1.3;
+      line-height: 1.2;
     }
+
+    .sptj-topbar .alamat {
+      max-width: 300px;
+      font-size: 12px;
+    }
+    
   </style>
 </head>
 
 <body class="index-page">
-
+  <!-- Top bar: logo + social (di atas navbar) -->
   <div class="sptj-topbar">
     <div class="container-fluid d-flex align-items-center justify-content-between">
-      
       <a href="#" class="logo d-flex align-items-center text-decoration-none">
-        <img src="{{ URL::asset('sptj_img/logo.png') }}" alt="SPTJ Logo" class="sptj-logo-img"/>
-        
-        <div class="d-flex flex-column ms-2 ms-sm-3">
-          <span class="sitename" style="font-size: 13px; letter-spacing: 0.5px;">SERIKAT PEKERJA</span>
-          <span class="sitename" style="color: black; font-size: 13px; letter-spacing: 0.5px;">TRANSPORTASI JAKARTA</span>
-          <span class="d-none d-sm-inline mt-1" style="color: #6b7280; font-size: 11px; font-weight: 500;">Berani ● Tulus ● Setia</span>
-        </div>
+        <img src="{{ URL::asset('sptj_img/logo.png') }}" alt="SPTJ Logo" style="height: 80px;"/>
+       <!-- BAGIAN KIRI (TETAP KE BAWAH) -->
+  <div class="d-flex flex-column ms-3">
+    <span class="sitename top-text">SERIKAT PEKERJA</span>
+    <span class="sitename bottom-text" style="color: black;">TRANSPORTASI JAKARTA</span>
+    <span style="color: black;">Berani ● Tulus ● Setia</span>
+  </div>
+
+<!-- ALAMAT -->
+ <div class="ms-5 d-flex align-items-start ">
+
+  <!-- ICON -->
+  <i class="bi bi-geo-alt me-2 mt-1" style="color:#00008B;"></i>
+
+  <!-- TEXT -->
+  <div class="d-flex flex-column ">
+    <span class="sitename top-text" style="color:#00008B; font-size:16px;">
+      Alamat:
+    </span>
+    <span style="font-size:16px; color: black;">
+      Jl. Mayjen Sutoyo No.1 RT.5/RW 5, Kel. Pala, Kec. Makasar,
+    </span>
+    <span style="font-size:16px; color: black;">
+      Kota Jakarta Timur, DKI Jakarta 13540
+    </span>
+  </div>
+
+</div>
+<!-- EMAIL -->
+<div class="ms-5 d-flex align-items-start">
+  <i class="bi bi-envelope me-2 mt-1" style="color:#00008B;"></i>
+
+  <div class="d-flex flex-column">
+    <span class="sitename top-text" style="color:#00008B; font-size:16px;">
+      Email:
+    </span>
+    <span style="font-size:16px; color: black;">
+      sptj.transportasijakarta@mail.com
+    </span>
+  </div>
+</div>
+
+<!-- TELEPON -->
+<div class="ms-5 d-flex align-items-start">
+  <i class="bi bi-telephone me-2 mt-1" style="color:#00008B;"></i>
+
+  <div class="d-flex flex-column">
+    <span class="sitename top-text" style="color:#00008B; font-size:16px;">
+      Telepon:
+    </span>
+    <span style="font-size:16px; color: black;">
+      (021) 8088-1234
+    </span>
+  </div>
+</div>
       </a>
-
-      <div class="d-none d-xl-flex align-items-center gap-4 mx-3">
-
-        <div class="d-flex align-items-start">
-          <i class="bi bi-geo-alt me-2 mt-1" style="color:#00008B; font-size: 1.1rem;"></i>
-          <div class="d-flex flex-column" style="max-width: 260px;">
-            <span class="fw-bold" style="color:#00008B; font-size: 13px;">Alamat:</span>
-            <span style="font-size: 12px; color: black; line-height: 1.4;">
-              Jl. Mayjen Sutoyo No.1 RT.5/RW 5, Kel. Pala, Kec. Makasar, Jakarta Timur 13540
-            </span>
-          </div>
-        </div>
-
-        <div class="d-flex align-items-start">
-          <i class="bi bi-envelope me-2 mt-1" style="color:#00008B; font-size: 1.1rem;"></i>
-          <div class="d-flex flex-column">
-            <span class="fw-bold" style="color:#00008B; font-size: 13px;">Email:</span>
-            <span style="font-size: 12px; color: black;">sptj.transportasijakarta@mail.com</span>
-          </div>
-        </div>
-
-        <div class="d-flex align-items-start">
-          <i class="bi bi-telephone me-2 mt-1" style="color:#00008B; font-size: 1.1rem;"></i>
-          <div class="d-flex flex-column">
-            <span class="fw-bold" style="color:#00008B; font-size: 13px;">Telepon:</span>
-            <span style="font-size: 12px; color: black;">(021) 8088-1234</span>
-          </div>
-        </div>
-
-      </div>
       
-      <div class="sptj-social d-none d-lg-flex align-items-center gap-2">
-        <span class="fw-semibold me-2" style="font-size: 12px; color: #4b5563;">Media Sosial</span>
-        <a href="#" aria-label="Instagram" class="text-decoration-none"><i class="bi bi-instagram fs-6"></i></a>
-        <a href="#" aria-label="Facebook" class="text-decoration-none"><i class="bi bi-facebook fs-6"></i></a>
-        <a href="#" aria-label="YouTube" class="text-decoration-none"><i class="bi bi-youtube fs-6"></i></a>
-        <a href="#" aria-label="WhatsApp" class="text-decoration-none"><i class="bi bi-whatsapp fs-6"></i></a>
+      <div class=" ms-3 sptj-social d-none d-lg-flex align-items-center gap-2">
+        <span class="fw-semibold me-2">Media Sosial</span>
+        <a href="#" aria-label="Instagram" class="text-decoration-none"><i class="bi bi-instagram fs-5"></i></a>
+        <a href="#" aria-label="Facebook" class="text-decoration-none"><i class="bi bi-facebook fs-5"></i></a>
+        <a href="#" aria-label="YouTube" class="text-decoration-none"><i class="bi bi-youtube fs-5"></i></a>
+        <a href="#" aria-label="WhatsApp" class="text-decoration-none"><i class="bi bi-whatsapp fs-5"></i></a>
       </div>
-
     </div>
   </div>
 
+  <!-- Navbar -->
   <header id="header" class="header">
     <div class="container-fluid position-relative">
       <nav id="navmenu" class="navmenu">
@@ -142,13 +168,10 @@
             <a href="{{ route('galeri', 0) }}">Galeri</a>
           </li>
           <li><a href="{{ route('pendaftaran_anggota.create') }}" class="{{ str_contains(url()->current(), '/pendaftaran-anggota') ? 'active' : ''}}">Pendaftaran Anggota</a></li>
+          <!-- <li><a href="{{ route('auth.login') }}">Login Anggota</a></li> -->
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
     </div>
   </header>
 
-  @yield('content')
-
-</body>
-</html>
