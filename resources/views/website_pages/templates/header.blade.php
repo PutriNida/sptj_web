@@ -144,13 +144,13 @@
 </div>
       </a>
       
-      <div class=" ms-3 sptj-social d-none d-lg-flex align-items-center gap-2">
+      <!-- <div class=" ms-3 sptj-social d-none d-lg-flex align-items-center gap-2">
         <span class="fw-semibold me-2">Media Sosial</span>
         <a href="#" aria-label="Instagram" class="text-decoration-none"><i class="bi bi-instagram fs-5"></i></a>
         <a href="#" aria-label="Facebook" class="text-decoration-none"><i class="bi bi-facebook fs-5"></i></a>
         <a href="#" aria-label="YouTube" class="text-decoration-none"><i class="bi bi-youtube fs-5"></i></a>
         <a href="#" aria-label="WhatsApp" class="text-decoration-none"><i class="bi bi-whatsapp fs-5"></i></a>
-      </div>
+      </div> -->
     </div>
   </div>
 

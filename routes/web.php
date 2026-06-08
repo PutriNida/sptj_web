@@ -40,9 +40,11 @@ Route::get('/getDivisi/{kd_direktorat}', \App\Http\Controllers\AdminControllers\
 Route::get('/getDepartemen/{kd_divisi}', \App\Http\Controllers\AdminControllers\MemberController::class .'@getDepartemen')->name('departemen');
 Route::get('/getJabatan/{kd_departemen}', \App\Http\Controllers\AdminControllers\MemberController::class .'@getJabatan')->name('jabatan');
 Route::post('/anggota/save', \App\Http\Controllers\AdminControllers\MemberController::class .'@store')->name('member.store');
+Route::post('/anggota/update', \App\Http\Controllers\AdminControllers\MemberController::class .'@update')->name('member.update');
 Route::get('/anggota/edit/{no_karyawan}', \App\Http\Controllers\AdminControllers\MemberController::class .'@edit')->name('member.edit');
 Route::get('/anggota/edit_status/{no_karyawan}/{kd_status_karyawan}', \App\Http\Controllers\AdminControllers\MemberController::class .'@updateStatusKarywan')->name('member.edit.status');
 // ====================================== home finish =========================================================
+
 
 // ====================================== master data start =========================================================
 

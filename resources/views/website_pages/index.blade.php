@@ -19,53 +19,7 @@
         </div>
       </div>
     </section>
-    <section id="menu" class="menu section">
-      <div class="container">
-        <div class="row gy-4">
-          
-          <div class="col-lg-4 col-md-6">
-            <div class="card menu-card h-100 text-black position-relative overflow-visible" style="border: 1px solid #e5e7eb; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: all 0.3s ease;">
-              <div class="menu-icon">
-                <i class="bi bi-calendar-event-fill"></i>
-              </div>
-              <div class="card-body text-center pt-5">
-                <h5 class="card-title" style="font-weight: 600;">Program & Kegiatan</h5>
-                <p class="card-text text-muted" style="font-size: 0.9rem;">Informasi program dan kegiatan serikat pekerja.</p>
-                <a href="{{ route('informasi', 1) }}" class="btn btn-sptj w-100 mt-2" style="border-radius: 8px;">Lihat Detail</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="card menu-card h-100 text-black position-relative overflow-visible" style="border: 1px solid #e5e7eb; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: all 0.3s ease;">
-              <div class="menu-icon">
-                <i class="bi bi-newspaper"></i>
-              </div>
-              <div class="card-body text-center pt-5">
-                <h5 class="card-title" style="font-weight: 600;">Berita Terbaru</h5>
-                <p class="card-text text-muted" style="font-size: 0.9rem;">Berita terkini dan pengumuman.</p>
-                <a href="{{ route('berita', 1) }}" class="btn btn-sptj w-100 mt-2" style="border-radius: 8px;">Lihat Berita</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="card menu-card h-100 text-black position-relative overflow-visible" style="border: 1px solid #e5e7eb; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: all 0.3s ease;">
-              <div class="menu-icon">
-                <i class="bi bi-chat-dots-fill"></i>
-              </div>
-              <div class="card-body text-center pt-5">
-                <h5 class="card-title" style="font-weight: 600;">Aspirasi & Pengaduan</h5>
-                <p class="card-text text-muted" style="font-size: 0.9rem;">Sampaikan aspirasi dan pengaduan Anda.</p>
-                <a href="{{ route('hubungi_kami') }}" class="btn btn-primary w-100 mt-2" style="border-radius: 8px; background-color: #00008B; border-color: #00008B;">Hubungi Kami</a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-    <section id="stats" class="stats section">
+      <section id="stats" class="stats section">
       <div class="container section-title" data-aos="fade-up">
         <h2>INFORMASI ANGGOTA</h2>
       </div>
@@ -103,7 +57,7 @@
         </div>
       </div>
     </section>
-    <section id="features" class="features section">
+      <section id="features" class="features section">
       <div class="container section-title" data-aos="fade-up">
         <h2>Berita Terbaru</h2>
       </div>
@@ -150,6 +104,53 @@
         </div>
       </div>
     </section>
+    <section id="menu" class="menu section">
+      <div class="container">
+        <div class="row gy-4">
+          
+          <div class="col-lg-4 col-md-6">
+            <div class="card menu-card h-100 text-black position-relative overflow-visible" style="border: 1px solid #e5e7eb; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: all 0.3s ease;">
+              <div class="menu-icon">
+                <i class="bi bi-calendar-event-fill"></i>
+              </div>
+              <div class="card-body text-center pt-5">
+                <h5 class="card-title" style="font-weight: 600;">Program & Kegiatan</h5>
+                <p class="card-text text-muted" style="font-size: 0.9rem;">Informasi program dan kegiatan serikat pekerja.</p>
+                <a href="{{ route('informasi', 1) }}" class="btn btn-sptj w-100 mt-2" style="border-radius: 8px;">Lihat Detail</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="card menu-card h-100 text-black position-relative overflow-visible" style="border: 1px solid #e5e7eb; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: all 0.3s ease;">
+              <div class="menu-icon">
+                <i class="bi bi-newspaper"></i>
+              </div>
+              <div class="card-body text-center pt-5">
+                <h5 class="card-title" style="font-weight: 600;">Berita Terbaru</h5>
+                <p class="card-text text-muted" style="font-size: 0.9rem;">Berita terkini dan pengumuman.</p>
+                <a href="{{ route('berita', 1) }}" class="btn btn-sptj w-100 mt-2" style="border-radius: 8px;">Lihat Berita</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="card menu-card h-100 text-black position-relative overflow-visible" style="border: 1px solid #e5e7eb; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: all 0.3s ease;">
+              <div class="menu-icon">
+                <i class="bi bi-chat-dots-fill"></i>
+              </div>
+              <div class="card-body text-center pt-5">
+                <h5 class="card-title" style="font-weight: 600;">Aspirasi & Pengaduan</h5>
+                <p class="card-text text-muted" style="font-size: 0.9rem;">Sampaikan aspirasi dan pengaduan Anda.</p>
+                <a href="{{ route('hubungi_kami') }}" class="btn btn-primary w-100 mt-2" style="border-radius: 8px; background-color: #00008B; border-color: #00008B;">Hubungi Kami</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  
 
     <style>
       /* Menyembunyikan scrollbar bawaan browser agar terlihat minimalis dan bersih */
