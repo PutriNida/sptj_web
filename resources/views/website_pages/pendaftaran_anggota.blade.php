@@ -62,7 +62,7 @@
                                     <option value="">-- Pilih --</option>
                                     @foreach(($jeniskelamin ?? []) as $jk)
                                         <option value="{{ $jk->kd_jenis_kelamin }}" {{ old('kd_jenis_kelamin') == $jk->kd_jenis_kelamin ? 'selected' : '' }}>
-                                            {{ $jk->nm_jenis_kelamin ?? $jk->kd_jenis_kelamin }}
+                                            {{ $jk->jenis_kelamin ?? $jk->nama_jenis_kelamin ?? $jk->kd_jenis_kelamin }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -74,7 +74,7 @@
                                     <option value="">-- Pilih --</option>
                                     @foreach(($statusperkawinan ?? []) as $sp)
                                         <option value="{{ $sp->kd_status_perkawinan }}" {{ old('kd_status_perkawinan') == $sp->kd_status_perkawinan ? 'selected' : '' }}>
-                                            {{ $sp->nm_status_perkawinan ?? $sp->kd_status_perkawinan }}
+                                            {{ $sp->status_perkawinan ?? $sp->nama_status_perkawinan ?? $sp->kd_status_perkawinan }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -86,7 +86,7 @@
                                     <option value="">-- Pilih --</option>
                                     @foreach(($agama ?? []) as $ag)
                                         <option value="{{ $ag->kd_agama }}" {{ old('kd_agama') == $ag->kd_agama ? 'selected' : '' }}>
-                                            {{ $ag->nm_agama ?? $ag->kd_agama }}
+                                            {{ $ag->agama ?? $ag->nama_agama ?? $ag->kd_agama }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -104,7 +104,7 @@
                                     <option value="">-- Pilih --</option>
                                     @foreach(($lokasikerja ?? []) as $lk)
                                         <option value="{{ $lk->kd_lokasi_kerja }}" {{ old('kd_lokasi_kerja') == $lk->kd_lokasi_kerja ? 'selected' : '' }}>
-                                            {{ $lk->nm_lokasi_kerja ?? $lk->kd_lokasi_kerja }}
+                                            {{ $lk->lokasi_kerja ?? $lk->kd_lokasi_kerja }}
                                         </option>
                                     @endforeach
                                 </select>
