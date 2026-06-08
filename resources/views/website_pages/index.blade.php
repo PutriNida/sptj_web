@@ -63,7 +63,7 @@
                <div class="card-body text-center pt-5">
                 <h5 class="card-title">Aspirasi & Pengaduan</h5>
                 <p class="card-text">Sampaikan aspirasi dan pengaduan Anda.</p>
-                <a href="{{ route('hubungi_kami') }}" class="btn btn-sptj">Hubungi Kami</a>
+                <a href="{{ route('hubungi_kami') }}" class="btn btn-primary">Hubungi Kami</a>
               </div>
             </div>
           </div>
@@ -119,115 +119,72 @@
     <!-- Features Section -->
     <section id="features" class="features section">
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Berita Terbaru</h2>
-      </div>
-      <!-- End Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Berita Terbaru</h2>
+  </div>
+  <div class="container">
+    
+    <div class="d-flex flex-nowrap overflow-x-auto pb-4 custom-slider" style="scroll-snap-type: x mandatory; gap: 1.5rem; -webkit-overflow-scrolling: touch;">
+      
+      @foreach($berita as $item)
+      <div class="card h-100 flex-shrink-0 bg-white" style="width: 18rem; scroll-snap-align: start; border: 1px solid #e5e7eb; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+        
+        <div style="height: 180px; width: 100%; overflow: hidden; position: relative;">
+          <a href="{{ route('berita.detail', $item->no_berita) }}">
+            <img src="{{ $item->gambar }}" style="width: 100%; height: 100%; object-fit: cover;" alt="{{ $item->judul_berita }}">
+          </a>
+        </div>
 
-      <div class="container">
+        <div class="card-body d-flex flex-column justify-content-between p-3" style="min-height: 200px;">
+          <div>
+            <span class="badge mb-2 text-primary" style="background-color: #eff6ff; font-weight: 600; font-size: 0.75rem; border-radius: 6px; padding: 0.35rem 0.6rem;">
+              {{ $item->kategori_berita }}
+            </span>
 
-        @if(count($berita) > 0)
-        <div class="row gy-4 align-items-center features-item">
-          <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
-            <a href="{{ route('berita.detail', $berita[0]->no_berita) }}">
-              <img src="{{ $berita[0]->gambar }}" class="img-fluid" alt="">
+            <a href="{{ route('berita.detail', $item->no_berita) }}" class="text-decoration-none text-dark">
+              <h5 class="card-title text-truncate-2" style="font-size: 1rem; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 0.5rem;">
+                {{ $item->judul_berita }}
+              </h5>
             </a>
-          </div>
-          <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
-            <a href="{{ route('berita.detail', $berita[0]->no_berita) }}">
-              <h3>{{ $berita[0]->judul_berita }}</h3>
-            </a>
-            <h4>{{ $berita[0]->kategori_berita }}</h4>
-            <div class="stars">
-                <i class="bi bi-eye-fill"></i><span>{{ $berita[0]->views }}</span>
-                <i class="bi bi-hand-thumbs-up-fill"></i><span>{{ $berita[0]->likes }}</span>
-                <i class="bi bi-hand-thumbs-down-fill"></i><span>{{ $berita[0]->dislikes }}</span>
-                <i class="bi bi-chat-dots-fill"></i><span>{{ $berita[0]->comments }}</span>
+            
+            <div class="text-muted" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-size: 0.85rem; line-height: 1.5;">
+              {!! $item->highlight !!}
             </div>
-            <p class="fst-italic">
-              {!! $berita[0]->highlight !!}
-            </p>
+          </div>
+
+          <div class="stars d-flex gap-3 text-muted mt-3 pt-2 border-top" style="font-size: 0.8rem; border-color: #f3f4f6 !important;">
+            <span><i class="bi bi-eye-fill me-1 text-primary"></i>{{ $item->views }}</span>
+            <span><i class="bi bi-hand-thumbs-up-fill me-1 text-primary"></i>{{ $item->likes }}</span>
+            <span><i class="bi bi-chat-dots-fill me-1 text-primary"></i>{{ $item->comments }}</span>
           </div>
         </div>
-        @endif
-        <!-- Features Item -->
-<!-- 
-        @if(count($berita) > 1)
-        <div class="row gy-4 align-items-center features-item">
-          <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-            <img src="{{ $berita[1]->gambar }}" class="img-fluid" alt="" width="300" height="300">
-          </div>
-          <div class="col-md-7 order-2 order-md-1" data-aos="fade-up" data-aos-delay="200">
-            <h3>{{ $berita[1]->judul_berita }}</h3>
-            <h4>{{ $berita[1]->kategori_berita }}</h4>
-            <div class="stars">
-                <i class="bi bi-eye-fill"></i><span>{{ $berita[1]->views }}</span>  
-                <i class="bi bi-hand-thumbs-up-fill"></i><span>{{ $berita[1]->likes }}</span>  
-                <i class="bi bi-hand-thumbs-down-fill"></i><span>{{ $berita[1]->dislikes }}</span>  
-                <i class="bi bi-hand-thumbs-down-fill"></i><span>{{ $berita[1]->comments }}</span>
-            </div>
-            <p class="fst-italic">
-              {!! $berita[1]->highlight !!}
-            </p>
-          </div>
-        </div> -->
-        <!-- Features Item -->
-        @endif
-
-        @if(count($berita) > 2)
-        <div class="row gy-4 align-items-center features-item">
-          <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out">
-            <a href="{{ route('berita.detail', $berita[2]->no_berita) }}">
-              <img src="{{ $berita[2]->gambar }}" class="img-fluid" alt="">
-            </a>
-          </div>
-          <div class="col-md-7" data-aos="fade-up">
-            <a href="{{ route('berita.detail', $berita[2]->no_berita) }}">
-              <h3>{{ $berita[2]->judul_berita }}</h3>
-            </a>
-            <h4>{{ $berita[2]->kategori_berita }}</h4>
-            <div class="stars">
-                <i class="bi bi-eye-fill"></i><span>{{ $berita[2]->views }}</span>
-                <i class="bi bi-hand-thumbs-up-fill"></i><span>{{ $berita[2]->likes }}</span>
-                <i class="bi bi-hand-thumbs-down-fill"></i><span>{{ $berita[2]->dislikes }}</span>
-                <i class="bi bi-chat-dots-fill"></i><span>{{ $berita[2]->comments }}</span>
-            </div>
-            <p class="fst-italic">
-              {!! $berita[2]->highlight !!}
-            </p>
-          </div>
-        </div>
-        @endif
-
-        @if(count($berita) > 3)
-        <div class="row gy-4 align-items-center features-item">
-          <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out">
-            <a href="{{ route('berita.detail', $berita[3]->no_berita) }}">
-              <img src="{{ $berita[3]->gambar }}" class="img-fluid" alt="">
-            </a>
-          </div>
-          <div class="col-md-7 order-2 order-md-1" data-aos="fade-up">
-            <a href="{{ route('berita.detail', $berita[3]->no_berita) }}">
-              <h3>{{ $berita[3]->judul_berita }}</h3>
-            </a>
-            <h4>{{ $berita[3]->kategori_berita }}</h4>
-            <div class="stars">
-                <i class="bi bi-eye-fill"></i><span>{{ $berita[3]->views }}</span>
-                <i class="bi bi-hand-thumbs-up-fill"></i><span>{{ $berita[3]->likes }}</span>
-                <i class="bi bi-hand-thumbs-down-fill"></i><span>{{ $berita[3]->dislikes }}</span>
-                <i class="bi bi-chat-dots-fill"></i><span>{{ $berita[3]->comments }}</span>
-            </div>
-            <p class="fst-italic">
-              {!! $berita[3]->highlight !!}
-            </p>
-          </div>
-        </div>
-        @endif
 
       </div>
+      @endforeach
 
-    </section>
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+  /* Menyembunyikan scrollbar bawaan browser agar terlihat minimalis dan bersih */
+  .custom-slider::-webkit-scrollbar {
+    height: 6px;
+  }
+  .custom-slider::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  .custom-slider::-webkit-scrollbar-thumb {
+    background: #bfdbfe; /* Warna biru soft untuk scrollbar */
+    border-radius: 10px;
+  }
+  .custom-slider::-webkit-scrollbar-thumb:hover {
+    background: #3b82f6; /* Biru accents saat di-hover */
+  }
+</style>
     <!-- /Features Section -->
 
   </main>
