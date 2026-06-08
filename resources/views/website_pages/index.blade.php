@@ -4,10 +4,15 @@
 
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background" >
-      <div class="container position-relative text-center">
-        <h1 data-aos="fade-up" data-aos-delay="100">Serikat Pekerja Transportasi Jakarta</h1>
-        <p class="lead" data-aos="fade-up" data-aos-delay="200">Bersama Membangun Transportasi yang Lebih Baik</p>
-        <a href="{{ route('auth.login') }}" class="btn btn-primary btn-lg" data-aos="fade-up" data-aos-delay="300">Login Anggota</a>
+      <div class="container position-relative text-start" style="margin-left: 40px;">
+        <h1 data-aos="fade-up" data-aos-delay="100" style="color:#00008B ;">BERSAMA PERJUANGKAN</h1>
+        <h1 data-aos="fade-up" data-aos-delay="100" style="color:#00008B ;">KESEJAHTERAAN PEKERJA</h1>
+        <h1 data-aos="fade-up" data-aos-delay="100" style="color:#00008B ;">TRANSPORTASI</h1>
+        <h1  data-aos="fade-up" data-aos-delay="200" style="font-size: 16px; color: black;">SPTJ Hadir untuk melinduki hak. meningkatkan</h1>
+        <h1  data-aos="fade-up" data-aos-delay="200" style="font-size: 16px; color: black;">kesejahteraan, dan solidaritas pekerja transportasi di Jakarta.</h1>
+        <a href="{{ route('auth.login') }}" class="btn btn-sptj btn-lg" data-aos="fade-up" data-aos-delay="300" style="color:white;">Login Anggota</a>
+        <a href="{{ route('pendaftaran_anggota.create') }}" class="btn btn-sptj btn-lg" data-aos="fade-up" data-aos-delay="300" style="color:white;">Daftar Anggota</a>
+        <a href="{{ route('hubungi_kami') }}" class="btn btn-sptj btn-lg" data-aos="fade-up" data-aos-delay="300" style="color:white;">Aspirasi</a>
       </div>
     </section>
     <!-- /Hero Section -->
@@ -18,9 +23,9 @@
       <div class="container">
 
         <div class="row gy-4">
-          <label class="section-title" data-aos="fade-up">
+          <!-- <label class="section-title" data-aos="fade-up">
             <h2 class="bold">Selamat Datang di Serikat Pekerja Transportasi Jakarta </h2>
-          </label>
+          </label> -->
           <div class="col-lg-4 col-md-6">
             <div class="card menu-card h-100 text-black position-relative overflow-visible">
               <!-- ICON FLOAT -->
@@ -28,10 +33,10 @@
                 <i class="bi bi-calendar-event-fill"></i>
               </div>
 
-              <div class="card-body text-center pt-5">
+              <div class="card-body text-center pt-5 text-s">
                 <h5 class="card-title">Program & Kegiatan</h5>
                 <p class="card-text">Informasi program dan kegiatan serikat pekerja.</p>
-                <a href="{{ route('informasi', 1) }}" class="btn btn-primary">Lihat Detail</a>
+                <a href="{{ route('informasi', 1) }}" class="btn btn-sptj">Lihat Detail</a>
               </div>
 
             </div>
@@ -45,7 +50,7 @@
                <div class="card-body text-center pt-5">
                 <h5 class="card-title">Berita Terbaru</h5>
                 <p class="card-text">Berita terkini dan pengumuman.</p>
-                <a href="{{ route('berita', 1) }}" class="btn btn-primary">Lihat Berita</a>
+                <a href="{{ route('berita', 1) }}" class="btn btn-sptj">Lihat Berita</a>
               </div>
             </div>
             </div>
@@ -58,7 +63,7 @@
                <div class="card-body text-center pt-5">
                 <h5 class="card-title">Aspirasi & Pengaduan</h5>
                 <p class="card-text">Sampaikan aspirasi dan pengaduan Anda.</p>
-                <a href="{{ route('hubungi_kami') }}" class="btn btn-primary">Hubungi Kami</a>
+                <a href="{{ route('hubungi_kami') }}" class="btn btn-sptj">Hubungi Kami</a>
               </div>
             </div>
           </div>

@@ -9,7 +9,15 @@
 :focus {
   outline: none;
 }
+.btn-sptj {
+  background-color: #00008B;
+  color: #fff;
+  border: none;
+}
 
+.btn-sptj:hover {
+  background-color: #000066;
+}
 hr {
   margin: 1rem 0;
   color: inherit;
