@@ -1,46 +1,69 @@
 <footer id="footer" class="footer dark-background" >
 
-    <div class="container footer-top" >
-      <div class="row gy-4">
-        <div class="col-lg-4 col-md-6 footer-about">
-          <a href="index.html" class="d-flex align-items-center">
-            <span class="sitename">Serikat Pekerja Transportasi Jakarta</span>
-          </a>
-          <div class="footer-contact pt-3">
-            @forelse($hubungi_kami ?? [] as $hk)
-            @if($hk->kd_tipe_kontak == 4)
-            <p>              
-              {{ $hk->tujuan }}
-            </p>
-            <br>
-            @elseif($hk->kd_tipe_kontak == 1)
-            <p class="mt-3"><strong>Nomor Telepon:</strong> <span>
-              {{ $hk->tujuan }}
-            </span></p>
-            @elseif($hk->kd_tipe_kontak == 3)
-            <p><strong>Email:</strong> <span>
-              {{ $hk->tujuan }}
-              </span></p>
-            @endif
-            @empty
-            @endforelse
-          </div>
-        </div>
+    <footer class="footer-sptj">
 
-        <div class="col-lg-2 col-md-3 footer-links">
-          <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="{{ route('index') }}">Beranda</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="{{ route('berita', 1) }}">Berita</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="{{ route('informasi', 1) }}">Informasi</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="{{ route('galeri', 0) }}">Galeri</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="{{ route('tentang_kami') }}">Tentang Kami</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="{{ route('hubungi_kami') }}">Hubungi Kami</a></li>
-          </ul>
-        </div>
+  <div class="container py-2">
+    <div class="row gy-4">
+  <!-- LOGO + DESKRIPSI -->
+  <div class="col-lg-3 col-md-6">
+    <div class="d-flex align-items-center mb-3">
+      <img src="{{ URL::asset('sptj_img/logo.png') }}" style="height:70px;">
+      <div class="ms-2 text-white fw-bold">
+        SERIKAT PEKERJA<br>TRANSPORTASI JAKARTA<br style="color: black">Berani ● Tulus ● Setia
+      </div>
+      
+    </div>
 
-        <div class="col-lg-4 col-md-12">
-          <h4>Ikuti Kami</h4>
-          <div class="social-links d-flex">
+    <p class="text-light small">
+      SPTJ berkomitmen memperjuangkan hak dan kesejahteraan pekerja transportasi untuk Jakarta yang lebih baik.
+    </p>
+
+  </div>
+
+  <!-- LINK CEPAT -->
+  <div class="col-lg-2 col-md-6 footer-col">
+    <h6>LINK CEPAT</h6>
+    <ul>
+      <li><a href="{{ route('index') }}">Beranda</a></li>
+      <li><a href="{{ route('tentang_kami') }}">Profil</a></li>
+      {{-- <li><a href="#">Kepengurusan</a></li> --}}
+      <li><a href="{{ route('berita',1) }}">Berita</a></li>
+      {{-- <li><a href="#">Keanggotaan</a></li> --}}
+    </ul>
+  </div>
+
+  <!-- LAYANAN -->
+  {{-- <div class="col-lg-2 col-md-6 footer-col">
+    <h6>LAYANAN</h6>
+    <ul>
+      <li><a href="#">Data Anggota</a></li>
+      <li><a href="#">Aspirasi</a></li>
+      <li><a href="#">Download</a></li>
+      <li><a href="#">Kartu Digital</a></li>
+    </ul>
+  </div> --}}
+
+  <!-- KONTAK -->
+  <div class="col-lg-3 col-md-6 footer-col">
+    <h6>KANTOR SEKRETARIAT</h6>
+
+    @foreach($hubungi_kami ?? [] as $hk)
+      @if($hk->kd_tipe_kontak == 4)
+        <p><i class="bi bi-geo-alt"></i> {{ $hk->tujuan }}</p>
+      @elseif($hk->kd_tipe_kontak == 1)
+        <p><i class="bi bi-telephone"></i> {{ $hk->tujuan }}</p>
+      @elseif($hk->kd_tipe_kontak == 3)
+        <p><i class="bi bi-envelope"></i> {{ $hk->tujuan }}</p>
+      @endif
+    @endforeach
+
+    <p><i class="bi bi-clock"></i> Senin - Jumat 08.00 - 16.00</p>
+  </div>
+
+  <!-- IKUTI KAMI -->
+  <div class="col-lg-2 col-md-6 footer-col">
+    <h6>IKUTI KAMI</h6>
+     <div class="social-links d-flex">
             @forelse($medsos ?? [] as $ms)
               @if($ms->kd_media_sosial == 2)
               <a href="{{ $ms->url }}" target="_blank"><i class="bi bi-twitter-x"></i></a>
@@ -54,21 +77,17 @@
             @empty
             @endforelse
           </div>
-        </div>
-
-      </div>
+          <div class="container d-flex flex-column flex-md-row justify-content-between">
+      <div style="font-size: 9px">© 2026 SPTJ - All Rights Reserved</div>
     </div>
+  </div>
 
-    <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">Limitless Innovation 2024</strong></p>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
-    </div>
+</div>
+
+  </div>
+
+
+</footer>
 
   </footer>
 

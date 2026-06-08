@@ -70,7 +70,7 @@
       top: 0;
       z-index: 1020;
     }
-    .sptj-topbar span {
+.sptj-topbar span {
       line-height: 1.2;
     }
 
@@ -78,7 +78,88 @@
       max-width: 300px;
       font-size: 12px;
     }
-    
+
+    /* Mobile: rapikan navmenu supaya tidak terlalu lebar/berantakan */
+    @media (max-width: 575.98px) {
+      /* Biarkan header tetap di atas */
+      #header {
+        padding: 8px 0;
+      }
+
+      /* Saat menu mobile dibuka (overlay) */
+      body.mobile-nav-active .navmenu {
+        padding: 0 10px;
+      }
+
+      /* Item list menu: kecilkan padding + tambahkan pembatas */
+      .navmenu ul {
+        inset: 60px 10px 10px 10px;
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        overflow: hidden;
+      }
+
+      /* Pembatas antar item */
+      .navmenu ul li {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+      .navmenu ul li:last-child {
+        border-bottom: 0;
+      }
+
+      .navmenu ul a {
+        width: 100%;
+      }
+
+      .navmenu a,
+      .navmenu a:focus {
+        padding: 10px 12px;
+        font-size: 16px;
+      }
+
+      .mobile-nav-toggle {
+        font-size: 26px !important;
+        margin-right: 6px !important;
+      }
+    }
+
+    /* Mobile: topbar dibuat lebih ringkas agar tidak berantakan */
+    @media (max-width: 575.98px) {
+      .sptj-topbar {
+        padding: 8px 12px;
+      }
+
+      .sptj-topbar img {
+        height: 48px !important;
+      }
+
+      /* Hilangkan teks panjang (alamat/email/telepon) di mobile */
+      .sptj-topbar .alamat,
+      .sptj-topbar .alamat span,
+      .sptj-topbar .ms-5 {
+        display: none !important;
+      }
+
+      .sptj-topbar .d-flex.flex-column.ms-3 {
+        margin-left: 8px !important;
+      }
+
+      .sptj-topbar .top-text {
+        font-size: 14px !important;
+        line-height: 1.1;
+      }
+
+      .sptj-topbar .bottom-text {
+        font-size: 14px !important;
+        line-height: 1.1;
+      }
+
+      .sptj-topbar .logo {
+        gap: 8px;
+      }
+    }
   </style>
 </head>
 
