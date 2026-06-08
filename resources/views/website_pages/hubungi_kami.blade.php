@@ -67,7 +67,15 @@
         </div>
 
       <div class="mt-5" data-aos="fade-up" data-aos-delay="200">
-        <iframe style="border:0; width: 100%; height: 370px;" src="{{ $map }}" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe 
+    style="border:0; width: 100%; height: 370px;" 
+    src="{{ $map }}" 
+    frameborder="0" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+</iframe> 
+      <!-- <iframe style="border:0; width: 100%; height: 370px;" src="{{ $map }}" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
       </div><!-- End Google Maps -->
 
     </section><!-- /Contact Section -->
