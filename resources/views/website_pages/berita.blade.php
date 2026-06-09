@@ -4,36 +4,80 @@
   <main class="main">
 
     <!-- Page Title -->
-    <div class="page-title dark-background">
+    <!-- <div class="page-title dark-background"> -->
       <div class="container position-relative">
-        <h1>Berita</h1>
+        <!-- <h1>Berita</h1>
         <nav class="breadcrumbs">
           <ol>
             <li><a href="{{ route('index') }}">Beranda</a></li>
             <li class="current">Berita</li>
           </ol>
         </nav>
-      </div>
+      </div> -->
     </div><!-- End Page Title -->
 
     <section id="services" class="services section">
 
       <div class="container">
-        <div class="row gy-4">
+        <div class="row gy-3 mb-3">
+          <div class="col-12">
+            <div class="sptj-berita-filter">
+               <a href="{{ route('berita', 1) }}"
+           class="sptj-berita-filter-item {{ empty(request()->query('kategori')) ? 'active' : '' }}">
+           Semua
+        </a>
+
+        <!-- KATEGORI -->
+        @foreach($kategori_berita ?? [] as $kat)
+          <a href="{{ route('berita', $current_page ?? 1).'?kategori='.urlencode($kat->kd_kategori_berita) }}"
+             class="sptj-berita-filter-item {{ request()->query('kategori') == ($kat->kd_kategori_berita ?? null) ? 'active' : '' }}">
+             {{ $kat->kategori_berita ?? '' }}
+          </a>
+        @endforeach
+
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4">
           @forelse($berita as $brt)
-          <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
-            <div class="service-item position-relative">
-              <div class="img">
-                <img src="{{ $brt->gambar }}" class="img-fluid" alt="">
-              </div>
-              <div class="details">
-                <a href="{{ route('berita.detail', $brt->no_berita) }}" class="stretched-link">
-                  <h3>{{ $brt->judul_berita }}</h3>
+            <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="{{ ($loop->index ?? 0) * 50 }}">
+
+              <div class="sptj-berita-row h-100">
+
+                <a href="{{ route('berita.detail', $brt->no_berita) }}" class="sptj-berita-row-link">
+                  <div class="sptj-berita-thumb">
+                    <img src="{{ $brt->gambar }}" alt="{{ $brt->judul_berita }}" class="sptj-berita-img">
+                  </div>
+
+                  <div class="sptj-berita-content">
+                  <div class="d-flex align-items-center gap-2">
+                  <div class="sptj-berita-meta">{{ $brt->kategori_berita ?? 'Berita' }}</div>
+
+                      @if(!empty($brt->create_at))
+                        <div class="sptj-berita-date">{{ $brt->create_at }}</div>
+                      @endif
+                    </div>
+                    <h3 class="sptj-berita-title">{{ $brt->judul_berita }}</h3>
+
+                    <p class="sptj-berita-highlight">{{ $brt->highlight }}</p>
+
+                    <div class="sptj-berita-stats">
+                      @if(!empty($brt->views))
+                        <span class="sptj-berita-stat"><i class="bi bi-eye-fill me-1 text-primary"></i>{{ $brt->views }}</span>
+                      @endif
+                      @if(!empty($brt->likes))
+                        <span class="sptj-berita-stat"><i class="bi bi-hand-thumbs-up-fill me-1 text-primary"></i>{{ $brt->likes }}</span>
+                      @endif
+                      @if(!empty($brt->comments))
+                        <span class="sptj-berita-stat"><i class="bi bi-chat-dots-fill me-1 text-primary"></i>{{ $brt->comments }}</span>
+                      @endif
+                    </div>
+                  </div>
                 </a>
-                <p>{{ $brt->highlight }}</p>
               </div>
             </div>
-          </div><!-- End Service Item -->
           @empty
           @endforelse
         </div>

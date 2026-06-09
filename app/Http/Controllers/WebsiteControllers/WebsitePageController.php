@@ -68,25 +68,46 @@ class WebsitePageController extends Controller
     public function berita($page)
     {
       
-        $offset = ((int)$page - 1 ) * 6;
-        $berita = DB::table('berita')
+        $perPage = 4;
+        $offset = ((int)$page - 1 ) * $perPage;
+
+        $kategori = $requestKategori = null;
+        if (isset(request()->query()['kategori'])) {
+            $kategori = (int) request()->query('kategori');
+        }
+
+        $query = DB::table('berita')
             ->join('master_kategori_berita', 'master_kategori_berita.kd_kategori_berita', '=', 'berita.kd_kategori_berita')
             ->join('anggota', 'anggota.no_karyawan', '=', 'berita.no_karyawan')
-            ->where('publish_at', 'IS NOT', null)
+            ->where('publish_at', 'IS NOT', null);
+
+        if (!empty($kategori) && $kategori > 0) {
+            $query->where('berita.kd_kategori_berita', $kategori);
+        }
+
+        $berita = $query
             ->orderBy('publish_at', 'desc')
-            ->offset($offset)->limit(6)
+            ->offset($offset)->limit($perPage)
             ->get();
 
-        $countberita = DB::table('berita')
-            ->where('publish_at', 'IS NOT', null)
-            ->count();
+        $countQuery = DB::table('berita')
+            ->where('publish_at', 'IS NOT', null);
+
+        if (!empty($kategori) && $kategori > 0) {
+            $countQuery->where('kd_kategori_berita', $kategori);
+        }
+
+        $countberita = $countQuery->count();
+
+
 
         $kategori_berita = DB::table('master_kategori_berita')
             ->orderBy('kategori_berita', 'asc')
             ->get();
 
-        $total_pages = ceil($countberita / 6);
-        $current_page = $page;       
+        $total_pages = ceil($countberita / $perPage);
+        $current_page = $page;      
+
 
         $hubungi_kami = $this->footercontact();
         $medsos = $this->footermedsos();

@@ -4,16 +4,16 @@
   <main class="main">
 
     <!-- Page Title -->
-    <div class="page-title dark-background">
+    <!-- <div class="page-title dark-background"> -->
       <div class="container position-relative">
-        <h1>Berita</h1>
+        <!-- <h1>Berita</h1>
         <nav class="breadcrumbs">
           <ol>
             <li><a href="index.html">Beranda</a></li>
             <li class="current">Berita</li>
           </ol>
         </nav>
-      </div>
+      </div> -->
     </div><!-- End Page Title -->
 
     <div class="container">
