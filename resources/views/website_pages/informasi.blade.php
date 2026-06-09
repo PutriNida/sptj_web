@@ -4,16 +4,16 @@
   <main class="main">
 
     <!-- Page Title -->
-    <div class="page-title dark-background">
+    {{-- <div class="page-title dark-background"> --}}
       <div class="container position-relative">
-        <h1>Informasi</h1>
+        {{-- <h1>Informasi</h1>
         <nav class="breadcrumbs">
           <ol>
             <li><a href="{{ route('index') }}">Beranda</a></li>
             <li class="current">Informasi</li>
           </ol>
         </nav>
-      </div>
+      </div> --}}
     </div><!-- End Page Title -->
 
     <!-- Blog Posts Section -->

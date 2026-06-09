@@ -1,0 +1,20 @@
+.sptj-struct-overlay {
+  -webkit-transition: none !important;
+  transition: none !important;
+}
+
+/* Matikan efek hover yang bisa bikin gambar terasa 'bergerak' */
+#portfolio .portfolio-content img {
+  transition: none !important;
+}
+
+#portfolio .portfolio-content:hover img {
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Jika ada style lain yang memicu transform scale di library template */
+#portfolio .portfolio-content:hover .portfolio-info {
+  opacity: 1 !important;
+}
+
