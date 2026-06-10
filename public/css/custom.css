@@ -25,6 +25,27 @@ hr {
   border: 0;
   opacity: 0.25;
 }
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    z-index: 999;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+}
+
+.whatsapp-float:hover {
+    background-color: #20b358;
+    color: white;
+}
+.whatsapp-float {
+    bottom: 80px; /* biar di atas tombol scroll */
+}
 
 .sign-bg {
   position: absolute;
