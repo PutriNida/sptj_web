@@ -8,7 +8,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">Tambah Informasi</h6>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('informasi.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                    <form action="{{ route('admin_informasi.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                         {{ csrf_field() }}
                         <!-- <input type="hideen" value="no_karyawan" name="no_karyawan"/> -->
                         <div class="form-group row">

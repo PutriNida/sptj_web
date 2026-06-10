@@ -38,7 +38,8 @@
             @endforelse
           </div><!-- End Filter Buttons -->
 
-          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200" style="width: 100%; height: 180px; object-fit: contain;"
+>
             @forelse($galeri as $glr)
               <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
 

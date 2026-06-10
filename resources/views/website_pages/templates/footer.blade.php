@@ -63,20 +63,15 @@
   <!-- IKUTI KAMI -->
   <div class="col-lg-2 col-md-6 footer-col">
     <h6>IKUTI KAMI</h6>
-     <div class="social-links d-flex">
-            @forelse($medsos ?? [] as $ms)
-              @if($ms->kd_media_sosial == 2)
-              <a href="{{ $ms->url }}" target="_blank"><i class="bi bi-twitter-x"></i></a>
-              @endif
-              @if($ms->kd_media_sosial == 1)
-              <a href="{{ $ms->url }}" target="_blank"><i class="bi bi-facebook"></i></a>
-              @endif
-              @if($ms->kd_media_sosial == 3)
-              <a href="{{ $ms->url }}" target="_blank"><i class="bi bi-instagram"></i></a>
-              @endif
-            @empty
-            @endforelse
-          </div>
+    <div class="social-links d-flex">
+    @foreach($medsos ?? [] as $ms)
+        <a href="{{ $ms->url }}" target="_blank">
+            <img src="{{ $ms->ikon_media_sosial }}" 
+                 alt="sosmed"
+                 style="width: 24px; height: 24px;">
+        </a>
+    @endforeach
+</div>
           <div class="container d-flex flex-column flex-md-row justify-content-between">
       <div style="font-size: 9px">© 2026 SPTJ - All Rights Reserved</div>
     </div>
