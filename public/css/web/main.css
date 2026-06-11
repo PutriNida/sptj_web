@@ -57,10 +57,10 @@
 }
 
 .dark-background {
-  --background-color: #37517e;
+  --background-color: #00008b;
   --default-color: #ffffff;
   --heading-color: #ffffff;
-  --surface-color: #4668a2;
+  --surface-color: #00008b;
   --contrast-color: #ffffff;
 }
 
@@ -1004,15 +1004,10 @@ section,
   content: "";
   position: absolute;
   inset: 0;
+  background:
+    url("../../img/web/hero-bg.jpeg") center center no-repeat;
 
-  background: linear-gradient(
-      to right,
-      rgba(255,255,255,0.8),
-      rgba(255,255,255,0.2)
-    ),
-    url("../../img/web/hero-bg.jpg") center center no-repeat;
-
-  background-size: cover; /* tetap cover */
+  background-size: 1550px 550px; /* tetap cover */
   z-index: 0;
 }
 .hero .container {
