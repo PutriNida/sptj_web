@@ -153,6 +153,42 @@
   
 
     <style>
+      /* background hero: gambar keliatan semua */
+      /* 1) override background image di pseudo element template */
+      .hero::after {
+        background-image: url('{{ URL::asset('img/web/hero-bg.jpeg') }}') !important;
+        background-size: 1550px 550px !important; /* full area tapi tetap rapi */
+        background-position: center top !important;
+        background-repeat: no-repeat !important;
+      }
+
+
+      /* 2) safety: juga set kalau hero nanti pakai background langsung */
+      #hero {
+        background-repeat: no-repeat !important;
+        background-position: center top !important;
+        background-size: contain !important;
+      }
+
+
+      /* (opsional) overlay gradasi biar teks tetap kebaca */
+      #hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(55, 81, 126, 0.35),
+          rgba(55, 81, 126, 0.85)
+        );
+        z-index: 0;
+        pointer-events: none;
+      }
+      #hero > * {
+        position: relative;
+        z-index: 1;
+      }
+
       /* Menyembunyikan scrollbar bawaan browser agar terlihat minimalis dan bersih */
       .custom-slider::-webkit-scrollbar {
         height: 6px;
