@@ -93,7 +93,7 @@
               @forelse ($latestpost as $latest)
               <div class="post-item">
                 <div>
-                  <h4><a href="blog-details.html">{{ $latest->judul_informasi }}</a></h4>
+                  <h4><a href="{{ route('informasi.detail', $latest->no_informasi) }}">{{ $latest->judul_informasi }}</a></h4>
                   <time datetime="2020-01-01">{{ $latest->create_at }}</time>
                 </div>
               </div>
