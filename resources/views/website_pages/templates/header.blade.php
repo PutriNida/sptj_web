@@ -249,7 +249,7 @@
             <a href="{{ route('galeri', 0) }}">Galeri</a>
           </li>
           <li><a href="{{ route('pendaftaran_anggota.create') }}" class="{{ str_contains(url()->current(), '/pendaftaran-anggota') ? 'active' : ''}}">Pendaftaran Anggota</a></li>
-          <!-- <li><a href="{{ route('auth.login') }}">Login Anggota</a></li> -->
+          <li><a href="{{ route('auth.login') }}">Login</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
