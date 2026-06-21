@@ -358,13 +358,19 @@ class WebsitePageController extends Controller
             ->where('publish_at', 'IS NOT', null)
             ->orderBy('no_struktur', 'asc')
             ->get();
+        
+            $struktur_anggota = DB::table('struktur_anggota')
+        ->join('anggota', 'anggota.no_karyawan', '=', 'struktur_anggota.no_karyawan')
+        ->select('struktur_anggota.*', 'anggota.nama_lengkap')
+        ->whereNotNull('publish_at')
+        ->orderBy('no_struktur_anggota', 'asc')
+        ->get();
 
         $hubungi_kami = $this->footercontact();
         $medsos = $this->footermedsos();
 
-        return view('website_pages.struktur_organisasi', compact('struktur_organisasi', 'medsos', 'hubungi_kami'));
+        return view('website_pages.struktur_organisasi', compact('struktur_organisasi', 'struktur_anggota', 'medsos', 'hubungi_kami'));
     }
-
     public function increaseViewsStruktur($no_struktur)
     {
         $struktur = DB::table('struktur')
@@ -424,6 +430,8 @@ class WebsitePageController extends Controller
             'email' => 'required|email|max:255',
             'jenis' => 'required|in:pengaduan,aspirasi',
             'pesan' => 'required|string',
+            'nik' => 'nullable|string|max:20',
+            'nohp' => 'nullable|string|max:20',
         ]);
 
         DB::table('pengaduan_aspirasi')->insert([
@@ -431,6 +439,8 @@ class WebsitePageController extends Controller
             'email' => $request->email,
             'jenis' => $request->jenis,
             'pesan' => $request->pesan,
+            'nik' => $request->nik,
+            'nohp' => $request->nohp,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

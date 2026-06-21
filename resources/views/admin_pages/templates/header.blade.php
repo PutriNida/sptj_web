@@ -61,7 +61,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/home') }}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('') }}">
                 <div class="sidebar-brand-icon">
                     <img src="{{ URL::asset('sptj_img/logo.png'); }}" width="40" height="50"/>
                 </div>
@@ -141,10 +141,16 @@
                     <span>Aspirasi/pengaduan</span>
                 </a>
             </li>
-             <li class="nav-item {{ str_contains(url()->current(), '/admin_struktur') ? 'active' : ''}}">
+             <li class="nav-item {{ request()->routeIs('admin_struktur.*') ? 'active' : ''}}">
                 <a class="nav-link" href="{{ route('admin_struktur.index') }}">
                     <i class="fas fa-fw fa-image"></i>
                     <span>Struktur Organisasi</span>
+                </a>
+            </li>
+            <li class="nav-item {{ request()->routeIs('admin_struktur_anggota.*') ? 'active' : ''}}">
+                <a class="nav-link" href="{{ route('admin_struktur_anggota.index') }}">
+                    <i class="fas fa-users"></i>
+                    <span>Struktur Anggota Organisasi</span>
                 </a>
             </li>
 

@@ -4,16 +4,16 @@
   <main class="main">
 
     <!-- Page Title -->
-    <div class="page-title dark-background">
+    {{-- <div class="page-title dark-background"> --}}
       <div class="container position-relative">
-        <h1>Informasi</h1>
+        {{-- <h1>Informasi</h1>
         <nav class="breadcrumbs">
           <ol>
             <li><a href="index.html">Beranda</a></li>
             <li class="current">Informasi</li>
           </ol>
         </nav>
-      </div>
+      </div> --}}
     </div><!-- End Page Title -->
 
     <div class="container">
@@ -27,9 +27,29 @@
 
               <article class="article">
 
-                <div class="post-img">
-                  <img src="{{ $informasi->gambar }}" alt="" class="img-fluid">
+                <div class="post-img sptj-detail-informasi-img">
+                  <img
+                    src="{{ $informasi->gambar }}"
+                    alt=""
+                    class="img-fluid"
+                  >
                 </div>
+
+                <style>
+                  .sptj-detail-informasi-img {
+                    max-width: 720px;
+                    margin: 0 auto;
+                  }
+
+                  .sptj-detail-informasi-img img {
+                    width: 100%;
+                    height: auto;
+                    max-height: 360px;
+                    object-fit: contain;
+                    background: transparent;
+                    display: block;
+                  }
+                </style>
 
                 <h2 class="title">{{ $informasi->judul_informasi }}</h2>
 

@@ -27,9 +27,29 @@
 
               <article class="article">
 
-                <div class="post-img">
-                  <img src="{{ $berita->gambar }}" alt="" class="img-fluid">
+                <div class="post-img sptj-detail-berita-img">
+                  <img
+                    src="{{ $berita->gambar }}"
+                    alt=""
+                    class="img-fluid"
+                  >
                 </div>
+
+                <style>
+                  .sptj-detail-berita-img {
+                    max-width: 720px;
+                    margin: 0 auto;
+                  }
+
+                  .sptj-detail-berita-img img {
+                    width: 100%;
+                    height: auto;
+                    max-height: 360px;
+                    object-fit: contain;
+                    background: transparent;
+                    display: block;
+                  }
+                </style>
 
                 <h2 class="title">{{ $berita->judul_berita }}</h2>
 

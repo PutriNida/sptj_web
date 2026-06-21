@@ -34,6 +34,8 @@ class AspirasiController extends Controller
             'nama' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'pesan' => 'required|string',
+            'nik' => 'nullable|string|max:20',
+            'nohp' => 'nullable|string|max:20',
         ]);
 
         $now = now();

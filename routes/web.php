@@ -208,6 +208,12 @@ Route::get('/admin_struktur/upload', \App\Http\Controllers\AdminControllers\Stru
 Route::post('/admin_struktur/save', \App\Http\Controllers\AdminControllers\StrukturController::class .'@store')->name('admin_struktur.store');
 Route::put('/admin_struktur/publish', \App\Http\Controllers\AdminControllers\StrukturController::class .'@publish')->name('admin_struktur.publish');
 Route::delete('/admin_struktur/destroy/{no_struktur}', \App\Http\Controllers\AdminControllers\StrukturController::class .'@destroy')->name('admin_struktur.destroy');
+//struktur anggota
+Route::get('/admin_struktur_anggota', \App\Http\Controllers\AdminControllers\StrukturanggotaController::class .'@index')->name('admin_struktur_anggota.index');
+Route::get('/admin_struktur_anggota/upload', \App\Http\Controllers\AdminControllers\StrukturanggotaController::class .'@upload')->name('admin_struktur_anggota.upload');
+Route::post('/admin_struktur_anggota/save', \App\Http\Controllers\AdminControllers\StrukturanggotaController::class .'@store')->name('admin_struktur_anggota.store');
+Route::put('/admin_struktur_anggota/publish', \App\Http\Controllers\AdminControllers\StrukturanggotaController::class .'@publish')->name('admin_struktur_anggota.publish');
+Route::delete('/admin_struktur_anggota/destroy/{no_struktur}', \App\Http\Controllers\AdminControllers\StrukturanggotaController::class .'@destroy')->name('admin_struktur_anggota.destroy');
 // website tentang kami
 Route::get('/admin_tentang_kami', \App\Http\Controllers\AdminControllers\TentangKamiController::class .'@index')->name('admin_tentang_kami.index');
 Route::get('/admin_tentang_kami/create', \App\Http\Controllers\AdminControllers\TentangKamiController::class .'@create')->name('admin_tentang_kami.create');

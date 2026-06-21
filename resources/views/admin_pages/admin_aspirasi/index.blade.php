@@ -30,9 +30,12 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
+                                    <th>NIK</th>
+                                    <th>No.HP/WA</th>
                                     <th>Email</th>
                                     <th>Jenis</th>
                                     <th>Pesan</th>
+                                    
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -44,6 +47,12 @@
                                 </td>
                                 <td>
                                         {{ $as->nama }}
+                                </td>
+                                <td>
+                                        {{ $as->nik }}
+                                </td>
+                                <td>
+                                        {{ $as->nohp }}
                                 </td>
                                 <td>
                                         {{ $as->email }}
