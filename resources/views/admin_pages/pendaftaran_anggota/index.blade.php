@@ -1,58 +1,89 @@
 @extends('admin_pages.templates.layout')
+
 @section('content')
+
 <div class="container-fluid py-4">
     <div class="d-flex align-items-center justify-content-between mb-3">
         <h4 class="font-weight-bold text-primary">Pendaftaran Online (Pending)</h4>
     </div>
 
-    @if (session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-    @if (session('error'))
-        <div class="alert alert-danger">{{ session('error') }}</div>
-    @endif
+@if (session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+@endif
+@if (session('error'))
+    <div class="alert alert-danger">{{ session('error') }}</div>
+@endif
 
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <table class="table table-bordered table-sm">
-                <thead>
+<div class="card shadow-sm">
+    <div class="card-body">
+
+        <!-- Tombol di luar table (lebih rapi) -->
+        <button onclick="exportExcel()" class="btn btn-success mb-3">
+            Export Excel
+        </button>
+
+        <table id="myTable" class="table table-bordered table-sm">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>No. Karyawan</th>
+                    <th>Nama</th>
+                    <th>Status</th>
+                    <th>Waktu</th>
+                    <th class="text-center">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($pending as $i => $p)
                     <tr>
-                        <th>No</th>
-                        <th>No. Karyawan</th>
-                        <th>Nama</th>
-                        <th>Status</th>
-                        <th>Waktu</th>
-                        <th class="text-center">Aksi</th>
+                        <td>{{ $i + 1 }}</td>
+                        <td>{{ $p->no_karyawan }}</td>
+                        <td>{{ $p->nama_lengkap }}</td>
+                        <td>{{ $p->status }}</td>
+                        <td>
+                            @if($p->created_at)
+                                {{ \Carbon\Carbon::parse($p->created_at)->format('Y-m-d H:i') }}
+                            @else
+                                -
+                            @endif
+                        </td>
+                        <td class="text-center">
+                            <a class="btn btn-outline-primary btn-sm" href="{{ route('admin_pendaftaran_anggota.show', $p->id) }}">
+                                Detail
+                            </a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @forelse($pending as $i => $p)
-                        <tr>
-                            <td>{{ $i + 1 }}</td>
-                            <td>{{ $p->no_karyawan }}</td>
-                            <td>{{ $p->nama_lengkap }}</td>
-                            <td>{{ $p->status }}</td>
-                            <td>
-                                @if($p->created_at)
-                                    {{ \Carbon\Carbon::parse($p->created_at)->format('Y-m-d H:i') }}
-                                @else
-                                    -
-                                @endif
-                            </td>
-                            <td class="text-center">
-                                <a class="btn btn-outline-primary btn-sm" href="{{ route('admin_pendaftaran_anggota.show', $p->id) }}">
-                                    Detail
-                                </a>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="6" class="text-center text-muted">Tidak ada pengajuan pending.</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
+                @empty
+                    <tr>
+                        <td colspan="6" class="text-center text-muted">
+                            Tidak ada pengajuan pending.
+                        </td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+
     </div>
 </div>
+
+</div>
+
+<!-- CDN HARUS sebelum script -->
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+<script>
+function exportExcel() {
+    let table = document.getElementById("myTable");
+
+    if (!table) {
+        alert("Table tidak ditemukan!");
+        return;
+    }
+
+    let wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+    XLSX.writeFile(wb, "pendaftaran.xlsx");
+}
+</script>
+
 @endsection

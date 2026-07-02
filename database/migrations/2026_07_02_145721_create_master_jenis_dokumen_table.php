@@ -13,17 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pengaduan_aspirasi', function (Blueprint $table) {
+        Schema::create('master_jenis_dokumen', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('nik')->nullable();
-            $table->string('nohp')->nullable();
-            $table->string('email');
-            $table->enum('jenis', ['pengaduan', 'aspirasi']);
-            $table->text('pesan');
+            $table->string('nama_jenis_dokumen')->unique();
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pengaduan_aspirasi');
+        Schema::dropIfExists('master_jenis_dokumen');
     }
 };

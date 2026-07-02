@@ -134,6 +134,12 @@
                     <span>Galeri</span>
                 </a>
             </li>
+                        <li class="nav-item {{ str_contains(url()->current(), '/admin_dokumen') ? 'active' : ''}}">
+                <a class="nav-link" href="{{ route('admin_dokumen.index') }}">
+                    <i class="fas fa-fw fa-file-alt"></i>
+                    <span>Dokumen</span>
+                </a>
+            </li>
 
              <li class="nav-item {{ str_contains(url()->current(), '/admin_aspirasi') ? 'active' : ''}}">
                 <a class="nav-link" href="{{ route('admin_aspirasi.index') }}">
@@ -274,12 +280,16 @@
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Master Data Lainnya</span>
                 </a>
-                <div id="collapseMasterLainnya" class="collapse             
+                <div id="collapseMasterLainnya" class="collapse    
+                {{ str_contains(url()->current(), 'master_jenis_dokumen') ? 'show' : '' }}         
                 {{ str_contains(url()->current(), 'master_kategori_berita') ? 'show' : '' }}
                 {{ str_contains(url()->current(), 'master_kategori_informasi')?'show':'' }}
                 {{ str_contains(url()->current(), 'master_kategori_galeri')? 'show':'' }}
                 {{ str_contains(url()->current(), 'master_media_sosial')? 'show':'' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+href="{{ url('/jenis_dokumen') }}"
+                          Kategori Dokumen
+                        </a>
                         <a class="collapse-item {{ str_contains(url()->current(), 'master_kategori_berita') ? 'active' : ''}}"  href="{{ url('/master_kategori_berita') }}">
                           Kategori Berita
                         </a>

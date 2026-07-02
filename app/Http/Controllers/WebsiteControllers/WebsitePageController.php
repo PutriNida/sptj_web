@@ -423,6 +423,60 @@ class WebsitePageController extends Controller
         return view('website_pages.hubungi_kami', compact('medsos', 'hubungi_kami', 'notelp', 'alamat', 'email', 'map'));
     }
 
+    public function dokumen(Request $request)
+    {
+        $selected_kd_jenis_dokumen = (int) $request->query('kd_jenis_dokumen', 0);
+        $perPage = 6;
+        $page = (int) $request->query('page', 1);
+        if ($page < 1) $page = 1;
+
+        $jenis = DB::table('master_jenis_dokumen')->orderBy('id', 'asc')->get();
+
+        $baseQuery = DB::table('dokumen')
+            ->join('master_jenis_dokumen', 'master_jenis_dokumen.id', '=', 'dokumen.kd_jenis_dokumen')
+            ->select('dokumen.*', 'master_jenis_dokumen.nama_jenis_dokumen')
+            ->where('dokumen.publish', '=', 1);
+
+        if ($selected_kd_jenis_dokumen > 0) {
+            $baseQuery->where('dokumen.kd_jenis_dokumen', '=', $selected_kd_jenis_dokumen);
+        }
+
+        $total_dokumen = (int) (clone $baseQuery)->count();
+        $total_pages = (int) ceil($total_dokumen / $perPage);
+        if ($total_pages < 1) $total_pages = 1;
+
+        $offset = ($page - 1) * $perPage;
+
+        $dokumen = (clone $baseQuery)
+            ->orderBy('dokumen.created_at', 'desc')
+            ->offset($offset)
+            ->limit($perPage)
+            ->get();
+
+        $selected_nama_jenis_dokumen = '';
+        if ($selected_kd_jenis_dokumen > 0) {
+            $selected_nama_jenis_dokumen = DB::table('master_jenis_dokumen')
+                ->where('id', $selected_kd_jenis_dokumen)
+                ->value('nama_jenis_dokumen') ?? '';
+        }
+
+        // pagination links but using querystring page
+        $queryParams = $request->query();
+
+        return view('website_pages.dokumen', [
+            'jenis' => $jenis,
+            'dokumen' => $dokumen,
+            'total_dokumen' => $total_dokumen,
+            'selected_kd_jenis_dokumen' => $selected_kd_jenis_dokumen,
+            'selected_nama_jenis_dokumen' => $selected_nama_jenis_dokumen,
+            'activeJenis' => $selected_kd_jenis_dokumen,
+            'total_pages' => $total_pages,
+            'current_page' => $page,
+            'queryParams' => $queryParams,
+        ]);
+    }
+
+
     public function submitpengaduan(Request $request)
     {
         $request->validate([
@@ -453,3 +507,4 @@ class WebsitePageController extends Controller
 
 
 ?>
+

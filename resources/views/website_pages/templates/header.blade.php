@@ -16,6 +16,7 @@
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 
   <!-- Vendor CSS Files -->
   <link href="{{ URL::asset('vendor/web/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -248,6 +249,7 @@
           <li class="{{ request()->is('galeri') || request()->is('/galeri/*') ? 'active' : '' }}">
             <a href="{{ route('galeri', 0) }}">Galeri</a>
           </li>
+          <li><a href="{{ route('dokumen') }}" class="{{ str_contains(url()->current(), '/dokumen') ? 'active' : ''}}">Dokumen</a></li>
           <li><a href="{{ route('pendaftaran_anggota.create') }}" class="{{ str_contains(url()->current(), '/pendaftaran-anggota') ? 'active' : ''}}">Pendaftaran Anggota</a></li>
           <li><a href="{{ route('auth.login') }}">Login</a></li>
         </ul>

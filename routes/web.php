@@ -2,9 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminControllers\HubungiKamiController;
+use App\Http\Controllers\AdminControllers\DokumenController;
+use App\Http\Controllers\MasterControllers\JenisDokumenController;
+
 
 
 /*
+
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -246,6 +250,24 @@ Route::delete('/admin_aspirasi/destroy/{id}', \App\Http\Controllers\AdminControl
 Route::patch('/admin_aspirasi/{id}/change-type', \App\Http\Controllers\AdminControllers\AspirasiController::class .'@changeType')->name('admin_aspirasi.changeType');
 // ====================================== website start =========================================================
 
+// ====================================== master dokumen (jenis)
+Route::get('/jenis_dokumen', \App\Http\Controllers\MasterControllers\JenisDokumenController::class .'@index')->name('jenis_dokumen.index');
+Route::get('/jenis_dokumen/create', \App\Http\Controllers\MasterControllers\JenisDokumenController::class .'@create')->name('jenis_dokumen.create');
+Route::post('/jenis_dokumen/save', \App\Http\Controllers\MasterControllers\JenisDokumenController::class .'@store')->name('jenis_dokumen.store');
+Route::get('/jenis_dokumen/edit/{id}', \App\Http\Controllers\MasterControllers\JenisDokumenController::class .'@edit')->name('jenis_dokumen.edit');
+Route::put('/jenis_dokumen/update', \App\Http\Controllers\MasterControllers\JenisDokumenController::class .'@update')->name('jenis_dokumen.update');
+Route::delete('/jenis_dokumen/destroy/{id}', \App\Http\Controllers\MasterControllers\JenisDokumenController::class .'@destroy')->name('jenis_dokumen.destroy');
+
+// ====================================== admin dokumen
+Route::get('/admin_dokumen', \App\Http\Controllers\AdminControllers\DokumenController::class .'@index')->name('admin_dokumen.index');
+Route::get('/admin_dokumen/upload', \App\Http\Controllers\AdminControllers\DokumenController::class .'@upload')->name('admin_dokumen.upload');
+Route::post('/admin_dokumen/save', \App\Http\Controllers\AdminControllers\DokumenController::class .'@store')->name('admin_dokumen.store');
+Route::put('/admin_dokumen/publish/{id}', \App\Http\Controllers\AdminControllers\DokumenController::class .'@publish')->name('admin_dokumen.publish');
+Route::get('/admin_dokumen/edit/{id}', \App\Http\Controllers\AdminControllers\DokumenController::class .'@edit')->name('admin_dokumen.edit');
+Route::put('/admin_dokumen/update', \App\Http\Controllers\AdminControllers\DokumenController::class .'@update')->name('admin_dokumen.update');
+Route::delete('/admin_dokumen/destroy/{id}', \App\Http\Controllers\AdminControllers\DokumenController::class .'@destroy')->name('admin_dokumen.destroy');
+Route::get('/admin_dokumen/download/{id}', \App\Http\Controllers\AdminControllers\DokumenController::class .'@download')->name('admin_dokumen.download');
+
 // ====================================== kartu anggota start =========================================================
 Route::get('/kartu_anggota', \App\Http\Controllers\AdminControllers\KartuAnggotaController::class .'@index');
 Route::get('/kartu_anggota/detail/{no_karyawan}', \App\Http\Controllers\AdminControllers\KartuAnggotaController::class .'@detail');
@@ -289,4 +311,6 @@ Route::post('/hubungi_kami/submit', \App\Http\Controllers\WebsiteControllers\Web
 Route::get('/informasi/likes/{no_informasi}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@likeinformasi')->name('informasi.likes');
 Route::get('/informasi/dislikes/{no_informasi}', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@dislikeinformasi')->name('informasi.dislikes');
 Route::get('/struktur', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@struktur')->name('struktur');
+Route::get('/dokumen', \App\Http\Controllers\WebsiteControllers\WebsitePageController::class .'@dokumen')->name('dokumen');
 // ====================================== website page start =========================================================
+
