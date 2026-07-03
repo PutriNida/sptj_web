@@ -286,8 +286,8 @@
                 {{ str_contains(url()->current(), 'master_kategori_informasi')?'show':'' }}
                 {{ str_contains(url()->current(), 'master_kategori_galeri')? 'show':'' }}
                 {{ str_contains(url()->current(), 'master_media_sosial')? 'show':'' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-href="{{ url('/jenis_dokumen') }}"
+                    <div class="bg-white py-2 collapse-inner rounded">  
+                         <a class="collapse-item {{ str_contains(url()->current(), 'master_jenis_dokumen') ? 'active' : ''}}"  href="{{ url('/jenis_dokumen') }}">
                           Kategori Dokumen
                         </a>
                         <a class="collapse-item {{ str_contains(url()->current(), 'master_kategori_berita') ? 'active' : ''}}"  href="{{ url('/master_kategori_berita') }}">
